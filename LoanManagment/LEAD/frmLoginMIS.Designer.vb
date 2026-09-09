@@ -457,7 +457,7 @@ Partial Class frmLoginMIS
         btnUpdate.Name = "btnUpdate"
         btnUpdate.Size = New Size(110, 38)
         btnUpdate.TabIndex = 20
-        btnUpdate.Text = "Edit"
+        btnUpdate.Text = "Update"
         btnUpdate.UseVisualStyleBackColor = True
         ' 
         ' btnSave
