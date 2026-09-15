@@ -1,9 +1,8 @@
-﻿<Global.Microsoft.VisualBasic.CompilerServices.DesignerGenerated()> _
+﻿<Global.Microsoft.VisualBasic.CompilerServices.DesignerGenerated()>
 Partial Class frmLeadMIS
     Inherits System.Windows.Forms.Form
 
-    'Form overrides dispose to clean up the component list.
-    <System.Diagnostics.DebuggerNonUserCode()> _
+    <System.Diagnostics.DebuggerNonUserCode()>
     Protected Overrides Sub Dispose(ByVal disposing As Boolean)
         Try
             If disposing AndAlso components IsNot Nothing Then
@@ -14,625 +13,716 @@ Partial Class frmLeadMIS
         End Try
     End Sub
 
-    'Required by the Windows Form Designer
     Private components As System.ComponentModel.IContainer
 
-    'NOTE: The following procedure is required by the Windows Form Designer
-    'It can be modified using the Windows Form Designer.  
-    'Do not modify it using the code editor.
-    <System.Diagnostics.DebuggerStepThrough()> _
+    <System.Diagnostics.DebuggerStepThrough()>
     Private Sub InitializeComponent()
-        Panel1 = New Panel()
-        txtOthrPropertyAdd = New TextBox()
-        Label21 = New Label()
-        txtExpOfr = New TextBox()
+        Dim DataGridViewCellStyle1 As DataGridViewCellStyle = New DataGridViewCellStyle()
+        Dim DataGridViewCellStyle2 As DataGridViewCellStyle = New DataGridViewCellStyle()
+        Dim DataGridViewCellStyle3 As DataGridViewCellStyle = New DataGridViewCellStyle()
+        PanelHeader = New Panel()
+        lblTitle = New Label()
+        PanelForm = New Panel()
+        dtpLeadDate = New DateTimePicker()
         CboLeadStage = New ComboBox()
-        CboCode = New ComboBox()
-        txtBank = New ComboBox()
-        txtPropertyAdd = New ComboBox()
+        txtCustName = New TextBox()
+        txtMobileNo = New TextBox()
+        txtLoanAmnt = New TextBox()
+        txtExpOfr = New TextBox()
         CboProduct = New ComboBox()
         CboSubProduct = New ComboBox()
         CboCPA = New ComboBox()
         txtProfile = New ComboBox()
-        txtStage = New ComboBox()
-        Label20 = New Label()
-        txtMobileNo = New TextBox()
-        btnDelete = New Button()
-        btnRefresh = New Button()
-        btnUpdate = New Button()
-        btnSave = New Button()
-        txtRemarks = New TextBox()
-        txtRef = New TextBox()
+        txtBank = New ComboBox()
         txtSdValue = New TextBox()
         txtSize = New TextBox()
         txtPropertyNo = New TextBox()
-        CmbDiscLogin = New ComboBox()
-        Label19 = New Label()
-        Label18 = New Label()
-        Label17 = New Label()
-        Label16 = New Label()
-        Label15 = New Label()
-        Label14 = New Label()
-        Label13 = New Label()
-        Label12 = New Label()
-        Label11 = New Label()
-        Label10 = New Label()
-        Label9 = New Label()
-        Label8 = New Label()
-        Label7 = New Label()
-        Label6 = New Label()
-        Label5 = New Label()
-        dtpLeadDate = New DateTimePicker()
-        txtCustName = New TextBox()
-        Label4 = New Label()
-        Label3 = New Label()
-        Label2 = New Label()
-        txtLoanAmnt = New TextBox()
+        txtPropertyAdd = New ComboBox()
+        txtOthrPropertyAdd = New TextBox()
+        txtRef = New TextBox()
+        txtRemarks = New TextBox()
         Label1 = New Label()
+        Label2 = New Label()
+        Label3 = New Label()
+        Label5 = New Label()
+        Label6 = New Label()
+        Label7 = New Label()
+        Label8 = New Label()
+        Label9 = New Label()
+        Label11 = New Label()
+        Label12 = New Label()
+        Label13 = New Label()
+        Label14 = New Label()
+        Label15 = New Label()
+        Label16 = New Label()
+        Label17 = New Label()
+        Label19 = New Label()
+        Label20 = New Label()
+        Label21 = New Label()
+        txtStage = New ComboBox()
+        CmbDiscLogin = New ComboBox()
+        CboCode = New ComboBox()
+        Label4 = New Label()
+        Label10 = New Label()
+        Label18 = New Label()
+        PanelButtons = New Panel()
+        btnSave = New Button()
+        btnUpdate = New Button()
+        btnDelete = New Button()
+        btnRefresh = New Button()
+        lblSubTitle = New Label()
         dgv = New DataGridView()
-        Panel1.SuspendLayout()
+        PanelHeader.SuspendLayout()
+        PanelForm.SuspendLayout()
+        PanelButtons.SuspendLayout()
         CType(dgv, ComponentModel.ISupportInitialize).BeginInit()
         SuspendLayout()
         ' 
-        ' Panel1
+        ' PanelHeader
         ' 
-        Panel1.Controls.Add(txtOthrPropertyAdd)
-        Panel1.Controls.Add(Label21)
-        Panel1.Controls.Add(txtExpOfr)
-        Panel1.Controls.Add(CboLeadStage)
-        Panel1.Controls.Add(CboCode)
-        Panel1.Controls.Add(txtBank)
-        Panel1.Controls.Add(txtPropertyAdd)
-        Panel1.Controls.Add(CboProduct)
-        Panel1.Controls.Add(CboSubProduct)
-        Panel1.Controls.Add(CboCPA)
-        Panel1.Controls.Add(txtProfile)
-        Panel1.Controls.Add(txtStage)
-        Panel1.Controls.Add(Label20)
-        Panel1.Controls.Add(txtMobileNo)
-        Panel1.Controls.Add(btnDelete)
-        Panel1.Controls.Add(btnRefresh)
-        Panel1.Controls.Add(btnUpdate)
-        Panel1.Controls.Add(btnSave)
-        Panel1.Controls.Add(txtRemarks)
-        Panel1.Controls.Add(txtRef)
-        Panel1.Controls.Add(txtSdValue)
-        Panel1.Controls.Add(txtSize)
-        Panel1.Controls.Add(txtPropertyNo)
-        Panel1.Controls.Add(CmbDiscLogin)
-        Panel1.Controls.Add(Label19)
-        Panel1.Controls.Add(Label18)
-        Panel1.Controls.Add(Label17)
-        Panel1.Controls.Add(Label16)
-        Panel1.Controls.Add(Label15)
-        Panel1.Controls.Add(Label14)
-        Panel1.Controls.Add(Label13)
-        Panel1.Controls.Add(Label12)
-        Panel1.Controls.Add(Label11)
-        Panel1.Controls.Add(Label10)
-        Panel1.Controls.Add(Label9)
-        Panel1.Controls.Add(Label8)
-        Panel1.Controls.Add(Label7)
-        Panel1.Controls.Add(Label6)
-        Panel1.Controls.Add(Label5)
-        Panel1.Controls.Add(dtpLeadDate)
-        Panel1.Controls.Add(txtCustName)
-        Panel1.Controls.Add(Label4)
-        Panel1.Controls.Add(Label3)
-        Panel1.Controls.Add(Label2)
-        Panel1.Controls.Add(txtLoanAmnt)
-        Panel1.Controls.Add(Label1)
-        Panel1.Dock = DockStyle.Top
-        Panel1.Location = New Point(0, 0)
-        Panel1.Name = "Panel1"
-        Panel1.Size = New Size(1475, 358)
-        Panel1.TabIndex = 0
+        PanelHeader.BackColor = Color.FromArgb(CByte(15), CByte(23), CByte(42))
+        PanelHeader.Controls.Add(lblTitle)
+        PanelHeader.Dock = DockStyle.Top
+        PanelHeader.Location = New Point(0, 0)
+        PanelHeader.Name = "PanelHeader"
+        PanelHeader.Padding = New Padding(16, 0, 16, 0)
+        PanelHeader.Size = New Size(1500, 40)
+        PanelHeader.TabIndex = 0
         ' 
-        ' txtOthrPropertyAdd
+        ' lblTitle
         ' 
-        txtOthrPropertyAdd.Location = New Point(939, 131)
-        txtOthrPropertyAdd.Name = "txtOthrPropertyAdd"
-        txtOthrPropertyAdd.Size = New Size(185, 27)
-        txtOthrPropertyAdd.TabIndex = 16
+        lblTitle.AutoSize = True
+        lblTitle.Font = New Font("Segoe UI Semibold", 11.0F, FontStyle.Bold)
+        lblTitle.ForeColor = Color.White
+        lblTitle.Location = New Point(16, 8)
+        lblTitle.Name = "lblTitle"
+        lblTitle.Size = New Size(97, 25)
+        lblTitle.TabIndex = 0
+        lblTitle.Text = "LEAD MIS"
         ' 
-        ' Label21
+        ' PanelForm
         ' 
-        Label21.AutoSize = True
-        Label21.Font = New Font("Segoe UI", 12F)
-        Label21.Location = New Point(712, 131)
-        Label21.Name = "Label21"
-        Label21.Size = New Size(223, 28)
-        Label21.TabIndex = 50
-        Label21.Text = "OTHER PROPERTY ADD :"
+        PanelForm.BackColor = Color.White
+        PanelForm.Controls.Add(dtpLeadDate)
+        PanelForm.Controls.Add(CboLeadStage)
+        PanelForm.Controls.Add(txtCustName)
+        PanelForm.Controls.Add(txtMobileNo)
+        PanelForm.Controls.Add(txtLoanAmnt)
+        PanelForm.Controls.Add(txtExpOfr)
+        PanelForm.Controls.Add(CboProduct)
+        PanelForm.Controls.Add(CboSubProduct)
+        PanelForm.Controls.Add(CboCPA)
+        PanelForm.Controls.Add(txtProfile)
+        PanelForm.Controls.Add(txtBank)
+        PanelForm.Controls.Add(txtSdValue)
+        PanelForm.Controls.Add(txtSize)
+        PanelForm.Controls.Add(txtPropertyNo)
+        PanelForm.Controls.Add(txtPropertyAdd)
+        PanelForm.Controls.Add(txtOthrPropertyAdd)
+        PanelForm.Controls.Add(txtRef)
+        PanelForm.Controls.Add(txtRemarks)
+        PanelForm.Controls.Add(Label1)
+        PanelForm.Controls.Add(Label2)
+        PanelForm.Controls.Add(Label3)
+        PanelForm.Controls.Add(Label5)
+        PanelForm.Controls.Add(Label6)
+        PanelForm.Controls.Add(Label7)
+        PanelForm.Controls.Add(Label8)
+        PanelForm.Controls.Add(Label9)
+        PanelForm.Controls.Add(Label11)
+        PanelForm.Controls.Add(Label12)
+        PanelForm.Controls.Add(Label13)
+        PanelForm.Controls.Add(Label14)
+        PanelForm.Controls.Add(Label15)
+        PanelForm.Controls.Add(Label16)
+        PanelForm.Controls.Add(Label17)
+        PanelForm.Controls.Add(Label19)
+        PanelForm.Controls.Add(Label20)
+        PanelForm.Controls.Add(Label21)
+        PanelForm.Controls.Add(txtStage)
+        PanelForm.Controls.Add(CmbDiscLogin)
+        PanelForm.Controls.Add(CboCode)
+        PanelForm.Controls.Add(Label4)
+        PanelForm.Controls.Add(Label10)
+        PanelForm.Controls.Add(Label18)
+        PanelForm.Dock = DockStyle.Top
+        PanelForm.Location = New Point(0, 40)
+        PanelForm.Name = "PanelForm"
+        PanelForm.Padding = New Padding(20)
+        PanelForm.Size = New Size(1500, 287)
+        PanelForm.TabIndex = 24
         ' 
-        ' txtExpOfr
+        ' dtpLeadDate
         ' 
-        txtExpOfr.Location = New Point(182, 209)
-        txtExpOfr.Name = "txtExpOfr"
-        txtExpOfr.Size = New Size(185, 27)
-        txtExpOfr.TabIndex = 5
+        dtpLeadDate.CustomFormat = "dd-MM-yyyy"
+        dtpLeadDate.Font = New Font("Segoe UI", 10.0F)
+        dtpLeadDate.Format = DateTimePickerFormat.Custom
+        dtpLeadDate.Location = New Point(175, 17)
+        dtpLeadDate.Name = "dtpLeadDate"
+        dtpLeadDate.Size = New Size(185, 30)
+        dtpLeadDate.TabIndex = 0
         ' 
         ' CboLeadStage
         ' 
         CboLeadStage.DropDownStyle = ComboBoxStyle.DropDownList
-        CboLeadStage.FormattingEnabled = True
-        CboLeadStage.Location = New Point(182, 50)
+        CboLeadStage.Font = New Font("Segoe UI", 10.0F)
+        CboLeadStage.Location = New Point(175, 62)
         CboLeadStage.Name = "CboLeadStage"
-        CboLeadStage.Size = New Size(182, 28)
+        CboLeadStage.Size = New Size(185, 31)
         CboLeadStage.TabIndex = 1
         ' 
-        ' CboCode
+        ' txtCustName
         ' 
-        CboCode.DropDownStyle = ComboBoxStyle.DropDownList
-        CboCode.FormattingEnabled = True
-        CboCode.Location = New Point(1292, 44)
-        CboCode.Name = "CboCode"
-        CboCode.Size = New Size(182, 28)
-        CboCode.TabIndex = 16
-        CboCode.Visible = False
+        txtCustName.BorderStyle = BorderStyle.FixedSingle
+        txtCustName.Font = New Font("Segoe UI", 10.0F)
+        txtCustName.Location = New Point(175, 107)
+        txtCustName.Name = "txtCustName"
+        txtCustName.Size = New Size(185, 30)
+        txtCustName.TabIndex = 2
         ' 
-        ' txtBank
+        ' txtMobileNo
         ' 
-        txtBank.DropDownStyle = ComboBoxStyle.DropDownList
-        txtBank.FormattingEnabled = True
-        txtBank.Location = New Point(525, 182)
-        txtBank.Name = "txtBank"
-        txtBank.Size = New Size(182, 28)
-        txtBank.TabIndex = 11
+        txtMobileNo.BorderStyle = BorderStyle.FixedSingle
+        txtMobileNo.Font = New Font("Segoe UI", 10.0F)
+        txtMobileNo.Location = New Point(175, 152)
+        txtMobileNo.MaxLength = 10
+        txtMobileNo.Name = "txtMobileNo"
+        txtMobileNo.Size = New Size(185, 30)
+        txtMobileNo.TabIndex = 3
         ' 
-        ' txtPropertyAdd
+        ' txtLoanAmnt
         ' 
-        txtPropertyAdd.DropDownStyle = ComboBoxStyle.DropDownList
-        txtPropertyAdd.FormattingEnabled = True
-        txtPropertyAdd.Location = New Point(939, 93)
-        txtPropertyAdd.Name = "txtPropertyAdd"
-        txtPropertyAdd.Size = New Size(182, 28)
-        txtPropertyAdd.TabIndex = 15
+        txtLoanAmnt.BorderStyle = BorderStyle.FixedSingle
+        txtLoanAmnt.Font = New Font("Segoe UI", 10.0F)
+        txtLoanAmnt.Location = New Point(175, 197)
+        txtLoanAmnt.Name = "txtLoanAmnt"
+        txtLoanAmnt.Size = New Size(185, 30)
+        txtLoanAmnt.TabIndex = 4
+        ' 
+        ' txtExpOfr
+        ' 
+        txtExpOfr.BorderStyle = BorderStyle.FixedSingle
+        txtExpOfr.Font = New Font("Segoe UI", 10.0F)
+        txtExpOfr.Location = New Point(175, 242)
+        txtExpOfr.Name = "txtExpOfr"
+        txtExpOfr.Size = New Size(185, 30)
+        txtExpOfr.TabIndex = 5
         ' 
         ' CboProduct
         ' 
         CboProduct.DropDownStyle = ComboBoxStyle.DropDownList
-        CboProduct.FormattingEnabled = True
-        CboProduct.Location = New Point(525, 31)
+        CboProduct.Font = New Font("Segoe UI", 10.0F)
+        CboProduct.Location = New Point(530, 17)
         CboProduct.Name = "CboProduct"
-        CboProduct.Size = New Size(182, 28)
-        CboProduct.TabIndex = 7
+        CboProduct.Size = New Size(185, 31)
+        CboProduct.TabIndex = 6
         ' 
         ' CboSubProduct
         ' 
         CboSubProduct.DropDownStyle = ComboBoxStyle.DropDownList
-        CboSubProduct.FormattingEnabled = True
-        CboSubProduct.Items.AddRange(New Object() {""})
-        CboSubProduct.Location = New Point(524, 72)
+        CboSubProduct.Font = New Font("Segoe UI", 10.0F)
+        CboSubProduct.Location = New Point(530, 62)
         CboSubProduct.Name = "CboSubProduct"
-        CboSubProduct.Size = New Size(182, 28)
-        CboSubProduct.TabIndex = 8
+        CboSubProduct.Size = New Size(185, 31)
+        CboSubProduct.TabIndex = 7
         ' 
         ' CboCPA
         ' 
         CboCPA.DropDownStyle = ComboBoxStyle.DropDownList
-        CboCPA.FormattingEnabled = True
-        CboCPA.Location = New Point(525, 109)
+        CboCPA.Font = New Font("Segoe UI", 10.0F)
+        CboCPA.Location = New Point(530, 107)
         CboCPA.Name = "CboCPA"
-        CboCPA.Size = New Size(182, 28)
-        CboCPA.TabIndex = 9
+        CboCPA.Size = New Size(185, 31)
+        CboCPA.TabIndex = 8
         ' 
         ' txtProfile
         ' 
         txtProfile.DropDownStyle = ComboBoxStyle.DropDownList
-        txtProfile.FormattingEnabled = True
-        txtProfile.Location = New Point(526, 143)
+        txtProfile.Font = New Font("Segoe UI", 10.0F)
+        txtProfile.Location = New Point(530, 152)
         txtProfile.Name = "txtProfile"
-        txtProfile.Size = New Size(182, 28)
-        txtProfile.TabIndex = 10
+        txtProfile.Size = New Size(185, 31)
+        txtProfile.TabIndex = 9
         ' 
-        ' txtStage
+        ' txtBank
         ' 
-        txtStage.DropDownStyle = ComboBoxStyle.DropDownList
-        txtStage.FormattingEnabled = True
-        txtStage.Location = New Point(1314, 10)
-        txtStage.Name = "txtStage"
-        txtStage.Size = New Size(151, 28)
-        txtStage.TabIndex = 6
-        txtStage.Visible = False
-        ' 
-        ' Label20
-        ' 
-        Label20.AutoSize = True
-        Label20.Font = New Font("Segoe UI", 12F)
-        Label20.Location = New Point(56, 136)
-        Label20.Name = "Label20"
-        Label20.Size = New Size(115, 28)
-        Label20.TabIndex = 47
-        Label20.Text = "Mobile No :"
-        ' 
-        ' txtMobileNo
-        ' 
-        txtMobileNo.Location = New Point(182, 129)
-        txtMobileNo.Name = "txtMobileNo"
-        txtMobileNo.Size = New Size(191, 27)
-        txtMobileNo.TabIndex = 3
-        ' 
-        ' btnDelete
-        ' 
-        btnDelete.Font = New Font("Segoe UI", 12F)
-        btnDelete.Location = New Point(582, 280)
-        btnDelete.Name = "btnDelete"
-        btnDelete.Size = New Size(94, 36)
-        btnDelete.TabIndex = 22
-        btnDelete.Text = "Delete"
-        btnDelete.UseVisualStyleBackColor = True
-        ' 
-        ' btnRefresh
-        ' 
-        btnRefresh.Font = New Font("Segoe UI", 12F)
-        btnRefresh.Location = New Point(682, 282)
-        btnRefresh.Name = "btnRefresh"
-        btnRefresh.Size = New Size(94, 34)
-        btnRefresh.TabIndex = 23
-        btnRefresh.Text = "Refresh"
-        btnRefresh.UseVisualStyleBackColor = True
-        ' 
-        ' btnUpdate
-        ' 
-        btnUpdate.Font = New Font("Segoe UI", 12F)
-        btnUpdate.Location = New Point(482, 279)
-        btnUpdate.Name = "btnUpdate"
-        btnUpdate.Size = New Size(94, 37)
-        btnUpdate.TabIndex = 21
-        btnUpdate.Text = "Update"
-        btnUpdate.UseVisualStyleBackColor = True
-        ' 
-        ' btnSave
-        ' 
-        btnSave.Font = New Font("Segoe UI", 12F)
-        btnSave.Location = New Point(382, 279)
-        btnSave.Name = "btnSave"
-        btnSave.Size = New Size(94, 37)
-        btnSave.TabIndex = 20
-        btnSave.Text = "Save"
-        btnSave.UseVisualStyleBackColor = True
-        ' 
-        ' txtRemarks
-        ' 
-        txtRemarks.Location = New Point(939, 210)
-        txtRemarks.Name = "txtRemarks"
-        txtRemarks.Size = New Size(185, 27)
-        txtRemarks.TabIndex = 19
-        ' 
-        ' txtRef
-        ' 
-        txtRef.Location = New Point(939, 169)
-        txtRef.Name = "txtRef"
-        txtRef.Size = New Size(185, 27)
-        txtRef.TabIndex = 17
+        txtBank.DropDownStyle = ComboBoxStyle.DropDownList
+        txtBank.Font = New Font("Segoe UI", 10.0F)
+        txtBank.Location = New Point(530, 197)
+        txtBank.Name = "txtBank"
+        txtBank.Size = New Size(185, 31)
+        txtBank.TabIndex = 10
         ' 
         ' txtSdValue
         ' 
-        txtSdValue.Location = New Point(526, 221)
+        txtSdValue.BorderStyle = BorderStyle.FixedSingle
+        txtSdValue.Font = New Font("Segoe UI", 10.0F)
+        txtSdValue.Location = New Point(530, 242)
         txtSdValue.Name = "txtSdValue"
-        txtSdValue.Size = New Size(185, 27)
-        txtSdValue.TabIndex = 12
+        txtSdValue.Size = New Size(185, 30)
+        txtSdValue.TabIndex = 11
         ' 
         ' txtSize
         ' 
-        txtSize.Location = New Point(937, 17)
+        txtSize.BorderStyle = BorderStyle.FixedSingle
+        txtSize.Font = New Font("Segoe UI", 10.0F)
+        txtSize.Location = New Point(940, 17)
         txtSize.Name = "txtSize"
-        txtSize.Size = New Size(185, 27)
-        txtSize.TabIndex = 13
+        txtSize.Size = New Size(210, 30)
+        txtSize.TabIndex = 12
         ' 
         ' txtPropertyNo
         ' 
-        txtPropertyNo.Location = New Point(939, 54)
+        txtPropertyNo.BorderStyle = BorderStyle.FixedSingle
+        txtPropertyNo.Font = New Font("Segoe UI", 10.0F)
+        txtPropertyNo.Location = New Point(940, 62)
         txtPropertyNo.Name = "txtPropertyNo"
-        txtPropertyNo.Size = New Size(185, 27)
-        txtPropertyNo.TabIndex = 14
+        txtPropertyNo.Size = New Size(210, 30)
+        txtPropertyNo.TabIndex = 13
         ' 
-        ' CmbDiscLogin
+        ' txtPropertyAdd
         ' 
-        CmbDiscLogin.DropDownStyle = ComboBoxStyle.DropDownList
-        CmbDiscLogin.FormattingEnabled = True
-        CmbDiscLogin.Location = New Point(1324, 65)
-        CmbDiscLogin.Name = "CmbDiscLogin"
-        CmbDiscLogin.Size = New Size(151, 28)
-        CmbDiscLogin.TabIndex = 1
-        CmbDiscLogin.Visible = False
+        txtPropertyAdd.DropDownStyle = ComboBoxStyle.DropDownList
+        txtPropertyAdd.Font = New Font("Segoe UI", 10.0F)
+        txtPropertyAdd.Location = New Point(940, 107)
+        txtPropertyAdd.Name = "txtPropertyAdd"
+        txtPropertyAdd.Size = New Size(210, 31)
+        txtPropertyAdd.TabIndex = 14
         ' 
-        ' Label19
+        ' txtOthrPropertyAdd
         ' 
-        Label19.AutoSize = True
-        Label19.Font = New Font("Segoe UI", 12F)
-        Label19.Location = New Point(8, 55)
-        Label19.Name = "Label19"
-        Label19.Size = New Size(161, 28)
-        Label19.TabIndex = 27
-        Label19.Text = "DISCUSS STAGE :"
+        txtOthrPropertyAdd.BorderStyle = BorderStyle.FixedSingle
+        txtOthrPropertyAdd.Font = New Font("Segoe UI", 10.0F)
+        txtOthrPropertyAdd.Location = New Point(940, 152)
+        txtOthrPropertyAdd.Name = "txtOthrPropertyAdd"
+        txtOthrPropertyAdd.Size = New Size(210, 30)
+        txtOthrPropertyAdd.TabIndex = 15
         ' 
-        ' Label18
+        ' txtRef
         ' 
-        Label18.AutoSize = True
-        Label18.Font = New Font("Segoe UI", 12F)
-        Label18.Location = New Point(1207, 40)
-        Label18.Name = "Label18"
-        Label18.Size = New Size(71, 28)
-        Label18.TabIndex = 26
-        Label18.Text = "CODE :"
-        Label18.Visible = False
+        txtRef.BorderStyle = BorderStyle.FixedSingle
+        txtRef.Font = New Font("Segoe UI", 10.0F)
+        txtRef.Location = New Point(940, 197)
+        txtRef.Name = "txtRef"
+        txtRef.Size = New Size(210, 30)
+        txtRef.TabIndex = 16
         ' 
-        ' Label17
+        ' txtRemarks
         ' 
-        Label17.AutoSize = True
-        Label17.Font = New Font("Segoe UI", 12F)
-        Label17.Location = New Point(801, 169)
-        Label17.Name = "Label17"
-        Label17.Size = New Size(122, 28)
-        Label17.TabIndex = 25
-        Label17.Text = "REFERENCE :"
-        ' 
-        ' Label16
-        ' 
-        Label16.AutoSize = True
-        Label16.Font = New Font("Segoe UI", 12F)
-        Label16.Location = New Point(721, 93)
-        Label16.Name = "Label16"
-        Label16.Size = New Size(202, 28)
-        Label16.TabIndex = 24
-        Label16.Text = "PROPERTY ADDRESS :"
-        ' 
-        ' Label15
-        ' 
-        Label15.AutoSize = True
-        Label15.Font = New Font("Segoe UI", 12F)
-        Label15.Location = New Point(814, 206)
-        Label15.Name = "Label15"
-        Label15.Size = New Size(109, 28)
-        Label15.TabIndex = 23
-        Label15.Text = "REMARKS :"
-        ' 
-        ' Label14
-        ' 
-        Label14.AutoSize = True
-        Label14.Font = New Font("Segoe UI", 12F)
-        Label14.Location = New Point(397, 217)
-        Label14.Name = "Label14"
-        Label14.Size = New Size(108, 28)
-        Label14.TabIndex = 22
-        Label14.Text = "SD VALUE :"
-        ' 
-        ' Label13
-        ' 
-        Label13.AutoSize = True
-        Label13.Font = New Font("Segoe UI", 12F)
-        Label13.Location = New Point(865, 20)
-        Label13.Name = "Label13"
-        Label13.Size = New Size(58, 28)
-        Label13.TabIndex = 21
-        Label13.Text = "SIZE :"
-        ' 
-        ' Label12
-        ' 
-        Label12.AutoSize = True
-        Label12.Font = New Font("Segoe UI", 12F)
-        Label12.Location = New Point(772, 59)
-        Label12.Name = "Label12"
-        Label12.Size = New Size(151, 28)
-        Label12.TabIndex = 20
-        Label12.Text = "PROPERTY NO. :"
-        ' 
-        ' Label11
-        ' 
-        Label11.AutoSize = True
-        Label11.Font = New Font("Segoe UI", 12F)
-        Label11.Location = New Point(32, 167)
-        Label11.Name = "Label11"
-        Label11.Size = New Size(139, 28)
-        Label11.TabIndex = 19
-        Label11.Text = "Loan Amount :"
-        ' 
-        ' Label10
-        ' 
-        Label10.AutoSize = True
-        Label10.Font = New Font("Segoe UI", 12F)
-        Label10.Location = New Point(1233, 13)
-        Label10.Name = "Label10"
-        Label10.Size = New Size(70, 28)
-        Label10.TabIndex = 18
-        Label10.Text = "Stage :"
-        Label10.Visible = False
-        ' 
-        ' Label9
-        ' 
-        Label9.AutoSize = True
-        Label9.Font = New Font("Segoe UI", 12F)
-        Label9.Location = New Point(415, 31)
-        Label9.Name = "Label9"
-        Label9.Size = New Size(90, 28)
-        Label9.TabIndex = 17
-        Label9.Text = "Product :"
-        ' 
-        ' Label8
-        ' 
-        Label8.AutoSize = True
-        Label8.Font = New Font("Segoe UI", 12F)
-        Label8.Location = New Point(376, 68)
-        Label8.Name = "Label8"
-        Label8.Size = New Size(142, 28)
-        Label8.TabIndex = 16
-        Label8.Text = "Sub - Product :"
-        ' 
-        ' Label7
-        ' 
-        Label7.AutoSize = True
-        Label7.Font = New Font("Segoe UI", 12F)
-        Label7.Location = New Point(440, 105)
-        Label7.Name = "Label7"
-        Label7.Size = New Size(56, 28)
-        Label7.TabIndex = 15
-        Label7.Text = "CPA :"
-        ' 
-        ' Label6
-        ' 
-        Label6.AutoSize = True
-        Label6.Font = New Font("Segoe UI", 12F)
-        Label6.Location = New Point(412, 143)
-        Label6.Name = "Label6"
-        Label6.Size = New Size(93, 28)
-        Label6.TabIndex = 14
-        Label6.Text = "PROFILE :"
-        ' 
-        ' Label5
-        ' 
-        Label5.AutoSize = True
-        Label5.Font = New Font("Segoe UI", 12F)
-        Label5.Location = New Point(424, 179)
-        Label5.Name = "Label5"
-        Label5.Size = New Size(72, 28)
-        Label5.TabIndex = 13
-        Label5.Text = "BANK :"
-        ' 
-        ' dtpLeadDate
-        ' 
-        dtpLeadDate.CustomFormat = ""
-        dtpLeadDate.Format = DateTimePickerFormat.Short
-        dtpLeadDate.Location = New Point(187, 12)
-        dtpLeadDate.Name = "dtpLeadDate"
-        dtpLeadDate.Size = New Size(132, 27)
-        dtpLeadDate.TabIndex = 0
-        dtpLeadDate.Value = New Date(2026, 8, 21, 0, 0, 0, 0)
-        ' 
-        ' txtCustName
-        ' 
-        txtCustName.Location = New Point(184, 89)
-        txtCustName.Name = "txtCustName"
-        txtCustName.Size = New Size(185, 27)
-        txtCustName.TabIndex = 2
-        ' 
-        ' Label4
-        ' 
-        Label4.AutoSize = True
-        Label4.Font = New Font("Segoe UI", 12F)
-        Label4.Location = New Point(1192, 68)
-        Label4.Name = "Label4"
-        Label4.Size = New Size(111, 28)
-        Label4.TabIndex = 10
-        Label4.Text = "Disc Login :"
-        Label4.Visible = False
-        ' 
-        ' Label3
-        ' 
-        Label3.AutoSize = True
-        Label3.Font = New Font("Segoe UI", 12F)
-        Label3.Location = New Point(55, 93)
-        Label3.Name = "Label3"
-        Label3.Size = New Size(116, 28)
-        Label3.TabIndex = 8
-        Label3.Text = "Cust Name :"
-        ' 
-        ' Label2
-        ' 
-        Label2.AutoSize = True
-        Label2.Font = New Font("Segoe UI", 12F)
-        Label2.Location = New Point(7, 205)
-        Label2.Name = "Label2"
-        Label2.Size = New Size(164, 28)
-        Label2.TabIndex = 6
-        Label2.Text = "Exp. Offer To Cm :"
-        ' 
-        ' txtLoanAmnt
-        ' 
-        txtLoanAmnt.Location = New Point(182, 164)
-        txtLoanAmnt.Name = "txtLoanAmnt"
-        txtLoanAmnt.Size = New Size(185, 27)
-        txtLoanAmnt.TabIndex = 4
+        txtRemarks.BorderStyle = BorderStyle.FixedSingle
+        txtRemarks.Font = New Font("Segoe UI", 10.0F)
+        txtRemarks.Location = New Point(940, 242)
+        txtRemarks.Name = "txtRemarks"
+        txtRemarks.Size = New Size(300, 30)
+        txtRemarks.TabIndex = 17
         ' 
         ' Label1
         ' 
-        Label1.AutoSize = True
-        Label1.Font = New Font("Segoe UI", 12F)
-        Label1.Location = New Point(63, 14)
+        Label1.Location = New Point(0, 0)
         Label1.Name = "Label1"
-        Label1.Size = New Size(108, 28)
-        Label1.TabIndex = 4
-        Label1.Text = "Lead Date :"
+        Label1.Size = New Size(100, 23)
+        Label1.TabIndex = 18
+        ' 
+        ' Label2
+        ' 
+        Label2.Location = New Point(0, 0)
+        Label2.Name = "Label2"
+        Label2.Size = New Size(100, 23)
+        Label2.TabIndex = 19
+        ' 
+        ' Label3
+        ' 
+        Label3.Location = New Point(0, 0)
+        Label3.Name = "Label3"
+        Label3.Size = New Size(100, 23)
+        Label3.TabIndex = 20
+        ' 
+        ' Label5
+        ' 
+        Label5.Location = New Point(0, 0)
+        Label5.Name = "Label5"
+        Label5.Size = New Size(100, 23)
+        Label5.TabIndex = 21
+        ' 
+        ' Label6
+        ' 
+        Label6.Location = New Point(0, 0)
+        Label6.Name = "Label6"
+        Label6.Size = New Size(100, 23)
+        Label6.TabIndex = 22
+        ' 
+        ' Label7
+        ' 
+        Label7.Location = New Point(0, 0)
+        Label7.Name = "Label7"
+        Label7.Size = New Size(100, 23)
+        Label7.TabIndex = 23
+        ' 
+        ' Label8
+        ' 
+        Label8.Location = New Point(0, 0)
+        Label8.Name = "Label8"
+        Label8.Size = New Size(100, 23)
+        Label8.TabIndex = 24
+        ' 
+        ' Label9
+        ' 
+        Label9.Location = New Point(0, 0)
+        Label9.Name = "Label9"
+        Label9.Size = New Size(100, 23)
+        Label9.TabIndex = 25
+        ' 
+        ' Label11
+        ' 
+        Label11.Location = New Point(0, 0)
+        Label11.Name = "Label11"
+        Label11.Size = New Size(100, 23)
+        Label11.TabIndex = 26
+        ' 
+        ' Label12
+        ' 
+        Label12.Location = New Point(0, 0)
+        Label12.Name = "Label12"
+        Label12.Size = New Size(100, 23)
+        Label12.TabIndex = 27
+        ' 
+        ' Label13
+        ' 
+        Label13.Location = New Point(0, 0)
+        Label13.Name = "Label13"
+        Label13.Size = New Size(100, 23)
+        Label13.TabIndex = 28
+        ' 
+        ' Label14
+        ' 
+        Label14.Location = New Point(0, 0)
+        Label14.Name = "Label14"
+        Label14.Size = New Size(100, 23)
+        Label14.TabIndex = 29
+        ' 
+        ' Label15
+        ' 
+        Label15.Location = New Point(0, 0)
+        Label15.Name = "Label15"
+        Label15.Size = New Size(100, 23)
+        Label15.TabIndex = 30
+        ' 
+        ' Label16
+        ' 
+        Label16.Location = New Point(0, 0)
+        Label16.Name = "Label16"
+        Label16.Size = New Size(100, 23)
+        Label16.TabIndex = 31
+        ' 
+        ' Label17
+        ' 
+        Label17.Location = New Point(0, 0)
+        Label17.Name = "Label17"
+        Label17.Size = New Size(100, 23)
+        Label17.TabIndex = 32
+        ' 
+        ' Label19
+        ' 
+        Label19.Location = New Point(0, 0)
+        Label19.Name = "Label19"
+        Label19.Size = New Size(100, 23)
+        Label19.TabIndex = 33
+        ' 
+        ' Label20
+        ' 
+        Label20.Location = New Point(0, 0)
+        Label20.Name = "Label20"
+        Label20.Size = New Size(100, 23)
+        Label20.TabIndex = 34
+        ' 
+        ' Label21
+        ' 
+        Label21.Location = New Point(0, 0)
+        Label21.Name = "Label21"
+        Label21.Size = New Size(100, 23)
+        Label21.TabIndex = 35
+        ' 
+        ' txtStage
+        ' 
+        txtStage.Location = New Point(0, 0)
+        txtStage.Name = "txtStage"
+        txtStage.Size = New Size(121, 28)
+        txtStage.TabIndex = 36
+        txtStage.Visible = False
+        ' 
+        ' CmbDiscLogin
+        ' 
+        CmbDiscLogin.Location = New Point(0, 0)
+        CmbDiscLogin.Name = "CmbDiscLogin"
+        CmbDiscLogin.Size = New Size(121, 28)
+        CmbDiscLogin.TabIndex = 37
+        CmbDiscLogin.Visible = False
+        ' 
+        ' CboCode
+        ' 
+        CboCode.Location = New Point(0, 0)
+        CboCode.Name = "CboCode"
+        CboCode.Size = New Size(121, 28)
+        CboCode.TabIndex = 38
+        CboCode.Visible = False
+        ' 
+        ' Label4
+        ' 
+        Label4.Location = New Point(0, 0)
+        Label4.Name = "Label4"
+        Label4.Size = New Size(100, 23)
+        Label4.TabIndex = 39
+        Label4.Visible = False
+        ' 
+        ' Label10
+        ' 
+        Label10.Location = New Point(0, 0)
+        Label10.Name = "Label10"
+        Label10.Size = New Size(100, 23)
+        Label10.TabIndex = 40
+        Label10.Visible = False
+        ' 
+        ' Label18
+        ' 
+        Label18.Location = New Point(0, 0)
+        Label18.Name = "Label18"
+        Label18.Size = New Size(100, 23)
+        Label18.TabIndex = 41
+        Label18.Visible = False
+        ' 
+        ' PanelButtons
+        ' 
+        PanelButtons.BackColor = Color.FromArgb(CByte(248), CByte(250), CByte(252))
+        PanelButtons.Controls.Add(btnSave)
+        PanelButtons.Controls.Add(btnUpdate)
+        PanelButtons.Controls.Add(btnDelete)
+        PanelButtons.Controls.Add(btnRefresh)
+        PanelButtons.Dock = DockStyle.Top
+        PanelButtons.Location = New Point(0, 327)
+        PanelButtons.Name = "PanelButtons"
+        PanelButtons.Size = New Size(1500, 59)
+        PanelButtons.TabIndex = 23
+        ' 
+        ' btnSave
+        ' 
+        btnSave.BackColor = Color.FromArgb(CByte(22), CByte(163), CByte(74))
+        btnSave.Cursor = Cursors.Hand
+        btnSave.FlatAppearance.BorderSize = 0
+        btnSave.FlatStyle = FlatStyle.Flat
+        btnSave.Font = New Font("Segoe UI", 10.0F, FontStyle.Bold)
+        btnSave.ForeColor = Color.White
+        btnSave.Location = New Point(390, 13)
+        btnSave.Name = "btnSave"
+        btnSave.Size = New Size(110, 38)
+        btnSave.TabIndex = 18
+        btnSave.Text = "SAVE"
+        btnSave.UseVisualStyleBackColor = False
+        ' 
+        ' btnUpdate
+        ' 
+        btnUpdate.BackColor = Color.FromArgb(CByte(37), CByte(99), CByte(235))
+        btnUpdate.Cursor = Cursors.Hand
+        btnUpdate.FlatAppearance.BorderSize = 0
+        btnUpdate.FlatStyle = FlatStyle.Flat
+        btnUpdate.Font = New Font("Segoe UI", 10.0F, FontStyle.Bold)
+        btnUpdate.ForeColor = Color.White
+        btnUpdate.Location = New Point(510, 13)
+        btnUpdate.Name = "btnUpdate"
+        btnUpdate.Size = New Size(110, 38)
+        btnUpdate.TabIndex = 19
+        btnUpdate.Text = "UPDATE"
+        btnUpdate.UseVisualStyleBackColor = False
+        ' 
+        ' btnDelete
+        ' 
+        btnDelete.BackColor = Color.FromArgb(CByte(220), CByte(38), CByte(38))
+        btnDelete.Cursor = Cursors.Hand
+        btnDelete.FlatAppearance.BorderSize = 0
+        btnDelete.FlatStyle = FlatStyle.Flat
+        btnDelete.Font = New Font("Segoe UI", 10.0F, FontStyle.Bold)
+        btnDelete.ForeColor = Color.White
+        btnDelete.Location = New Point(630, 13)
+        btnDelete.Name = "btnDelete"
+        btnDelete.Size = New Size(110, 38)
+        btnDelete.TabIndex = 20
+        btnDelete.Text = "DELETE"
+        btnDelete.UseVisualStyleBackColor = False
+        ' 
+        ' btnRefresh
+        ' 
+        btnRefresh.BackColor = Color.FromArgb(CByte(100), CByte(116), CByte(139))
+        btnRefresh.Cursor = Cursors.Hand
+        btnRefresh.FlatAppearance.BorderSize = 0
+        btnRefresh.FlatStyle = FlatStyle.Flat
+        btnRefresh.Font = New Font("Segoe UI", 10.0F, FontStyle.Bold)
+        btnRefresh.ForeColor = Color.White
+        btnRefresh.Location = New Point(750, 13)
+        btnRefresh.Name = "btnRefresh"
+        btnRefresh.Size = New Size(110, 38)
+        btnRefresh.TabIndex = 21
+        btnRefresh.Text = "REFRESH"
+        btnRefresh.UseVisualStyleBackColor = False
+        ' 
+        ' lblSubTitle
+        ' 
+        lblSubTitle.Location = New Point(0, 0)
+        lblSubTitle.Name = "lblSubTitle"
+        lblSubTitle.Size = New Size(100, 23)
+        lblSubTitle.TabIndex = 0
         ' 
         ' dgv
         ' 
-        dgv.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize
+        dgv.AllowUserToAddRows = False
+        dgv.AllowUserToDeleteRows = False
+        dgv.AllowUserToResizeRows = False
+        DataGridViewCellStyle1.BackColor = Color.FromArgb(CByte(248), CByte(250), CByte(252))
+        dgv.AlternatingRowsDefaultCellStyle = DataGridViewCellStyle1
+        dgv.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.DisplayedCells
+        dgv.BackgroundColor = Color.White
+        dgv.BorderStyle = BorderStyle.None
+        dgv.CellBorderStyle = DataGridViewCellBorderStyle.SingleHorizontal
+        dgv.ColumnHeadersBorderStyle = DataGridViewHeaderBorderStyle.None
+        DataGridViewCellStyle2.Alignment = DataGridViewContentAlignment.MiddleCenter
+        DataGridViewCellStyle2.BackColor = Color.FromArgb(CByte(30), CByte(64), CByte(175))
+        DataGridViewCellStyle2.Font = New Font("Segoe UI", 9.0F, FontStyle.Bold)
+        DataGridViewCellStyle2.ForeColor = Color.White
+        DataGridViewCellStyle2.SelectionBackColor = SystemColors.Highlight
+        DataGridViewCellStyle2.SelectionForeColor = SystemColors.HighlightText
+        DataGridViewCellStyle2.WrapMode = DataGridViewTriState.True
+        dgv.ColumnHeadersDefaultCellStyle = DataGridViewCellStyle2
+        dgv.ColumnHeadersHeight = 38
+        DataGridViewCellStyle3.Alignment = DataGridViewContentAlignment.MiddleLeft
+        DataGridViewCellStyle3.BackColor = Color.White
+        DataGridViewCellStyle3.Font = New Font("Segoe UI", 9.0F)
+        DataGridViewCellStyle3.ForeColor = Color.FromArgb(CByte(30), CByte(41), CByte(59))
+        DataGridViewCellStyle3.SelectionBackColor = Color.FromArgb(CByte(219), CByte(234), CByte(254))
+        DataGridViewCellStyle3.SelectionForeColor = Color.FromArgb(CByte(15), CByte(23), CByte(42))
+        DataGridViewCellStyle3.WrapMode = DataGridViewTriState.False
+        dgv.DefaultCellStyle = DataGridViewCellStyle3
         dgv.Dock = DockStyle.Fill
-        dgv.Location = New Point(0, 358)
+        dgv.EnableHeadersVisualStyles = False
+        dgv.Location = New Point(0, 386)
+        dgv.MultiSelect = False
         dgv.Name = "dgv"
-        dgv.RowHeadersWidth = 51
-        dgv.Size = New Size(1475, 321)
-        dgv.TabIndex = 1
+        dgv.RowHeadersWidth = 30
+        dgv.RowTemplate.Height = 32
+        dgv.SelectionMode = DataGridViewSelectionMode.FullRowSelect
+        dgv.Size = New Size(1500, 464)
+        dgv.TabIndex = 22
         ' 
         ' frmLeadMIS
         ' 
-        AutoScaleMode = AutoScaleMode.Inherit
-        ClientSize = New Size(1475, 679)
+        AutoScaleDimensions = New SizeF(8.0F, 20.0F)
+        AutoScaleMode = AutoScaleMode.Font
+        BackColor = Color.FromArgb(CByte(241), CByte(245), CByte(249))
+        ClientSize = New Size(1500, 850)
         Controls.Add(dgv)
-        Controls.Add(Panel1)
+        Controls.Add(PanelButtons)
+        Controls.Add(PanelForm)
+        Controls.Add(PanelHeader)
+        KeyPreview = True
         Name = "frmLeadMIS"
+        StartPosition = FormStartPosition.CenterScreen
         Tag = "LEAD MIS"
-        Text = "LEAD MIS"
+        Text = "UNIQUE"
         WindowState = FormWindowState.Maximized
-        Panel1.ResumeLayout(False)
-        Panel1.PerformLayout()
+        PanelHeader.ResumeLayout(False)
+        PanelHeader.PerformLayout()
+        PanelForm.ResumeLayout(False)
+        PanelForm.PerformLayout()
+        PanelButtons.ResumeLayout(False)
         CType(dgv, ComponentModel.ISupportInitialize).EndInit()
         ResumeLayout(False)
+
     End Sub
 
-    Friend WithEvents Panel1 As Panel
+
+    '==============================================================
+    ' LABEL STYLE HELPER
+    '==============================================================
+
+    Private Sub SetLabel(
+        ByVal lbl As Label,
+        ByVal text As String,
+        ByVal x As Integer,
+        ByVal y As Integer)
+
+        lbl.AutoSize = True
+        lbl.Text = text
+        lbl.Font = New Font("Segoe UI", 10, FontStyle.Bold)
+        lbl.ForeColor = Color.FromArgb(51, 65, 85)
+        lbl.Location = New Point(x, y)
+
+        ' Labels are NOT part of the TabIndex sequence.
+        lbl.TabStop = False
+
+    End Sub
+
+
+    '==============================================================
+    ' CONTROLS
+    '==============================================================
+
+    Friend WithEvents PanelHeader As Panel
+    Friend WithEvents PanelForm As Panel
+    Friend WithEvents PanelButtons As Panel
+
+    Friend WithEvents lblTitle As Label
+    Friend WithEvents lblSubTitle As Label
+
     Friend WithEvents txtLoanAmnt As TextBox
-    Friend WithEvents Label1 As Label
-    Friend WithEvents dgv As DataGridView
-    Friend WithEvents dtpLeadDate As DateTimePicker
     Friend WithEvents txtCustName As TextBox
-    Friend WithEvents Label4 As Label
-    Friend WithEvents Label3 As Label
-    Friend WithEvents Label2 As Label
-    Friend WithEvents Label11 As Label
-    Friend WithEvents Label10 As Label
-    Friend WithEvents Label9 As Label
-    Friend WithEvents Label8 As Label
-    Friend WithEvents Label7 As Label
-    Friend WithEvents Label6 As Label
-    Friend WithEvents Label5 As Label
-    Friend WithEvents Label14 As Label
-    Friend WithEvents Label13 As Label
-    Friend WithEvents Label12 As Label
-    Friend WithEvents Label19 As Label
-    Friend WithEvents Label18 As Label
-    Friend WithEvents Label17 As Label
-    Friend WithEvents Label16 As Label
-    Friend WithEvents Label15 As Label
-    Friend WithEvents CmbDiscLogin As ComboBox
-    Friend WithEvents txtProduct As TextBox
-    Friend WithEvents txtSubProduct As TextBox
-    Friend WithEvents txtCPA As TextBox
+    Friend WithEvents txtMobileNo As TextBox
+    Friend WithEvents txtExpOfr As TextBox
+
     Friend WithEvents txtSdValue As TextBox
     Friend WithEvents txtSize As TextBox
     Friend WithEvents txtPropertyNo As TextBox
-    Friend WithEvents txtLeadsStage As TextBox
-    Friend WithEvents txtRemarks As TextBox
-    Friend WithEvents txtCode As TextBox
+    Friend WithEvents txtOthrPropertyAdd As TextBox
     Friend WithEvents txtRef As TextBox
-    Friend WithEvents btnSave As Button
-    Friend WithEvents btnDelete As Button
-    Friend WithEvents btnRefresh As Button
-    Friend WithEvents btnUpdate As Button
-    Friend WithEvents Label20 As Label
-    Friend WithEvents txtMobileNo As TextBox
-    Friend WithEvents txtStage As ComboBox
+    Friend WithEvents txtRemarks As TextBox
+
+    Friend WithEvents dtpLeadDate As DateTimePicker
+
+    Friend WithEvents CboLeadStage As ComboBox
+    Friend WithEvents CmbDiscLogin As ComboBox
     Friend WithEvents CboProduct As ComboBox
     Friend WithEvents CboSubProduct As ComboBox
     Friend WithEvents CboCPA As ComboBox
     Friend WithEvents txtProfile As ComboBox
     Friend WithEvents txtBank As ComboBox
     Friend WithEvents txtPropertyAdd As ComboBox
-    Friend WithEvents CboLeadStage As ComboBox
+
+    Friend WithEvents txtStage As ComboBox
     Friend WithEvents CboCode As ComboBox
-    Friend WithEvents txtExpOfr As TextBox
-    Friend WithEvents txtOthrPropertyAdd As TextBox
+
+    Friend WithEvents btnSave As Button
+    Friend WithEvents btnUpdate As Button
+    Friend WithEvents btnDelete As Button
+    Friend WithEvents btnRefresh As Button
+
+    Friend WithEvents dgv As DataGridView
+
+    Friend WithEvents Label1 As Label
+    Friend WithEvents Label2 As Label
+    Friend WithEvents Label3 As Label
+    Friend WithEvents Label4 As Label
+    Friend WithEvents Label5 As Label
+    Friend WithEvents Label6 As Label
+    Friend WithEvents Label7 As Label
+    Friend WithEvents Label8 As Label
+    Friend WithEvents Label9 As Label
+    Friend WithEvents Label10 As Label
+    Friend WithEvents Label11 As Label
+    Friend WithEvents Label12 As Label
+    Friend WithEvents Label13 As Label
+    Friend WithEvents Label14 As Label
+    Friend WithEvents Label15 As Label
+    Friend WithEvents Label16 As Label
+    Friend WithEvents Label17 As Label
+    Friend WithEvents Label18 As Label
+    Friend WithEvents Label19 As Label
+    Friend WithEvents Label20 As Label
     Friend WithEvents Label21 As Label
 
 End Class

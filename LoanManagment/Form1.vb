@@ -21,6 +21,14 @@
         lblUserInfo.Text = "👤 " & SessionEmpName & " (ID - " & SessionEmpId & ")"
 
         Me.IsMdiContainer = True
+        Me.BackColor = Color.FromArgb(241, 245, 249)
+
+        ' Apply background color match to the MDI container area
+        For Each ctrl As Control In Me.Controls
+            If TypeOf ctrl Is MdiClient Then
+                ctrl.BackColor = Color.FromArgb(241, 245, 249)
+            End If
+        Next
 
         tabForms.Dock = DockStyle.Top
         tabForms.Height = 25
@@ -132,7 +140,7 @@
             dt = GetData(ssql)
 
             If dt.Rows.Count = 1 Then
-                Dim frm As New frmLeadMIS()
+                Dim frm As New frmExpenseMIS()
                 frm.Show()
             Else
                 MessageBox.Show("You are not allowed to open this form.")
