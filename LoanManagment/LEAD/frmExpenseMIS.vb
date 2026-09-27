@@ -1,5 +1,0 @@
-﻿Public Class frmExpenseMIS
-    Private Sub frmExpenseMIS_Load(sender As Object, e As EventArgs) Handles MyBase.Load
-
-    End Sub
-End Class

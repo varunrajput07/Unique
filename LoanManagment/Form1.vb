@@ -18,7 +18,7 @@
     End Sub
 
     Private Sub Form1_Load(sender As Object, e As EventArgs) Handles MyBase.Load
-        lblUserInfo.Text = "👤 " & SessionEmpName & " (ID - " & SessionEmpId & ")"
+        lblUserInfo.Text = "👤 " & SessionEmpName & " (UsrCd - " & SessionUserName & ")"
 
         Me.IsMdiContainer = True
         Me.BackColor = Color.FromArgb(241, 245, 249)
@@ -34,7 +34,7 @@
         tabForms.Height = 25
 
         Me.Controls.Add(tabForms)
-        StartGlobalDatePicker()
+        ' StartGlobalDatePicker()
     End Sub
 
     Private Sub CarLoanToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles CarLoanToolStripMenuItem.Click
@@ -133,14 +133,14 @@
         End Try
     End Sub
 
-    Private Sub EXPENSEMISToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles EXPENSEMISToolStripMenuItem.Click
+    Private Sub IncomeToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles IncomeToolStripMenuItem.Click
         Try
 
             ssql = "select * from  RegistrationMaster WHERE UserType='Super Admin' and EmpId='" & SessionEmpId & "'"
             dt = GetData(ssql)
 
             If dt.Rows.Count = 1 Then
-                Dim frm As New frmExpenseMIS()
+                Dim frm As New frmExpenseIncome()
                 frm.Show()
             Else
                 MessageBox.Show("You are not allowed to open this form.")
@@ -151,4 +151,21 @@
         End Try
     End Sub
 
+    Private Sub LeadToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles LeadToolStripMenuItem.Click
+        Try
+
+            ssql = "select * from  RegistrationMaster WHERE UserType='Super Admin' and EmpId='" & SessionEmpId & "'"
+            dt = GetData(ssql)
+
+            If dt.Rows.Count = 1 Then
+                Dim frm As New frmLeadReport()
+                frm.Show()
+            Else
+                MessageBox.Show("You are not allowed to open this form.")
+            End If
+
+        Catch ex As Exception
+            MessageBox.Show(ex.Message)
+        End Try
+    End Sub
 End Class

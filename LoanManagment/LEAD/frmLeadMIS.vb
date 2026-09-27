@@ -1,12 +1,10 @@
 ﻿Public Class frmLeadMIS
 
-    '===========================================================
-    ' FORM LOAD
-    '===========================================================
-    Private Sub frmLeadMIS_Load(sender As Object, e As EventArgs) Handles MyBase.Load
+
+    Private Sub frmLeadMIS_Load(sender As Object, e As EventArgs) Handles MyBase.Load
 
         Try
-
+            dtpLeadDate.Value = DateTime.Today
             '---------------------------------------------------
             ' DISC LOGIN STAGE
             ' PENDING / CONFIRM / LOGIN
@@ -374,9 +372,9 @@
 
 
                 ssql = "SELECT LeadStage " &
-         "FROM LeadStageMst " &
-         "WHERE IsActive='Y' " &
-         "ORDER BY LeadStage"
+                         "FROM LeadStageMst " &
+                         "WHERE IsActive='Y' " &
+                         "ORDER BY LeadStage"
 
 
                 Dim dtDiscLogin As DataTable =
@@ -534,11 +532,7 @@
 
             Dim selectedCount As Integer = 0
 
-
-            '---------------------------------------------------
-            ' CHECK SELECTED RECORDS
-            '---------------------------------------------------
-            For Each row As DataGridViewRow In dgv.Rows
+            For Each row As DataGridViewRow In dgv.Rows
 
                 If row.IsNewRow Then
                     Continue For
@@ -567,11 +561,7 @@
 
             End If
 
-
-            '---------------------------------------------------
-            ' CONFIRM DELETE
-            '---------------------------------------------------
-            Dim result As DialogResult =
+            Dim result As DialogResult =
         MessageBox.Show(
           "Are you sure you want to delete " &
           selectedCount.ToString() &
@@ -586,11 +576,7 @@
                 Return
             End If
 
-
-            '---------------------------------------------------
-            ' DELETE SELECTED RECORDS
-            '---------------------------------------------------
-            For Each row As DataGridViewRow In dgv.Rows
+            For Each row As DataGridViewRow In dgv.Rows
 
                 If row.IsNewRow Then
                     Continue For
@@ -809,22 +795,18 @@
 
                 ExecuteQuery(ssql)
 
+                If discussStage.Trim().ToUpper() = "LOGIN" Then
 
-                '------------------------------------------------
-                ' IF DISCUSS STAGE = LOGIN
-                ' CREATE LOGIN MIS RECORD
-                '------------------------------------------------
-                If discussStage.Trim().ToUpper() = "LOGIN" Then
+                    ssql = "IF NOT EXISTS (SELECT 1 FROM LoginMIS WHERE LeadID=" & leadID & ") " &
+                             "BEGIN INSERT INTO LoginMIS (LeadID) VALUES (" & leadID & ") END"
+                    ExecuteQuery(ssql)
 
-                    ssql =
-                      "IF NOT EXISTS " &
-                      "(SELECT 1 FROM LoginMIS WHERE LeadID=" & leadID & ") " &
-                      "BEGIN " &
-                      "INSERT INTO LoginMIS (LeadID) " &
-                      "VALUES (" & leadID & ") " &
-                      "END"
-
-
+                    ssql = "IF NOT EXISTS (SELECT 1 FROM ExpenseIncome WHERE LeadID=" & leadID & " ) " &
+                               "BEGIN " &
+                               "INSERT INTO ExpenseIncome (LeadID, LoginMisID, EntBy, EntDt, IsDelete) " &
+                               "SELECT " & leadID & ", LoginMisID,'" & SessionEmpId & "', GETDATE(), 'N' " &
+                               "FROM LoginMIS WHERE LeadID=" & leadID & " " &
+                               "END"
                     ExecuteQuery(ssql)
 
                 End If
@@ -977,75 +959,45 @@
 
     End Sub
 
+    Private Function Required() As Boolean
 
-    '===========================================================
-    ' REQUIRED VALIDATION
-    '===========================================================
-    Private Function Required() As Boolean
+        If Not RequiredField(dtpLeadDate, "Lead Date") Then Return False
+        If Not RequiredField(txtCustName, "Customer Name") Then Return False
 
-        If Not RequiredField(
-          dtpLeadDate,
-          "Lead Date"
-        ) Then Return False
+        '---------------------------------------------------
+        ' Mobile No Validation (Compulsory + Exactly 10 digits)
+        '---------------------------------------------------
+        If String.IsNullOrWhiteSpace(txtMobileNo.Text) Then
+            MessageBox.Show("Please enter Mobile No.", "Required", MessageBoxButtons.OK, MessageBoxIcon.Warning)
+            txtMobileNo.Focus()
+            Return False
+        End If
 
+        Dim mobile As String = txtMobileNo.Text.Trim()
 
-        If Not RequiredField(
-          txtCustName,
-          "Customer Name"
-        ) Then Return False
+        If mobile.Length <> 10 Then
+            MessageBox.Show("Mobile No must be exactly 10 digits.", "Invalid Mobile No", MessageBoxButtons.OK, MessageBoxIcon.Warning)
+            txtMobileNo.Focus()
+            Return False
+        End If
 
+        If Not IsNumeric(mobile) Then
+            MessageBox.Show("Mobile No must contain only numbers.", "Invalid Mobile No", MessageBoxButtons.OK, MessageBoxIcon.Warning)
+            txtMobileNo.Focus()
+            Return False
+        End If
 
-        If Not RequiredField(
-          txtMobileNo,
-          "Mobile No."
-        ) Then Return False
-
-
-        If Not RequiredField(
-          txtLoanAmnt,
-          "Loan Amount"
-        ) Then Return False
-
-
-        If Not RequiredField(
-          CboProduct,
-          "Product"
-        ) Then Return False
-
-
-        If Not RequiredField(
-          CboSubProduct,
-          "Sub Product"
-        ) Then Return False
-
-
-        If Not RequiredField(
-          txtPropertyNo,
-          "Property No"
-        ) Then Return False
-
-
-        If Not RequiredField(
-          txtPropertyAdd,
-          "Property Address"
-        ) Then Return False
-
-
-        If Not RequiredField(
-          txtRef,
-          "Reference"
-        ) Then Return False
-
+        If Not RequiredField(txtLoanAmnt, "Loan Amount") Then Return False
+        If Not RequiredField(CboProduct, "Product") Then Return False
+        If Not RequiredField(CboSubProduct, "Sub Product") Then Return False
+        If Not RequiredField(txtPropertyNo, "Property No") Then Return False
+        If Not RequiredField(txtPropertyAdd, "Property Address") Then Return False
+        If Not RequiredField(txtRef, "Reference") Then Return False
 
         Return True
 
     End Function
-
-
-    '===========================================================
-    ' GET DATAGRIDVIEW CELL VALUE
-    '===========================================================
-    Private Function GetCellValue(
+    Private Function GetCellValue(
     row As DataGridViewRow,
     columnName As String
   ) As String

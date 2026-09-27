@@ -2,9 +2,6 @@
 
     Private passwordVisible As Boolean = False
 
-    '========================================================
-    ' FORM LOAD
-    '========================================================
     Private Sub frmLogin_Load(sender As Object, e As EventArgs) Handles MyBase.Load
 
         Me.AcceptButton = btnLogin
@@ -12,39 +9,27 @@
         txtPassword.PasswordChar = "●"c
         btnShowPassword.Text = "👁"
 
-        txtId.Focus()
+        txtUsername.Focus()
 
     End Sub
 
-
-    '========================================================
-    ' LOGIN
-    '========================================================
     Private Sub btnLogin_Click(sender As Object, e As EventArgs) Handles btnLogin.Click
 
         Try
-
-            '------------------------------------------------
-            ' CHECK EMPLOYEE ID
-            '------------------------------------------------
-            If txtId.Text.Trim() = "" Then
+            If txtUsername.Text.Trim() = "" Then
 
                 MessageBox.Show(
-                    "Please Enter Employee ID",
+                    "Please Enter Username",
                     "Login",
                     MessageBoxButtons.OK,
                     MessageBoxIcon.Warning
                 )
 
-                txtId.Focus()
+                txtUsername.Focus()
                 Exit Sub
 
             End If
 
-
-            '------------------------------------------------
-            ' CHECK PASSWORD
-            '------------------------------------------------
             If txtPassword.Text.Trim() = "" Then
 
                 MessageBox.Show(
@@ -59,29 +44,34 @@
 
             End If
 
-
-            '------------------------------------------------
-            ' LOGIN QUERY
-            '------------------------------------------------
-            ssql = "SELECT EmpId, FullName " &
+            ssql = "SELECT EmpId,UserName, FullName, UserType, IsActive " &
                    "FROM RegistrationMaster " &
-                   "WHERE EmpId='" & txtId.Text.Trim().Replace("'", "''") & "' " &
+                   "WHERE UserName='" & txtUsername.Text.Trim().Replace("'", "''") & "' " &
                    "AND Password='" & txtPassword.Text.Replace("'", "''") & "'"
 
-
-            '------------------------------------------------
-            ' GET DATA
-            '------------------------------------------------
             dt = GetData(ssql)
 
-
-            '------------------------------------------------
-            ' LOGIN SUCCESS
-            '------------------------------------------------
             If dt.Rows.Count > 0 Then
 
-                SessionEmpId = dt.Rows(0)("EmpId").ToString()
+                If dt.Rows(0)("IsActive").ToString().Trim().ToUpper() <> "Y" Then
+
+                    MessageBox.Show(
+                        "This account is inactive. Please contact the administrator.",
+                        "Login Blocked",
+                        MessageBoxButtons.OK,
+                        MessageBoxIcon.Warning
+                    )
+
+                    txtPassword.Clear()
+                    txtPassword.Focus()
+                    Exit Sub
+
+                End If
+
+                SessionUserName = dt.Rows(0)("UserName").ToString()
                 SessionEmpName = dt.Rows(0)("FullName").ToString()
+                SessionUsrTyp = dt.Rows(0)("UserType").ToString()
+                SessionEmpId = dt.Rows(0)("EmpId").ToString()
 
 
                 Dim frm As New Form1
@@ -97,7 +87,7 @@
                 ' LOGIN FAILED
                 '------------------------------------------------
                 MessageBox.Show(
-                    "Invalid Employee ID or Password",
+                    "Invalid Username or Password",
                     "Login Failed",
                     MessageBoxButtons.OK,
                     MessageBoxIcon.Error
@@ -122,10 +112,6 @@
 
     End Sub
 
-
-    '========================================================
-    ' SHOW / HIDE PASSWORD
-    '========================================================
     Private Sub btnShowPassword_Click(sender As Object, e As EventArgs) Handles btnShowPassword.Click
 
         passwordVisible = Not passwordVisible
@@ -167,18 +153,18 @@
 
 
     '========================================================
-    ' EMPLOYEE ID FOCUS
+    ' USERNAME FOCUS
     '========================================================
-    Private Sub txtId_Enter(sender As Object, e As EventArgs) Handles txtId.Enter
+    Private Sub txtUsername_Enter(sender As Object, e As EventArgs) Handles txtUsername.Enter
 
-        txtId.BackColor = Color.White
+        txtUsername.BackColor = Color.White
 
     End Sub
 
 
-    Private Sub txtId_Leave(sender As Object, e As EventArgs) Handles txtId.Leave
+    Private Sub txtUsername_Leave(sender As Object, e As EventArgs) Handles txtUsername.Leave
 
-        txtId.BackColor = Color.FromArgb(249, 250, 251)
+        txtUsername.BackColor = Color.FromArgb(249, 250, 251)
 
     End Sub
 
@@ -200,4 +186,3 @@
     End Sub
 
 End Class
-

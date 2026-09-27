@@ -1,14 +1,18 @@
-﻿Imports Microsoft.Data.SqlClient
+﻿Imports System.Runtime.InteropServices
+Imports Microsoft.Data.SqlClient
+Imports Excel = Microsoft.Office.Interop.Excel
 
 Module GlobalVariable
     Public ssql As String = ""
     Public dt As New DataTable()
 
     Public SessionEmpId As String = ""
+    Public SessionUserName As String = ""
     Public SessionEmpName As String = ""
+    Public SessionUsrTyp As String = ""
 
     Private connectionString As String =
-     "Data Source=LAPTOP-25S76HD1\SQLEXPRESS01;Initial Catalog=Loan;Integrated Security=True;TrustServerCertificate=True"
+    "Data Source=LAPTOP-25S76HD1\SQLEXPRESS01;Initial Catalog=Loan;Integrated Security=True;TrustServerCertificate=True"
     '"Server=192.168.1.20,1433;Database=Unique;User Id=Unique;Password=Unique@123;TrustServerCertificate=True;"
     ' "Server=192.168.1.20,1433;Database=Unique;User Id=Unique;Password=Unique@123;Encrypt=True;TrustServerCertificate=True;"
 
@@ -341,37 +345,166 @@ Module GlobalVariable
                 .NameColumn = "CollectionStatus",
                 .ActiveColumn = "IsActive"
             })
+        MasterList.Add("Stage Master",
+            New MasterConfig With {
+                .TableName = "StageMst",
+                .IDColumn = "StageID",
+                .NameColumn = "StageType",
+                .ActiveColumn = "IsActive"
+            })
 
     End Sub
 
-    Public Sub SetAllDatePickersToToday(parent As Control)
+    'Public Sub SetAllDatePickersToToday(parent As Control)
 
-        For Each ctrl As Control In parent.Controls
+    '    For Each ctrl As Control In parent.Controls
 
-            If TypeOf ctrl Is DateTimePicker Then
+    '        If TypeOf ctrl Is DateTimePicker Then
 
-                Dim dtp As DateTimePicker = DirectCast(ctrl, DateTimePicker)
-                dtp.Value = Date.Today
+    '            Dim dtp As DateTimePicker = DirectCast(ctrl, DateTimePicker)
+    '            dtp.Value = Date.Today
 
+    '        End If
+
+    '        If ctrl.HasChildren Then
+    '            SetAllDatePickersToToday(ctrl)
+    '        End If
+    '    Next
+    'End Sub
+    'Public Sub StartGlobalDatePicker()
+    '    AddHandler Application.Idle, AddressOf GlobalApplicationIdle
+    'End Sub
+
+    'Private Sub GlobalApplicationIdle(sender As Object, e As EventArgs)
+
+    '    For Each frm As Form In Application.OpenForms
+
+    '        If Not frm.IsDisposed Then
+    '            SetAllDatePickersToToday(frm)
+    '        End If
+    '    Next
+
+    'End Sub
+    Public Sub ExportDgvToExcel(dgv As DataGridView, reportTitle As String)
+
+        If dgv.Rows.Count = 0 Then
+            MessageBox.Show(
+                "No data available to export.",
+                "Export to Excel",
+                MessageBoxButtons.OK,
+                MessageBoxIcon.Warning
+            )
+            Exit Sub
+        End If
+
+        Dim xlApp As Excel.Application = Nothing
+        Dim xlWorkbook As Excel.Workbook = Nothing
+        Dim xlSheet As Excel.Worksheet = Nothing
+
+        Try
+
+            '------------------------------------------------
+            ' ASK WHERE TO SAVE
+            '------------------------------------------------
+            Dim sfd As New SaveFileDialog()
+            sfd.Filter = "Excel Files|*.xlsx"
+            sfd.FileName = reportTitle & "_" & DateTime.Now.ToString("yyyyMMdd_HHmmss")
+
+            If sfd.ShowDialog() <> DialogResult.OK Then
+                Exit Sub
             End If
 
-            If ctrl.HasChildren Then
-                SetAllDatePickersToToday(ctrl)
+            '------------------------------------------------
+            ' CREATE EXCEL APP
+            '------------------------------------------------
+            xlApp = New Excel.Application()
+            xlWorkbook = xlApp.Workbooks.Add()
+            xlSheet = CType(xlWorkbook.Sheets(1), Excel.Worksheet)
+            xlSheet.Name = "Report"
+
+            '------------------------------------------------
+            ' REPORT TITLE ROW
+            '------------------------------------------------
+            xlSheet.Cells(1, 1) = reportTitle
+            With CType(xlSheet.Range(xlSheet.Cells(1, 1), xlSheet.Cells(1, dgv.Columns.Count)), Excel.Range)
+                .Merge()
+                .Font.Bold = True
+                .Font.Size = 14
+                .HorizontalAlignment = Excel.XlHAlign.xlHAlignCenter
+            End With
+
+            '------------------------------------------------
+            ' COLUMN HEADERS (row 3)
+            '------------------------------------------------
+            Dim headerRow As Integer = 3
+            For colIndex As Integer = 0 To dgv.Columns.Count - 1
+                xlSheet.Cells(headerRow, colIndex + 1) = dgv.Columns(colIndex).HeaderText
+            Next
+
+            With CType(xlSheet.Range(
+                        xlSheet.Cells(headerRow, 1),
+                        xlSheet.Cells(headerRow, dgv.Columns.Count)), Excel.Range)
+                .Font.Bold = True
+                .Interior.Color = ColorTranslator.ToOle(Color.FromArgb(15, 23, 42))
+                .Font.Color = ColorTranslator.ToOle(Color.White)
+            End With
+
+            '------------------------------------------------
+            ' DATA ROWS
+            '------------------------------------------------
+            For rowIndex As Integer = 0 To dgv.Rows.Count - 1
+
+                If dgv.Rows(rowIndex).IsNewRow Then Continue For
+
+                For colIndex As Integer = 0 To dgv.Columns.Count - 1
+                    Dim cellValue As Object = dgv.Rows(rowIndex).Cells(colIndex).Value
+                    xlSheet.Cells(headerRow + 1 + rowIndex, colIndex + 1) = If(cellValue Is Nothing, "", cellValue.ToString())
+                Next
+
+            Next
+
+            '------------------------------------------------
+            ' AUTO-FIT COLUMNS
+            '------------------------------------------------
+            xlSheet.Columns.AutoFit()
+
+            '------------------------------------------------
+            ' SAVE & CLOSE
+            '------------------------------------------------
+            xlWorkbook.SaveAs(sfd.FileName)
+            xlWorkbook.Close()
+            xlApp.Quit()
+
+            MessageBox.Show(
+                "Report exported successfully to:" & Environment.NewLine & sfd.FileName,
+                "Export to Excel",
+                MessageBoxButtons.OK,
+                MessageBoxIcon.Information
+            )
+
+        Catch ex As Exception
+
+            MessageBox.Show(
+                "Excel export failed: " & ex.Message,
+                "Export Error",
+                MessageBoxButtons.OK,
+                MessageBoxIcon.Error
+            )
+
+        Finally
+
+            '------------------------------------------------
+            ' RELEASE COM OBJECTS
+            '------------------------------------------------
+            If xlSheet IsNot Nothing Then Marshal.ReleaseComObject(xlSheet)
+            If xlWorkbook IsNot Nothing Then Marshal.ReleaseComObject(xlWorkbook)
+            If xlApp IsNot Nothing Then
+                xlApp.Quit()
+                Marshal.ReleaseComObject(xlApp)
             End If
-        Next
-    End Sub
-    Public Sub StartGlobalDatePicker()
-        AddHandler Application.Idle, AddressOf GlobalApplicationIdle
-    End Sub
 
-    Private Sub GlobalApplicationIdle(sender As Object, e As EventArgs)
-
-        For Each frm As Form In Application.OpenForms
-
-            If Not frm.IsDisposed Then
-                SetAllDatePickersToToday(frm)
-            End If
-        Next
+        End Try
 
     End Sub
+
 End Module
