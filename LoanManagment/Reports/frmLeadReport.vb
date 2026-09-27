@@ -1,20 +1,12 @@
 ﻿Public Class frmLeadReport
 
-    '========================================================
-    ' FORM LOAD
-    '========================================================
     Private Sub frmLeadReport_Load(sender As Object, e As EventArgs) Handles MyBase.Load
         dtpFrom.Value = DateTime.Today
         dtpTo.Value = DateTime.Today
         dtpFrom.Checked = True
         dtpTo.Checked = True
 
-        ' Center loader
         CenterLoader()
-
-        ' Optional: Set loader image if you have one in Resources
-        ' picLoader.Image = My.Resources.loader
-
         LoadDiscLoginFilter()
         LoadLeadReport()
     End Sub
@@ -30,9 +22,6 @@
                                        picLoader.Bottom + 12)
     End Sub
 
-    '========================================================
-    ' LOADER
-    '========================================================
     Private Sub ShowLoader(Optional message As String = "Loading data, please wait...")
         lblLoader.Text = message
         pnlLoader.BringToFront()
@@ -43,10 +32,6 @@
     Private Sub HideLoader()
         pnlLoader.Visible = False
     End Sub
-
-    '========================================================
-    ' LOAD DISC LOGIN DROPDOWN
-    '========================================================
     Private Sub LoadDiscLoginFilter()
         Try
             cmbDiscLogin.Items.Clear()
@@ -69,9 +54,6 @@
         End Try
     End Sub
 
-    '========================================================
-    ' LOAD LEAD REPORT (with filters)
-    '========================================================
     Private Sub LoadLeadReport()
         Try
             ShowLoader("Fetching Lead Report...")
@@ -133,9 +115,6 @@
         End Try
     End Sub
 
-    '========================================================
-    ' SEARCH BUTTON
-    '========================================================
     Private Sub btnSearch_Click(sender As Object, e As EventArgs) Handles btnSearch.Click
         If dtpFrom.Checked AndAlso dtpTo.Checked AndAlso dtpFrom.Value.Date > dtpTo.Value.Date Then
             MessageBox.Show("'Date From' cannot be greater than 'Date To'.",
