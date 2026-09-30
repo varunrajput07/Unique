@@ -1,5 +1,5 @@
 ﻿<Global.Microsoft.VisualBasic.CompilerServices.DesignerGenerated()>
-Partial Class frmLeadReport
+Partial Class frmLoginReport
     Inherits System.Windows.Forms.Form
 
     Private components As System.ComponentModel.IContainer
@@ -24,17 +24,22 @@ Partial Class frmLeadReport
         lblTitle = New Label()
         PanelFilter = New Panel()
         tblFilter = New TableLayoutPanel()
+        lblReportType = New Label()
+        cmbReportType = New ComboBox()
         lblFrom = New Label()
         dtpFrom = New DateTimePicker()
         lblTo = New Label()
         dtpTo = New DateTimePicker()
-        lblDiscLoginFilter = New Label()
-        cmbDiscLogin = New ComboBox()
+        lblCustName = New Label()
+        txtCustName = New TextBox()
+        lblStageFilter = New Label()
+        cmbStage = New ComboBox()
         pnlFilterButtons = New Panel()
         btnSearch = New Button()
+        btnClear = New Button()
         btnExportExcel = New Button()
         PanelGrid = New Panel()
-        dgvLeadReport = New DataGridView()
+        dgvLoginReport = New DataGridView()
         lblRecordCount = New Label()
         lblGridTitle = New Label()
         pnlLoader = New Panel()
@@ -45,7 +50,7 @@ Partial Class frmLeadReport
         tblFilter.SuspendLayout()
         pnlFilterButtons.SuspendLayout()
         PanelGrid.SuspendLayout()
-        CType(dgvLeadReport, ComponentModel.ISupportInitialize).BeginInit()
+        CType(dgvLoginReport, ComponentModel.ISupportInitialize).BeginInit()
         pnlLoader.SuspendLayout()
         CType(picLoader, ComponentModel.ISupportInitialize).BeginInit()
         SuspendLayout()
@@ -58,19 +63,19 @@ Partial Class frmLeadReport
         PanelHeader.Location = New Point(0, 0)
         PanelHeader.Name = "PanelHeader"
         PanelHeader.Padding = New Padding(24, 0, 24, 0)
-        PanelHeader.Size = New Size(1200, 56)
+        PanelHeader.Size = New Size(1300, 56)
         PanelHeader.TabIndex = 0
         ' 
         ' lblTitle
         ' 
         lblTitle.Dock = DockStyle.Fill
-        lblTitle.Font = New Font("Segoe UI Semibold", 16F, FontStyle.Bold)
+        lblTitle.Font = New Font("Segoe UI Semibold", 16.0F, FontStyle.Bold)
         lblTitle.ForeColor = Color.White
         lblTitle.Location = New Point(24, 0)
         lblTitle.Name = "lblTitle"
-        lblTitle.Size = New Size(1152, 56)
+        lblTitle.Size = New Size(1252, 56)
         lblTitle.TabIndex = 0
-        lblTitle.Text = "LEAD REPORT"
+        lblTitle.Text = "LOGIN REPORT"
         lblTitle.TextAlign = ContentAlignment.MiddleLeft
         ' 
         ' PanelFilter
@@ -80,34 +85,67 @@ Partial Class frmLeadReport
         PanelFilter.Dock = DockStyle.Top
         PanelFilter.Location = New Point(0, 56)
         PanelFilter.Name = "PanelFilter"
-        PanelFilter.Padding = New Padding(20, 14, 20, 14)
-        PanelFilter.Size = New Size(1200, 72)
+        PanelFilter.Padding = New Padding(16, 12, 16, 12)
+        PanelFilter.Size = New Size(1300, 78)
         PanelFilter.TabIndex = 1
         ' 
         ' tblFilter
         ' 
-        tblFilter.ColumnCount = 7
+        tblFilter.ColumnCount = 11
         tblFilter.ColumnStyles.Add(New ColumnStyle())
-        tblFilter.ColumnStyles.Add(New ColumnStyle(SizeType.Absolute, 155F))
+        tblFilter.ColumnStyles.Add(New ColumnStyle(SizeType.Absolute, 155.0F))
         tblFilter.ColumnStyles.Add(New ColumnStyle())
-        tblFilter.ColumnStyles.Add(New ColumnStyle(SizeType.Absolute, 155F))
+        tblFilter.ColumnStyles.Add(New ColumnStyle(SizeType.Absolute, 135.0F))
         tblFilter.ColumnStyles.Add(New ColumnStyle())
-        tblFilter.ColumnStyles.Add(New ColumnStyle(SizeType.Absolute, 200F))
-        tblFilter.ColumnStyles.Add(New ColumnStyle(SizeType.Percent, 100F))
-        tblFilter.Controls.Add(lblFrom, 0, 0)
-        tblFilter.Controls.Add(dtpFrom, 1, 0)
-        tblFilter.Controls.Add(lblTo, 2, 0)
-        tblFilter.Controls.Add(dtpTo, 3, 0)
-        tblFilter.Controls.Add(lblDiscLoginFilter, 4, 0)
-        tblFilter.Controls.Add(cmbDiscLogin, 5, 0)
-        tblFilter.Controls.Add(pnlFilterButtons, 6, 0)
+        tblFilter.ColumnStyles.Add(New ColumnStyle(SizeType.Absolute, 135.0F))
+        tblFilter.ColumnStyles.Add(New ColumnStyle())
+        tblFilter.ColumnStyles.Add(New ColumnStyle(SizeType.Absolute, 150.0F))
+        tblFilter.ColumnStyles.Add(New ColumnStyle())
+        tblFilter.ColumnStyles.Add(New ColumnStyle(SizeType.Absolute, 140.0F))
+        tblFilter.ColumnStyles.Add(New ColumnStyle(SizeType.Percent, 100.0F))
+        tblFilter.Controls.Add(lblReportType, 0, 0)
+        tblFilter.Controls.Add(cmbReportType, 1, 0)
+        tblFilter.Controls.Add(lblFrom, 2, 0)
+        tblFilter.Controls.Add(dtpFrom, 3, 0)
+        tblFilter.Controls.Add(lblTo, 4, 0)
+        tblFilter.Controls.Add(dtpTo, 5, 0)
+        tblFilter.Controls.Add(lblCustName, 6, 0)
+        tblFilter.Controls.Add(txtCustName, 7, 0)
+        tblFilter.Controls.Add(lblStageFilter, 8, 0)
+        tblFilter.Controls.Add(cmbStage, 9, 0)
+        tblFilter.Controls.Add(pnlFilterButtons, 10, 0)
         tblFilter.Dock = DockStyle.Fill
-        tblFilter.Location = New Point(20, 14)
+        tblFilter.Location = New Point(16, 12)
         tblFilter.Name = "tblFilter"
         tblFilter.RowCount = 1
-        tblFilter.RowStyles.Add(New RowStyle(SizeType.Percent, 100F))
-        tblFilter.Size = New Size(1160, 44)
+        tblFilter.RowStyles.Add(New RowStyle(SizeType.Percent, 100.0F))
+        tblFilter.Size = New Size(1268, 54)
         tblFilter.TabIndex = 0
+        ' 
+        ' lblReportType
+        ' 
+        lblReportType.Anchor = AnchorStyles.Left
+        lblReportType.AutoSize = True
+        lblReportType.Font = New Font("Segoe UI", 9.5F)
+        lblReportType.ForeColor = Color.FromArgb(CByte(51), CByte(65), CByte(85))
+        lblReportType.Location = New Point(0, 16)
+        lblReportType.Margin = New Padding(0, 0, 6, 0)
+        lblReportType.Name = "lblReportType"
+        lblReportType.Size = New Size(93, 21)
+        lblReportType.TabIndex = 0
+        lblReportType.Text = "Report Type"
+        lblReportType.TextAlign = ContentAlignment.MiddleLeft
+        ' 
+        ' cmbReportType
+        ' 
+        cmbReportType.Anchor = AnchorStyles.Left Or AnchorStyles.Right
+        cmbReportType.DropDownStyle = ComboBoxStyle.DropDownList
+        cmbReportType.Font = New Font("Segoe UI", 9.5F)
+        cmbReportType.Location = New Point(99, 12)
+        cmbReportType.Margin = New Padding(0, 0, 10, 0)
+        cmbReportType.Name = "cmbReportType"
+        cmbReportType.Size = New Size(145, 29)
+        cmbReportType.TabIndex = 1
         ' 
         ' lblFrom
         ' 
@@ -115,11 +153,11 @@ Partial Class frmLeadReport
         lblFrom.AutoSize = True
         lblFrom.Font = New Font("Segoe UI", 9.5F)
         lblFrom.ForeColor = Color.FromArgb(CByte(51), CByte(65), CByte(85))
-        lblFrom.Location = New Point(0, 11)
-        lblFrom.Margin = New Padding(0, 0, 8, 0)
+        lblFrom.Location = New Point(254, 16)
+        lblFrom.Margin = New Padding(0, 0, 6, 0)
         lblFrom.Name = "lblFrom"
         lblFrom.Size = New Size(83, 21)
-        lblFrom.TabIndex = 0
+        lblFrom.TabIndex = 2
         lblFrom.Text = "Date From"
         lblFrom.TextAlign = ContentAlignment.MiddleLeft
         ' 
@@ -128,12 +166,12 @@ Partial Class frmLeadReport
         dtpFrom.Anchor = AnchorStyles.Left Or AnchorStyles.Right
         dtpFrom.Font = New Font("Segoe UI", 9.5F)
         dtpFrom.Format = DateTimePickerFormat.Short
-        dtpFrom.Location = New Point(91, 7)
-        dtpFrom.Margin = New Padding(0, 0, 18, 0)
+        dtpFrom.Location = New Point(343, 12)
+        dtpFrom.Margin = New Padding(0, 0, 10, 0)
         dtpFrom.Name = "dtpFrom"
         dtpFrom.ShowCheckBox = True
-        dtpFrom.Size = New Size(137, 29)
-        dtpFrom.TabIndex = 1
+        dtpFrom.Size = New Size(125, 29)
+        dtpFrom.TabIndex = 3
         ' 
         ' lblTo
         ' 
@@ -141,11 +179,11 @@ Partial Class frmLeadReport
         lblTo.AutoSize = True
         lblTo.Font = New Font("Segoe UI", 9.5F)
         lblTo.ForeColor = Color.FromArgb(CByte(51), CByte(65), CByte(85))
-        lblTo.Location = New Point(246, 11)
-        lblTo.Margin = New Padding(0, 0, 8, 0)
+        lblTo.Location = New Point(478, 16)
+        lblTo.Margin = New Padding(0, 0, 6, 0)
         lblTo.Name = "lblTo"
         lblTo.Size = New Size(61, 21)
-        lblTo.TabIndex = 2
+        lblTo.TabIndex = 4
         lblTo.Text = "Date To"
         lblTo.TextAlign = ContentAlignment.MiddleLeft
         ' 
@@ -154,47 +192,72 @@ Partial Class frmLeadReport
         dtpTo.Anchor = AnchorStyles.Left Or AnchorStyles.Right
         dtpTo.Font = New Font("Segoe UI", 9.5F)
         dtpTo.Format = DateTimePickerFormat.Short
-        dtpTo.Location = New Point(315, 7)
-        dtpTo.Margin = New Padding(0, 0, 18, 0)
+        dtpTo.Location = New Point(545, 12)
+        dtpTo.Margin = New Padding(0, 0, 10, 0)
         dtpTo.Name = "dtpTo"
         dtpTo.ShowCheckBox = True
-        dtpTo.Size = New Size(137, 29)
-        dtpTo.TabIndex = 3
+        dtpTo.Size = New Size(125, 29)
+        dtpTo.TabIndex = 5
         ' 
-        ' lblDiscLoginFilter
+        ' lblCustName
         ' 
-        lblDiscLoginFilter.Anchor = AnchorStyles.Left
-        lblDiscLoginFilter.AutoSize = True
-        lblDiscLoginFilter.Font = New Font("Segoe UI", 9.5F)
-        lblDiscLoginFilter.ForeColor = Color.FromArgb(CByte(51), CByte(65), CByte(85))
-        lblDiscLoginFilter.Location = New Point(470, 11)
-        lblDiscLoginFilter.Margin = New Padding(0, 0, 8, 0)
-        lblDiscLoginFilter.Name = "lblDiscLoginFilter"
-        lblDiscLoginFilter.Size = New Size(92, 21)
-        lblDiscLoginFilter.TabIndex = 4
-        lblDiscLoginFilter.Text = "Disc / Login"
-        lblDiscLoginFilter.TextAlign = ContentAlignment.MiddleLeft
+        lblCustName.Anchor = AnchorStyles.Left
+        lblCustName.AutoSize = True
+        lblCustName.Font = New Font("Segoe UI", 9.5F)
+        lblCustName.ForeColor = Color.FromArgb(CByte(51), CByte(65), CByte(85))
+        lblCustName.Location = New Point(680, 16)
+        lblCustName.Margin = New Padding(0, 0, 6, 0)
+        lblCustName.Name = "lblCustName"
+        lblCustName.Size = New Size(78, 21)
+        lblCustName.TabIndex = 6
+        lblCustName.Text = "Customer"
+        lblCustName.TextAlign = ContentAlignment.MiddleLeft
         ' 
-        ' cmbDiscLogin
+        ' txtCustName
         ' 
-        cmbDiscLogin.Anchor = AnchorStyles.Left Or AnchorStyles.Right
-        cmbDiscLogin.DropDownStyle = ComboBoxStyle.DropDownList
-        cmbDiscLogin.Font = New Font("Segoe UI", 9.5F)
-        cmbDiscLogin.Location = New Point(570, 7)
-        cmbDiscLogin.Margin = New Padding(0, 0, 18, 0)
-        cmbDiscLogin.Name = "cmbDiscLogin"
-        cmbDiscLogin.Size = New Size(182, 29)
-        cmbDiscLogin.TabIndex = 5
+        txtCustName.Anchor = AnchorStyles.Left Or AnchorStyles.Right
+        txtCustName.Font = New Font("Segoe UI", 9.5F)
+        txtCustName.Location = New Point(764, 12)
+        txtCustName.Margin = New Padding(0, 0, 10, 0)
+        txtCustName.Name = "txtCustName"
+        txtCustName.Size = New Size(140, 29)
+        txtCustName.TabIndex = 7
+        ' 
+        ' lblStageFilter
+        ' 
+        lblStageFilter.Anchor = AnchorStyles.Left
+        lblStageFilter.AutoSize = True
+        lblStageFilter.Font = New Font("Segoe UI", 9.5F)
+        lblStageFilter.ForeColor = Color.FromArgb(CByte(51), CByte(65), CByte(85))
+        lblStageFilter.Location = New Point(914, 16)
+        lblStageFilter.Margin = New Padding(0, 0, 6, 0)
+        lblStageFilter.Name = "lblStageFilter"
+        lblStageFilter.Size = New Size(48, 21)
+        lblStageFilter.TabIndex = 8
+        lblStageFilter.Text = "Stage"
+        lblStageFilter.TextAlign = ContentAlignment.MiddleLeft
+        ' 
+        ' cmbStage
+        ' 
+        cmbStage.Anchor = AnchorStyles.Left Or AnchorStyles.Right
+        cmbStage.DropDownStyle = ComboBoxStyle.DropDownList
+        cmbStage.Font = New Font("Segoe UI", 9.5F)
+        cmbStage.Location = New Point(968, 12)
+        cmbStage.Margin = New Padding(0, 0, 10, 0)
+        cmbStage.Name = "cmbStage"
+        cmbStage.Size = New Size(130, 29)
+        cmbStage.TabIndex = 9
         ' 
         ' pnlFilterButtons
         ' 
         pnlFilterButtons.Controls.Add(btnSearch)
+        pnlFilterButtons.Controls.Add(btnClear)
         pnlFilterButtons.Controls.Add(btnExportExcel)
         pnlFilterButtons.Dock = DockStyle.Fill
-        pnlFilterButtons.Location = New Point(773, 3)
+        pnlFilterButtons.Location = New Point(1111, 3)
         pnlFilterButtons.Name = "pnlFilterButtons"
-        pnlFilterButtons.Size = New Size(384, 38)
-        pnlFilterButtons.TabIndex = 6
+        pnlFilterButtons.Size = New Size(154, 48)
+        pnlFilterButtons.TabIndex = 10
         ' 
         ' btnSearch
         ' 
@@ -202,14 +265,29 @@ Partial Class frmLeadReport
         btnSearch.Cursor = Cursors.Hand
         btnSearch.FlatAppearance.BorderSize = 0
         btnSearch.FlatStyle = FlatStyle.Flat
-        btnSearch.Font = New Font("Segoe UI Semibold", 9.5F, FontStyle.Bold)
+        btnSearch.Font = New Font("Segoe UI Semibold", 9.0F, FontStyle.Bold)
         btnSearch.ForeColor = Color.White
-        btnSearch.Location = New Point(0, 2)
+        btnSearch.Location = New Point(0, 8)
         btnSearch.Name = "btnSearch"
-        btnSearch.Size = New Size(110, 34)
+        btnSearch.Size = New Size(85, 32)
         btnSearch.TabIndex = 0
         btnSearch.Text = "Search"
         btnSearch.UseVisualStyleBackColor = False
+        ' 
+        ' btnClear
+        ' 
+        btnClear.BackColor = Color.FromArgb(CByte(100), CByte(116), CByte(139))
+        btnClear.Cursor = Cursors.Hand
+        btnClear.FlatAppearance.BorderSize = 0
+        btnClear.FlatStyle = FlatStyle.Flat
+        btnClear.Font = New Font("Segoe UI Semibold", 9.0F, FontStyle.Bold)
+        btnClear.ForeColor = Color.White
+        btnClear.Location = New Point(90, 8)
+        btnClear.Name = "btnClear"
+        btnClear.Size = New Size(75, 32)
+        btnClear.TabIndex = 1
+        btnClear.Text = "Clear"
+        btnClear.UseVisualStyleBackColor = False
         ' 
         ' btnExportExcel
         ' 
@@ -217,76 +295,76 @@ Partial Class frmLeadReport
         btnExportExcel.Cursor = Cursors.Hand
         btnExportExcel.FlatAppearance.BorderSize = 0
         btnExportExcel.FlatStyle = FlatStyle.Flat
-        btnExportExcel.Font = New Font("Segoe UI Semibold", 9.5F, FontStyle.Bold)
+        btnExportExcel.Font = New Font("Segoe UI Semibold", 9.0F, FontStyle.Bold)
         btnExportExcel.ForeColor = Color.White
-        btnExportExcel.Location = New Point(120, 2)
+        btnExportExcel.Location = New Point(170, 8)
         btnExportExcel.Name = "btnExportExcel"
-        btnExportExcel.Size = New Size(120, 34)
-        btnExportExcel.TabIndex = 1
+        btnExportExcel.Size = New Size(100, 32)
+        btnExportExcel.TabIndex = 2
         btnExportExcel.Text = "Export Excel"
         btnExportExcel.UseVisualStyleBackColor = False
         ' 
         ' PanelGrid
         ' 
         PanelGrid.BackColor = Color.FromArgb(CByte(241), CByte(245), CByte(249))
-        PanelGrid.Controls.Add(dgvLeadReport)
+        PanelGrid.Controls.Add(dgvLoginReport)
         PanelGrid.Controls.Add(lblRecordCount)
         PanelGrid.Controls.Add(lblGridTitle)
         PanelGrid.Dock = DockStyle.Fill
-        PanelGrid.Location = New Point(0, 128)
+        PanelGrid.Location = New Point(0, 134)
         PanelGrid.Name = "PanelGrid"
         PanelGrid.Padding = New Padding(20, 12, 20, 20)
-        PanelGrid.Size = New Size(1200, 522)
+        PanelGrid.Size = New Size(1300, 516)
         PanelGrid.TabIndex = 2
         ' 
-        ' dgvLeadReport
+        ' dgvLoginReport
         ' 
-        dgvLeadReport.AllowUserToAddRows = False
-        dgvLeadReport.AllowUserToDeleteRows = False
-        dgvLeadReport.AllowUserToResizeRows = False
+        dgvLoginReport.AllowUserToAddRows = False
+        dgvLoginReport.AllowUserToDeleteRows = False
+        dgvLoginReport.AllowUserToResizeRows = False
         DataGridViewCellStyle1.BackColor = Color.FromArgb(CByte(248), CByte(250), CByte(252))
-        dgvLeadReport.AlternatingRowsDefaultCellStyle = DataGridViewCellStyle1
-        dgvLeadReport.BackgroundColor = Color.White
-        dgvLeadReport.BorderStyle = BorderStyle.None
-        dgvLeadReport.CellBorderStyle = DataGridViewCellBorderStyle.SingleHorizontal
-        dgvLeadReport.ColumnHeadersBorderStyle = DataGridViewHeaderBorderStyle.None
+        dgvLoginReport.AlternatingRowsDefaultCellStyle = DataGridViewCellStyle1
+        dgvLoginReport.BackgroundColor = Color.White
+        dgvLoginReport.BorderStyle = BorderStyle.None
+        dgvLoginReport.CellBorderStyle = DataGridViewCellBorderStyle.SingleHorizontal
+        dgvLoginReport.ColumnHeadersBorderStyle = DataGridViewHeaderBorderStyle.None
         DataGridViewCellStyle2.Alignment = DataGridViewContentAlignment.MiddleLeft
         DataGridViewCellStyle2.BackColor = Color.FromArgb(CByte(30), CByte(41), CByte(59))
-        DataGridViewCellStyle2.Font = New Font("Segoe UI Semibold", 9F, FontStyle.Bold)
+        DataGridViewCellStyle2.Font = New Font("Segoe UI Semibold", 9.0F, FontStyle.Bold)
         DataGridViewCellStyle2.ForeColor = Color.White
         DataGridViewCellStyle2.SelectionBackColor = Color.FromArgb(CByte(30), CByte(41), CByte(59))
         DataGridViewCellStyle2.SelectionForeColor = Color.White
         DataGridViewCellStyle2.WrapMode = DataGridViewTriState.False
-        dgvLeadReport.ColumnHeadersDefaultCellStyle = DataGridViewCellStyle2
-        dgvLeadReport.ColumnHeadersHeight = 40
-        dgvLeadReport.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.DisableResizing
+        dgvLoginReport.ColumnHeadersDefaultCellStyle = DataGridViewCellStyle2
+        dgvLoginReport.ColumnHeadersHeight = 40
+        dgvLoginReport.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.DisableResizing
         DataGridViewCellStyle3.Alignment = DataGridViewContentAlignment.MiddleLeft
         DataGridViewCellStyle3.BackColor = Color.White
-        DataGridViewCellStyle3.Font = New Font("Segoe UI", 9F)
+        DataGridViewCellStyle3.Font = New Font("Segoe UI", 9.0F)
         DataGridViewCellStyle3.ForeColor = Color.FromArgb(CByte(30), CByte(41), CByte(59))
         DataGridViewCellStyle3.SelectionBackColor = Color.FromArgb(CByte(219), CByte(234), CByte(254))
         DataGridViewCellStyle3.SelectionForeColor = Color.FromArgb(CByte(15), CByte(23), CByte(42))
         DataGridViewCellStyle3.WrapMode = DataGridViewTriState.False
-        dgvLeadReport.DefaultCellStyle = DataGridViewCellStyle3
-        dgvLeadReport.Dock = DockStyle.Fill
-        dgvLeadReport.EnableHeadersVisualStyles = False
-        dgvLeadReport.GridColor = Color.FromArgb(CByte(226), CByte(232), CByte(240))
-        dgvLeadReport.Location = New Point(20, 71)
-        dgvLeadReport.MultiSelect = False
-        dgvLeadReport.Name = "dgvLeadReport"
-        dgvLeadReport.ReadOnly = True
-        dgvLeadReport.RowHeadersVisible = False
-        dgvLeadReport.RowHeadersWidth = 51
-        dgvLeadReport.RowTemplate.Height = 36
-        dgvLeadReport.SelectionMode = DataGridViewSelectionMode.FullRowSelect
-        dgvLeadReport.Size = New Size(1160, 431)
-        dgvLeadReport.TabIndex = 2
+        dgvLoginReport.DefaultCellStyle = DataGridViewCellStyle3
+        dgvLoginReport.Dock = DockStyle.Fill
+        dgvLoginReport.EnableHeadersVisualStyles = False
+        dgvLoginReport.GridColor = Color.FromArgb(CByte(226), CByte(232), CByte(240))
+        dgvLoginReport.Location = New Point(20, 71)
+        dgvLoginReport.MultiSelect = False
+        dgvLoginReport.Name = "dgvLoginReport"
+        dgvLoginReport.ReadOnly = True
+        dgvLoginReport.RowHeadersVisible = False
+        dgvLoginReport.RowHeadersWidth = 51
+        dgvLoginReport.RowTemplate.Height = 36
+        dgvLoginReport.SelectionMode = DataGridViewSelectionMode.FullRowSelect
+        dgvLoginReport.Size = New Size(1260, 425)
+        dgvLoginReport.TabIndex = 2
         ' 
         ' lblRecordCount
         ' 
         lblRecordCount.AutoSize = True
         lblRecordCount.Dock = DockStyle.Top
-        lblRecordCount.Font = New Font("Segoe UI", 9F)
+        lblRecordCount.Font = New Font("Segoe UI", 9.0F)
         lblRecordCount.ForeColor = Color.FromArgb(CByte(100), CByte(116), CByte(139))
         lblRecordCount.Location = New Point(20, 43)
         lblRecordCount.Name = "lblRecordCount"
@@ -299,14 +377,14 @@ Partial Class frmLeadReport
         ' 
         lblGridTitle.AutoSize = True
         lblGridTitle.Dock = DockStyle.Top
-        lblGridTitle.Font = New Font("Segoe UI Semibold", 11F, FontStyle.Bold)
+        lblGridTitle.Font = New Font("Segoe UI Semibold", 11.0F, FontStyle.Bold)
         lblGridTitle.ForeColor = Color.FromArgb(CByte(15), CByte(23), CByte(42))
         lblGridTitle.Location = New Point(20, 12)
         lblGridTitle.Name = "lblGridTitle"
         lblGridTitle.Padding = New Padding(0, 0, 0, 6)
-        lblGridTitle.Size = New Size(147, 31)
+        lblGridTitle.Size = New Size(157, 31)
         lblGridTitle.TabIndex = 0
-        lblGridTitle.Text = "LEAD RECORDS"
+        lblGridTitle.Text = "LOGIN RECORDS"
         ' 
         ' pnlLoader
         ' 
@@ -314,9 +392,9 @@ Partial Class frmLeadReport
         pnlLoader.Controls.Add(picLoader)
         pnlLoader.Controls.Add(lblLoader)
         pnlLoader.Dock = DockStyle.Fill
-        pnlLoader.Location = New Point(0, 128)
+        pnlLoader.Location = New Point(0, 134)
         pnlLoader.Name = "pnlLoader"
-        pnlLoader.Size = New Size(1200, 522)
+        pnlLoader.Size = New Size(1300, 516)
         pnlLoader.TabIndex = 100
         pnlLoader.Visible = False
         ' 
@@ -331,7 +409,7 @@ Partial Class frmLeadReport
         ' 
         ' lblLoader
         ' 
-        lblLoader.Font = New Font("Segoe UI Semibold", 12F, FontStyle.Bold)
+        lblLoader.Font = New Font("Segoe UI Semibold", 12.0F, FontStyle.Bold)
         lblLoader.ForeColor = Color.FromArgb(CByte(30), CByte(41), CByte(59))
         lblLoader.Location = New Point(0, 0)
         lblLoader.Name = "lblLoader"
@@ -340,20 +418,20 @@ Partial Class frmLeadReport
         lblLoader.Text = "Loading data, please wait..."
         lblLoader.TextAlign = ContentAlignment.MiddleCenter
         ' 
-        ' frmLeadReport
+        ' frmLoginReport
         ' 
-        AutoScaleDimensions = New SizeF(8F, 20F)
+        AutoScaleDimensions = New SizeF(8.0F, 20.0F)
         AutoScaleMode = AutoScaleMode.Font
         BackColor = Color.FromArgb(CByte(241), CByte(245), CByte(249))
-        ClientSize = New Size(1200, 650)
+        ClientSize = New Size(1300, 650)
         Controls.Add(pnlLoader)
         Controls.Add(PanelGrid)
         Controls.Add(PanelFilter)
         Controls.Add(PanelHeader)
-        MinimumSize = New Size(1000, 550)
-        Name = "frmLeadReport"
+        MinimumSize = New Size(1200, 550)
+        Name = "frmLoginReport"
         StartPosition = FormStartPosition.CenterScreen
-        Text = "Lead Report"
+        Text = "Login Report"
         WindowState = FormWindowState.Maximized
         PanelHeader.ResumeLayout(False)
         PanelFilter.ResumeLayout(False)
@@ -362,7 +440,7 @@ Partial Class frmLeadReport
         pnlFilterButtons.ResumeLayout(False)
         PanelGrid.ResumeLayout(False)
         PanelGrid.PerformLayout()
-        CType(dgvLeadReport, ComponentModel.ISupportInitialize).EndInit()
+        CType(dgvLoginReport, ComponentModel.ISupportInitialize).EndInit()
         pnlLoader.ResumeLayout(False)
         CType(picLoader, ComponentModel.ISupportInitialize).EndInit()
         ResumeLayout(False)
@@ -372,21 +450,26 @@ Partial Class frmLeadReport
     Friend WithEvents lblTitle As Label
     Friend WithEvents PanelFilter As Panel
     Friend WithEvents tblFilter As TableLayoutPanel
+    Friend WithEvents lblReportType As Label
+    Friend WithEvents cmbReportType As ComboBox
     Friend WithEvents lblFrom As Label
     Friend WithEvents dtpFrom As DateTimePicker
     Friend WithEvents lblTo As Label
     Friend WithEvents dtpTo As DateTimePicker
-    Friend WithEvents lblDiscLoginFilter As Label
-    Friend WithEvents cmbDiscLogin As ComboBox
+    Friend WithEvents lblCustName As Label
+    Friend WithEvents txtCustName As TextBox
+    Friend WithEvents lblStageFilter As Label
+    Friend WithEvents cmbStage As ComboBox
     Friend WithEvents pnlFilterButtons As Panel
     Friend WithEvents btnSearch As Button
+    Friend WithEvents btnClear As Button
     Friend WithEvents btnExportExcel As Button
     Friend WithEvents PanelGrid As Panel
     Friend WithEvents lblGridTitle As Label
     Friend WithEvents lblRecordCount As Label
-    Friend WithEvents dgvLeadReport As DataGridView
-
+    Friend WithEvents dgvLoginReport As DataGridView
     Friend WithEvents pnlLoader As Panel
     Friend WithEvents picLoader As PictureBox
     Friend WithEvents lblLoader As Label
+
 End Class

@@ -1,5 +1,4 @@
 ﻿Public Class frmLeadReport
-
     Private Sub frmLeadReport_Load(sender As Object, e As EventArgs) Handles MyBase.Load
         dtpFrom.Value = DateTime.Today
         dtpTo.Value = DateTime.Today
@@ -35,20 +34,21 @@
     Private Sub LoadDiscLoginFilter()
         Try
             cmbDiscLogin.Items.Clear()
+
+            ssql = "SELECT LeadStage " &
+                   "FROM LeadStageMst with(nolock)" &
+                   "WHERE IsActive='Y' " &
+                   "ORDER BY LeadStage"
+
+            Dim dt As DataTable = GetData(ssql)
+
             cmbDiscLogin.Items.Add("All")
 
-            ssql = "SELECT DISTINCT DiscLogin FROM LeadMis " &
-                   "WHERE IsDelete <> 'Y' AND DiscLogin IS NOT NULL AND DiscLogin <> '' " &
-                   "ORDER BY DiscLogin"
-
-            dt = GetData(ssql)
-
             For Each row As DataRow In dt.Rows
-                cmbDiscLogin.Items.Add(row("DiscLogin").ToString())
+                cmbDiscLogin.Items.Add(row("LeadStage").ToString())
             Next
 
             cmbDiscLogin.SelectedIndex = 0
-
         Catch ex As Exception
             MessageBox.Show(ex.Message, "Error Loading Filter", MessageBoxButtons.OK, MessageBoxIcon.Error)
         End Try

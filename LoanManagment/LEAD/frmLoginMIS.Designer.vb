@@ -20,13 +20,10 @@ Partial Class frmLoginMIS
         Dim DataGridViewCellStyle1 As New DataGridViewCellStyle()
         Dim DataGridViewCellStyle2 As New DataGridViewCellStyle()
         Dim DataGridViewCellStyle3 As New DataGridViewCellStyle()
-        Dim DataGridViewCellStyle4 As New DataGridViewCellStyle()
-        Dim DataGridViewCellStyle5 As New DataGridViewCellStyle()
 
         pnlTop = New Panel()
         lblTitle = New Label()
         lblSubTitle = New Label()
-
         pnlSearch = New Panel()
         lblSearchCustomer = New Label()
         txtSearchCustName = New TextBox()
@@ -34,7 +31,6 @@ Partial Class frmLoginMIS
         txtSearchMobile = New TextBox()
         btnRefresh = New Button()
         btnClearSearch = New Button()
-
         pnlForm = New Panel()
         grpCustomer = New GroupBox()
         lblCustName = New Label()
@@ -47,7 +43,6 @@ Partial Class frmLoginMIS
         txtPropertyAdd = New TextBox()
         lblOtherProperty = New Label()
         txtOtherPropAdd = New TextBox()
-
         grpLoan = New GroupBox()
         lblLoginDate = New Label()
         dtpLeadDate = New DateTimePicker()
@@ -57,6 +52,8 @@ Partial Class frmLoginMIS
         txtLoanNo = New TextBox()
         lblLoanAmount = New Label()
         txtLoanAmnt = New TextBox()
+        lblApprovedAmount = New Label()
+        txtApprovedAmount = New TextBox()
         lblStage = New Label()
         txtStage = New ComboBox()
         lblBank = New Label()
@@ -69,14 +66,18 @@ Partial Class frmLoginMIS
         CboCode = New ComboBox()
         lblCPA = New Label()
         CboCPA = New ComboBox()
-
+        lblTotalApproved = New Label()
+        txtTotalApproved = New TextBox()
         grpDatesExpense = New GroupBox()
         lblDastavage = New Label()
         dtpDasatavgeDate = New DateTimePicker()
+        chkDastavage = New CheckBox()
         lblRMDate = New Label()
         dtpRMDate = New DateTimePicker()
+        chkRMDate = New CheckBox()
         lblHODate = New Label()
         dtpHODate = New DateTimePicker()
+        chkHODate = New CheckBox()
         lblExpenseType = New Label()
         txtExpOfr = New ComboBox()
         lblExpenseValue = New Label()
@@ -84,13 +85,13 @@ Partial Class frmLoginMIS
         btnExpOfr = New Button()
         lblGrossTotalCaption = New Label()
         txtGrossTotal = New TextBox()
-
+        lblExpOfferToCm = New Label()
+        txtExpOfferToCm = New TextBox()
         pnlButtons = New Panel()
         btnSave = New Button()
         btnUpdate = New Button()
         btnDelete = New Button()
         btnClear = New Button()
-
         dgv = New DataGridView()
         dgvExpense = New DataGridView()
 
@@ -128,7 +129,6 @@ Partial Class frmLoginMIS
         pnlSearch.BackColor = Color.White
         pnlSearch.Dock = DockStyle.Top
         pnlSearch.Height = 60
-        pnlSearch.Padding = New Padding(15, 12, 15, 12)
 
         lblSearchCustomer.AutoSize = True
         lblSearchCustomer.Font = New Font("Segoe UI", 10.0!, FontStyle.Bold)
@@ -175,7 +175,7 @@ Partial Class frmLoginMIS
         '========== FORM PANEL ==========
         pnlForm.BackColor = Color.FromArgb(245, 247, 250)
         pnlForm.Dock = DockStyle.Top
-        pnlForm.Height = 310
+        pnlForm.Height = 340
         pnlForm.Padding = New Padding(12)
 
         '----- Customer Group -----
@@ -183,17 +183,14 @@ Partial Class frmLoginMIS
         grpCustomer.Font = New Font("Segoe UI", 10.0!, FontStyle.Bold)
         grpCustomer.ForeColor = Color.FromArgb(31, 78, 121)
         grpCustomer.Location = New Point(12, 8)
-        grpCustomer.Size = New Size(340, 290)
+        grpCustomer.Size = New Size(340, 320)
 
         AddLabel(lblCustName, "Customer Name", 15, 30)
         AddTextBox(txtCustName, 15, 55, 300, 28)
-
         AddLabel(lblMobile, "Mobile No", 15, 95)
         AddTextBox(txtMobileNo, 15, 120, 300, 28)
-
         AddLabel(lblPropertyNo, "Property No", 15, 160)
         AddTextBox(txtPropertyNo, 15, 185, 300, 28)
-
         AddLabel(lblPropertyAdd, "Property Address", 15, 225)
         AddTextBox(txtPropertyAdd, 15, 250, 300, 28)
 
@@ -202,63 +199,89 @@ Partial Class frmLoginMIS
         grpLoan.Font = New Font("Segoe UI", 10.0!, FontStyle.Bold)
         grpLoan.ForeColor = Color.FromArgb(31, 78, 121)
         grpLoan.Location = New Point(365, 8)
-        grpLoan.Size = New Size(480, 290)
+        grpLoan.Size = New Size(480, 320)
 
-        AddLabel(lblLoginDate, "Login Date", 15, 28)
-        AddDatePicker(dtpLeadDate, 140, 25, 140)
+        AddLabel(lblLoginDate, "Login Date", 15, 25)
+        AddDatePicker(dtpLeadDate, 140, 22, 140)
 
-        AddLabel(lblApplicationNo, "Application No", 15, 65)
-        AddTextBox(txtAppNo, 140, 62, 160, 28)
+        AddLabel(lblApplicationNo, "Application No", 15, 58)
+        AddTextBox(txtAppNo, 140, 55, 160, 28)
 
-        AddLabel(lblLoanNo, "Loan No", 15, 102)
-        AddTextBox(txtLoanNo, 140, 99, 160, 28)
+        AddLabel(lblLoanNo, "Loan No", 15, 91)
+        AddTextBox(txtLoanNo, 140, 88, 160, 28)
 
-        AddLabel(lblLoanAmount, "Loan Amount", 15, 139)
-        AddTextBox(txtLoanAmnt, 140, 136, 160, 28)
+        ' Original Loan Amount (ReadOnly)
+        AddLabel(lblLoanAmount, "Loan Amount", 15, 124)
+        AddTextBox(txtLoanAmnt, 140, 121, 160, 28)
+        txtLoanAmnt.ReadOnly = True
+        txtLoanAmnt.BackColor = Color.FromArgb(240, 240, 240)
 
-        AddLabel(lblStage, "Stage", 15, 176)
-        AddComboBox(txtStage, 140, 173, 160)
+        ' Approved Amount (Editable)
+        AddLabel(lblApprovedAmount, "Approved Amount", 15, 157)
+        AddTextBox(txtApprovedAmount, 140, 154, 160, 28)
 
-        AddLabel(lblBank, "Bank", 15, 213)
-        AddComboBox(txtBank, 140, 210, 160)
+        AddLabel(lblStage, "Stage", 15, 190)
+        AddComboBox(txtStage, 140, 187, 160)
 
-        AddLabel(lblCode, "Code", 320, 28)
-        AddComboBox(CboCode, 320, 52, 140)
+        AddLabel(lblBank, "Bank", 15, 223)
+        AddComboBox(txtBank, 140, 220, 160)
 
-        AddLabel(lblCPA, "CPA", 320, 95)
-        AddComboBox(CboCPA, 320, 119, 140)
+        ' Right side
+        AddLabel(lblCode, "Code", 320, 25)
+        AddComboBox(CboCode, 320, 48, 140)
 
-        AddLabel(lblLLPs, "LLPS No", 320, 162)
-        AddTextBox(txtLLPs, 320, 186, 140, 28)
+        AddLabel(lblCPA, "CPA", 320, 85)
+        AddComboBox(CboCPA, 320, 108, 140)
+
+        AddLabel(lblLLPs, "LLPS No", 320, 145)
+        AddTextBox(txtLLPs, 320, 168, 140, 28)
         txtLLPs.Visible = False
         lblLLPs.Visible = False
 
-        AddLabel(lblBranchSole, "Branch Sole", 320, 225)
-        AddTextBox(txtBranchSole, 320, 249, 140, 28)
+        AddLabel(lblBranchSole, "Branch Sole", 320, 205)
+        AddTextBox(txtBranchSole, 320, 228, 140, 28)
         txtBranchSole.Visible = False
         lblBranchSole.Visible = False
+
+        ' Total Approved (HO-PART sum)
+        AddLabel(lblTotalApproved, "Total Approved", 320, 265)
+        AddTextBox(txtTotalApproved, 320, 288, 140, 28)
+        txtTotalApproved.ReadOnly = True
+        txtTotalApproved.BackColor = Color.FromArgb(230, 255, 240)
+        txtTotalApproved.ForeColor = Color.FromArgb(25, 135, 84)
+        txtTotalApproved.TextAlign = HorizontalAlignment.Right
+        txtTotalApproved.Text = "0.00"
 
         '----- Dates + Expense Group -----
         grpDatesExpense.Text = "Process Dates / Expense"
         grpDatesExpense.Font = New Font("Segoe UI", 10.0!, FontStyle.Bold)
         grpDatesExpense.ForeColor = Color.FromArgb(31, 78, 121)
         grpDatesExpense.Location = New Point(860, 8)
-        grpDatesExpense.Size = New Size(430, 290)
+        grpDatesExpense.Size = New Size(430, 320)
 
-        AddLabel(lblDastavage, "Dastavage Date", 15, 30)
-        AddDatePicker(dtpDasatavgeDate, 150, 27, 140)
+        AddLabel(lblDastavage, "Dastavage Date", 15, 28)
+        AddDatePicker(dtpDasatavgeDate, 150, 25, 130)
+        chkDastavage.Location = New Point(290, 28)
+        chkDastavage.Size = New Size(18, 18)
+        chkDastavage.Checked = False
 
-        AddLabel(lblRMDate, "RM Date", 15, 70)
-        AddDatePicker(dtpRMDate, 150, 67, 140)
+        AddLabel(lblRMDate, "RM Date", 15, 65)
+        AddDatePicker(dtpRMDate, 150, 62, 130)
+        chkRMDate.Location = New Point(290, 65)
+        chkRMDate.Size = New Size(18, 18)
+        chkRMDate.Checked = False
 
-        AddLabel(lblHODate, "HO Date", 15, 110)
-        AddDatePicker(dtpHODate, 150, 107, 140)
+        AddLabel(lblHODate, "HO Date", 15, 102)
+        AddDatePicker(dtpHODate, 150, 99, 130)
+        chkHODate.Location = New Point(290, 102)
+        chkHODate.Size = New Size(18, 18)
+        chkHODate.Checked = False
 
-        AddLabel(lblExpenseType, "Expense Type", 15, 155)
-        AddComboBox(txtExpOfr, 150, 152, 160)
+        AddLabel(lblExpenseType, "Expense Type", 15, 145)
+        AddComboBox(txtExpOfr, 150, 142, 160)
 
-        AddLabel(lblExpenseValue, "Expense Value", 15, 195)
-        AddTextBox(txtExpOfrValue, 150, 192, 120, 28)
+        AddLabel(lblExpenseValue, "Expense Value", 15, 185)
+        AddTextBox(txtExpOfrValue, 150, 182, 120, 28)
 
         btnExpOfr.Text = "+"
         btnExpOfr.Font = New Font("Segoe UI", 14.0!, FontStyle.Bold)
@@ -266,29 +289,39 @@ Partial Class frmLoginMIS
         btnExpOfr.ForeColor = Color.White
         btnExpOfr.FlatStyle = FlatStyle.Flat
         btnExpOfr.FlatAppearance.BorderSize = 0
-        btnExpOfr.Location = New Point(280, 190)
+        btnExpOfr.Location = New Point(280, 180)
         btnExpOfr.Size = New Size(40, 32)
         btnExpOfr.Cursor = Cursors.Hand
 
         lblGrossTotalCaption.AutoSize = True
         lblGrossTotalCaption.Font = New Font("Segoe UI", 11.0!, FontStyle.Bold)
         lblGrossTotalCaption.ForeColor = Color.FromArgb(31, 78, 121)
-        lblGrossTotalCaption.Location = New Point(15, 245)
+        lblGrossTotalCaption.Location = New Point(15, 230)
         lblGrossTotalCaption.Text = "TOTAL EXPENSE :"
 
         txtGrossTotal.Font = New Font("Segoe UI", 12.0!, FontStyle.Bold)
         txtGrossTotal.BackColor = Color.FromArgb(230, 255, 240)
         txtGrossTotal.ForeColor = Color.FromArgb(25, 135, 84)
-        txtGrossTotal.Location = New Point(170, 240)
+        txtGrossTotal.Location = New Point(170, 225)
         txtGrossTotal.Size = New Size(150, 32)
         txtGrossTotal.ReadOnly = True
         txtGrossTotal.TextAlign = HorizontalAlignment.Right
         txtGrossTotal.Text = "0.00"
 
+        AddLabel(lblExpOfferToCm, "Exp Offer To CM", 15, 270)
+        AddTextBox(txtExpOfferToCm, 150, 267, 160, 28)
+        txtExpOfferToCm.ReadOnly = True
+        txtExpOfferToCm.BackColor = Color.FromArgb(240, 240, 240)
+
+        ' Add controls to groups
         grpDatesExpense.Controls.AddRange(New Control() {
-            lblDastavage, dtpDasatavgeDate, lblRMDate, dtpRMDate, lblHODate, dtpHODate,
-            lblExpenseType, txtExpOfr, lblExpenseValue, txtExpOfrValue, btnExpOfr,
-            lblGrossTotalCaption, txtGrossTotal})
+            lblDastavage, dtpDasatavgeDate, chkDastavage,
+            lblRMDate, dtpRMDate, chkRMDate,
+            lblHODate, dtpHODate, chkHODate,
+            lblExpenseType, txtExpOfr,
+            lblExpenseValue, txtExpOfrValue, btnExpOfr,
+            lblGrossTotalCaption, txtGrossTotal,
+            lblExpOfferToCm, txtExpOfferToCm})
 
         grpCustomer.Controls.AddRange(New Control() {
             lblCustName, txtCustName, lblMobile, txtMobileNo,
@@ -296,10 +329,13 @@ Partial Class frmLoginMIS
 
         grpLoan.Controls.AddRange(New Control() {
             lblLoginDate, dtpLeadDate, lblApplicationNo, txtAppNo,
-            lblLoanNo, txtLoanNo, lblLoanAmount, txtLoanAmnt,
+            lblLoanNo, txtLoanNo,
+            lblLoanAmount, txtLoanAmnt,
+            lblApprovedAmount, txtApprovedAmount,
             lblStage, txtStage, lblBank, txtBank,
             lblCode, CboCode, lblCPA, CboCPA,
-            lblLLPs, txtLLPs, lblBranchSole, txtBranchSole})
+            lblLLPs, txtLLPs, lblBranchSole, txtBranchSole,
+            lblTotalApproved, txtTotalApproved})
 
         pnlForm.Controls.AddRange(New Control() {grpCustomer, grpLoan, grpDatesExpense})
 
@@ -317,7 +353,7 @@ Partial Class frmLoginMIS
 
         '========== MAIN GRID ==========
         dgv.Dock = DockStyle.Top
-        dgv.Height = 220
+        dgv.Height = 200
         dgv.BackgroundColor = Color.White
         dgv.BorderStyle = BorderStyle.None
         dgv.AllowUserToAddRows = False
@@ -343,7 +379,7 @@ Partial Class frmLoginMIS
         DataGridViewCellStyle3.SelectionForeColor = Color.Black
         dgv.DefaultCellStyle = DataGridViewCellStyle3
 
-        '========== EXPENSE GRID (Readable Colors) ==========
+        '========== EXPENSE GRID ==========
         dgvExpense.Dock = DockStyle.Fill
         dgvExpense.BackgroundColor = Color.White
         dgvExpense.BorderStyle = BorderStyle.None
@@ -356,26 +392,21 @@ Partial Class frmLoginMIS
         dgvExpense.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill
         dgvExpense.RowTemplate.Height = 30
 
-        ' Header Style - Dark Blue (very readable)
         Dim headerStyle As New DataGridViewCellStyle()
-        headerStyle.BackColor = Color.FromArgb(31, 78, 121)          ' Dark Blue
+        headerStyle.BackColor = Color.FromArgb(31, 78, 121)
         headerStyle.ForeColor = Color.White
         headerStyle.Font = New Font("Segoe UI", 9.5!, FontStyle.Bold)
         headerStyle.Alignment = DataGridViewContentAlignment.MiddleCenter
-        headerStyle.SelectionBackColor = Color.FromArgb(31, 78, 121)
-        headerStyle.SelectionForeColor = Color.White
         dgvExpense.ColumnHeadersDefaultCellStyle = headerStyle
 
-        ' Normal Row Style - Black text on white
         Dim rowStyle As New DataGridViewCellStyle()
         rowStyle.BackColor = Color.White
-        rowStyle.ForeColor = Color.FromArgb(30, 30, 30)              ' Almost black
+        rowStyle.ForeColor = Color.FromArgb(30, 30, 30)
         rowStyle.Font = New Font("Segoe UI", 9.5!)
-        rowStyle.SelectionBackColor = Color.FromArgb(200, 230, 255)  ' Light Blue selection
+        rowStyle.SelectionBackColor = Color.FromArgb(200, 230, 255)
         rowStyle.SelectionForeColor = Color.Black
         dgvExpense.DefaultCellStyle = rowStyle
 
-        ' Alternating Row - Light Gray
         Dim altStyle As New DataGridViewCellStyle()
         altStyle.BackColor = Color.FromArgb(245, 248, 250)
         altStyle.ForeColor = Color.FromArgb(30, 30, 30)
@@ -490,6 +521,8 @@ Partial Class frmLoginMIS
     Friend WithEvents txtLoanNo As TextBox
     Friend WithEvents lblLoanAmount As Label
     Friend WithEvents txtLoanAmnt As TextBox
+    Friend WithEvents lblApprovedAmount As Label
+    Friend WithEvents txtApprovedAmount As TextBox
     Friend WithEvents lblStage As Label
     Friend WithEvents txtStage As ComboBox
     Friend WithEvents lblBank As Label
@@ -502,13 +535,18 @@ Partial Class frmLoginMIS
     Friend WithEvents CboCode As ComboBox
     Friend WithEvents lblCPA As Label
     Friend WithEvents CboCPA As ComboBox
+    Friend WithEvents lblTotalApproved As Label
+    Friend WithEvents txtTotalApproved As TextBox
     Friend WithEvents grpDatesExpense As GroupBox
     Friend WithEvents lblDastavage As Label
     Friend WithEvents dtpDasatavgeDate As DateTimePicker
+    Friend WithEvents chkDastavage As CheckBox
     Friend WithEvents lblRMDate As Label
     Friend WithEvents dtpRMDate As DateTimePicker
+    Friend WithEvents chkRMDate As CheckBox
     Friend WithEvents lblHODate As Label
     Friend WithEvents dtpHODate As DateTimePicker
+    Friend WithEvents chkHODate As CheckBox
     Friend WithEvents lblExpenseType As Label
     Friend WithEvents txtExpOfr As ComboBox
     Friend WithEvents lblExpenseValue As Label
@@ -516,6 +554,8 @@ Partial Class frmLoginMIS
     Friend WithEvents btnExpOfr As Button
     Friend WithEvents lblGrossTotalCaption As Label
     Friend WithEvents txtGrossTotal As TextBox
+    Friend WithEvents lblExpOfferToCm As Label
+    Friend WithEvents txtExpOfferToCm As TextBox
     Friend WithEvents pnlButtons As Panel
     Friend WithEvents btnSave As Button
     Friend WithEvents btnUpdate As Button
@@ -523,4 +563,5 @@ Partial Class frmLoginMIS
     Friend WithEvents btnClear As Button
     Friend WithEvents dgv As DataGridView
     Friend WithEvents dgvExpense As DataGridView
+
 End Class

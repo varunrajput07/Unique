@@ -140,7 +140,7 @@ Partial Class frmLogin
         txtPassword.PasswordChar = "●"c
         txtPassword.Size = New Size(240, 32)
         txtPassword.TabIndex = 6
-        txtPassword.Text = "12345678"
+        txtPassword.Text = ""
         ' 
         ' btnShowPassword
         ' 

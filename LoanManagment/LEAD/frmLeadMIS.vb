@@ -5,99 +5,64 @@
 
         Try
             dtpLeadDate.Value = DateTime.Today
-            '---------------------------------------------------
-            ' DISC LOGIN STAGE
-            ' PENDING / CONFIRM / LOGIN
-            '---------------------------------------------------
-            ssql = "SELECT DiscLoginStage " &
+
+            ssql = "SELECT DiscLoginStage " &
          "FROM DiscLoginStageMst " &
          "WHERE IsActive='Y' " &
          "ORDER BY DiscLoginStage"
 
             FillCombo(CmbDiscLogin, GetData(ssql), "DiscLoginStage")
 
-
-            '---------------------------------------------------
-            ' LEAD STAGE
-            '---------------------------------------------------
-            ssql = "SELECT StageType " &
+            ssql = "SELECT StageType " &
          "FROM StageMst " &
          "WHERE IsActive='Y' " &
          "ORDER BY StageType"
 
             FillCombo(txtStage, GetData(ssql), "StageType")
 
-
-            '---------------------------------------------------
-            ' PRODUCT
-            '---------------------------------------------------
-            ssql = "SELECT ProductType " &
+            ssql = "SELECT ProductType " &
          "FROM ProductMst " &
          "WHERE IsActive='Y' " &
          "ORDER BY ProductType"
 
             FillCombo(CboProduct, GetData(ssql), "ProductType")
 
-
-            '---------------------------------------------------
-            ' SUB PRODUCT
-            '---------------------------------------------------
-            ssql = "SELECT ProductSubType " &
+            ssql = "SELECT ProductSubType " &
          "FROM ProductSubMst " &
          "WHERE IsActive='Y' " &
          "ORDER BY ProductSubType"
 
             FillCombo(CboSubProduct, GetData(ssql), "ProductSubType")
 
-
-            '---------------------------------------------------
-            ' CPA
-            '---------------------------------------------------
-            ssql = "SELECT CPAName " &
+            ssql = "SELECT CPAName " &
          "FROM CPAMst " &
          "WHERE IsActive='Y' " &
          "ORDER BY CPAName"
 
             FillCombo(CboCPA, GetData(ssql), "CPAName")
 
-
-            '---------------------------------------------------
-            ' PROFILE
-            '---------------------------------------------------
-            ssql = "SELECT ProfileType " &
+            ssql = "SELECT ProfileType " &
          "FROM ProfileMst " &
          "WHERE IsActive='Y' " &
          "ORDER BY ProfileType"
 
             FillCombo(txtProfile, GetData(ssql), "ProfileType")
 
-
-            '---------------------------------------------------
-            ' BANK
-            '---------------------------------------------------
-            ssql = "SELECT BankName " &
+            ssql = "SELECT BankName " &
          "FROM BankMst " &
          "WHERE IsActive='Y' " &
          "ORDER BY BankName"
 
             FillCombo(txtBank, GetData(ssql), "BankName")
 
-
-            '---------------------------------------------------
-            ' PROPERTY ADDRESS
-            '---------------------------------------------------
-            ssql = "SELECT PropertyAddress " &
+            ssql = "SELECT PropertyAddress " &
          "FROM PropertyAddressMst " &
          "WHERE IsActive='Y' " &
          "ORDER BY PropertyAddress"
 
             FillCombo(txtPropertyAdd, GetData(ssql), "PropertyAddress")
 
-
-            '---------------------------------------------------
-            ' CODE
-            '---------------------------------------------------
-            ssql = "SELECT CodeName " &
+            ssql = "SELECT CodeName " &
          "FROM CodeMst " &
          "WHERE IsActive='Y' " &
          "ORDER BY CodeName"
@@ -124,10 +89,7 @@
             End If
 
 
-            '---------------------------------------------------
-            ' LOAD GRID
-            '---------------------------------------------------
-            LoadLeadMISGrid()
+            LoadLeadMISGrid()
 
         Catch ex As Exception
 
@@ -228,18 +190,8 @@
               MessageBoxIcon.Information
             )
 
-
-            '---------------------------------------------------
-            ' CLEAR FORM
-            '---------------------------------------------------
-            ClearForm()
-
-
-            '---------------------------------------------------
-            ' REFRESH GRID
-            '---------------------------------------------------
-            LoadLeadMISGrid()
-
+            ClearForm()
+            LoadLeadMISGrid()
 
         Catch ex As Exception
 
@@ -253,12 +205,7 @@
         End Try
 
     End Sub
-
-
-    '===========================================================
-    ' REFRESH BUTTON
-    '===========================================================
-    Private Sub btnRefresh_Click(sender As Object, e As EventArgs) Handles btnRefresh.Click
+    Private Sub btnRefresh_Click(sender As Object, e As EventArgs) Handles btnRefresh.Click
 
         Try
 
@@ -277,10 +224,6 @@
 
     End Sub
 
-
-    '===========================================================
-    ' LOAD GRID
-    '===========================================================
     Private Sub LoadLeadMISGrid()
 
         Try
@@ -333,10 +276,6 @@
 
             dgv.DataSource = dtLead
 
-
-            '=========================================================
-            ' CHECKBOX COLUMN
-            '=========================================================
             Dim chk As New DataGridViewCheckBoxColumn()
 
             chk.Name = "SelectRow"
@@ -346,11 +285,6 @@
 
             dgv.Columns.Insert(0, chk)
 
-
-            '=========================================================
-            ' DISCUSS STAGE COMBOBOX
-            ' PENDING / CONFIRM / LOGIN
-            '=========================================================
             If dgv.Columns.Contains("DiscussStage") Then
 
                 Dim colIndex As Integer =
@@ -401,13 +335,6 @@
 
             End If
 
-
-            '=========================================================
-            ' LEAD STAGE
-            '
-            ' LeadStage is already coming from LeadMIS
-            ' and will display as a normal column.
-            '=========================================================
             If dgv.Columns.Contains("LeadStage") Then
 
                 dgv.Columns("LeadStage").HeaderText = "Lead Stage"
@@ -416,10 +343,6 @@
 
             End If
 
-
-            '=========================================================
-            ' SET READONLY
-            '=========================================================
             For Each col As DataGridViewColumn In dgv.Columns
 
                 If col.Name = "SelectRow" Then
@@ -433,19 +356,10 @@
                 End If
 
             Next
-
-
-            '=========================================================
-            ' HIDE PRIMARY KEY
-            '=========================================================
             If dgv.Columns.Contains("LeadMisID") Then
                 dgv.Columns("LeadMisID").Visible = False
             End If
 
-
-            '=========================================================
-            ' GRID SETTINGS
-            '=========================================================
             dgv.AllowUserToAddRows = False
             dgv.AllowUserToDeleteRows = False
             dgv.AllowUserToResizeRows = False
@@ -458,22 +372,14 @@
             dgv.EditMode =
             DataGridViewEditMode.EditOnEnter
 
-
-            '=========================================================
-            ' COLUMN SETTINGS
-            '=========================================================
             If dgv.Columns.Contains("SelectRow") Then
                 dgv.Columns("SelectRow").Width = 55
             End If
 
-
-            'Lead Stage width
             If dgv.Columns.Contains("LeadStage") Then
                 dgv.Columns("LeadStage").Width = 120
             End If
 
-
-            'Discuss Stage width
             If dgv.Columns.Contains("DiscussStage") Then
                 dgv.Columns("DiscussStage").Width = 120
             End If
@@ -634,21 +540,13 @@
 
     End Sub
 
-
-    '===========================================================
-    ' UPDATE
-    '===========================================================
-    Private Sub btnUpdate_Click(sender As Object, e As EventArgs) Handles btnUpdate.Click
+    Private Sub btnUpdate_Click(sender As Object, e As EventArgs) Handles btnUpdate.Click
 
         Try
 
             Dim selectedCount As Integer = 0
 
-
-            '---------------------------------------------------
-            ' COUNT SELECTED ROWS
-            '---------------------------------------------------
-            For Each row As DataGridViewRow In dgv.Rows
+            For Each row As DataGridViewRow In dgv.Rows
 
                 If row.IsNewRow Then
                     Continue For
@@ -663,7 +561,6 @@
 
             Next
 
-
             If selectedCount = 0 Then
 
                 MessageBox.Show(
@@ -677,11 +574,7 @@
 
             End If
 
-
-            '---------------------------------------------------
-            ' UPDATE SELECTED ROWS
-            '---------------------------------------------------
-            For Each row As DataGridViewRow In dgv.Rows
+            For Each row As DataGridViewRow In dgv.Rows
 
                 If row.IsNewRow Then
                     Continue For
@@ -807,6 +700,13 @@
                                "SELECT " & leadID & ", LoginMisID,'" & SessionEmpId & "', GETDATE(), 'N' " &
                                "FROM LoginMIS WHERE LeadID=" & leadID & " " &
                                "END"
+                    ExecuteQuery(ssql)
+
+                End If
+
+                If discussStage.Trim().ToUpper() = "CANCEL" Then
+
+                    ssql = "Update Leadmis set IsDelete='Y' where LeadMisID=" & leadID & ""
                     ExecuteQuery(ssql)
 
                 End If

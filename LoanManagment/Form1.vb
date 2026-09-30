@@ -153,17 +153,35 @@
 
     Private Sub LeadToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles LeadToolStripMenuItem.Click
         Try
+            Dim frm As New frmLeadReport()
+            frm.Show()
+        Catch ex As Exception
+            MessageBox.Show(ex.Message)
+        End Try
+    End Sub
+
+    Private Sub ExpenceToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles ExpenceToolStripMenuItem.Click
+        Try
 
             ssql = "select * from  RegistrationMaster WHERE UserType='Super Admin' and EmpId='" & SessionEmpId & "'"
             dt = GetData(ssql)
 
             If dt.Rows.Count = 1 Then
-                Dim frm As New frmLeadReport()
+                Dim frm As New frmExpense()
                 frm.Show()
             Else
                 MessageBox.Show("You are not allowed to open this form.")
             End If
 
+        Catch ex As Exception
+            MessageBox.Show(ex.Message)
+        End Try
+    End Sub
+
+    Private Sub LoginToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles LoginToolStripMenuItem.Click
+        Try
+            Dim frm As New frmLoginReport()
+            frm.Show()
         Catch ex As Exception
             MessageBox.Show(ex.Message)
         End Try
