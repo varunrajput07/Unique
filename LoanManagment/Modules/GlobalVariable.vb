@@ -14,7 +14,7 @@ Module GlobalVariable
     Private connectionString As String =
     "Data Source=LAPTOP-25S76HD1\SQLEXPRESS01;Initial Catalog=Loan;Integrated Security=True;TrustServerCertificate=True"
     '"Server=192.168.1.20,1433;Database=Unique;User Id=Unique;Password=Unique@123;TrustServerCertificate=True;"
-    ' "Server=192.168.1.20,1433;Database=Unique;User Id=Unique;Password=Unique@123;Encrypt=True;TrustServerCertificate=True;"
+    '"Server=192.168.1.20,1433;Database=Unique;User Id=Unique;Password=Unique@123;Encrypt=True;TrustServerCertificate=True;"
 
     Public Function GetConnection() As SqlConnection
 

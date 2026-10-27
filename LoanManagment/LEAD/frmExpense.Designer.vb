@@ -17,902 +17,710 @@ Partial Class frmExpense
 
     <System.Diagnostics.DebuggerStepThrough()>
     Private Sub InitializeComponent()
-        PanelHeader = New Panel()
-        lblTitle = New Label()
-        PanelSearch = New Panel()
-        txtSearch = New TextBox()
-        btnSearch = New Button()
-        btnNewSearch = New Button()
-        dgvCustomerSearch = New DataGridView()
-        pnlInfo = New Panel()
-        lblInfoName = New Label()
-        lblInfoMobile = New Label()
-        lblInfoLoan = New Label()
-        lblInfoProduct = New Label()
-        tabExpense = New TabControl()
-        tabPF = New TabPage()
-        tblPF = New TableLayoutPanel()
-        lblPFAmount = New Label()
-        txtPFAmount = New TextBox()
-        lblPFDate = New Label()
-        dtpPFDate = New DateTimePicker()
-        lblPFPaidBy = New Label()
-        cmbPFPaidBy = New ComboBox()
-        lblPFMode = New Label()
-        cmbPFMode = New ComboBox()
-        tabRM = New TabPage()
-        tblRM = New TableLayoutPanel()
-        lblRMAmount = New Label()
-        txtRMAmount = New TextBox()
-        lblRMDate = New Label()
-        dtpRMDate = New DateTimePicker()
-        lblRMPaidBy = New Label()
-        cmbRMPaidBy = New ComboBox()
-        lblRMMode = New Label()
-        cmbRMMode = New ComboBox()
-        tabFiRcuPd = New TabPage()
-        tblFiRcuPd = New TableLayoutPanel()
-        lblFiRcuPdType = New Label()
-        cmbFiRcuPdType = New ComboBox()
-        lblFiRcuPdAmount = New Label()
-        txtFiRcuPdAmount = New TextBox()
-        lblFiRcuPdDate = New Label()
-        dtpFiRcuPdDate = New DateTimePicker()
-        lblFiRcuPdPaidBy = New Label()
-        cmbFiRcuPdPaidBy = New ComboBox()
-        lblFiRcuPdMode = New Label()
-        cmbFiRcuPdMode = New ComboBox()
-        tabStaff = New TabPage()
-        tblStaff = New TableLayoutPanel()
-        lblStaffAmount = New Label()
-        txtStaffAmount = New TextBox()
-        lblStaffDate = New Label()
-        dtpStaffDate = New DateTimePicker()
-        lblStaffStatus = New Label()
-        cmbStaffStatus = New ComboBox()
-        lblStaffPaidBy = New Label()
-        cmbStaffPaidBy = New ComboBox()
-        lblStaffMode = New Label()
-        cmbStaffMode = New ComboBox()
-        tabBuilder = New TabPage()
-        tblBuilder = New TableLayoutPanel()
-        lblBuilderAmount = New Label()
-        txtBuilderAmount = New TextBox()
-        lblBuilderDate = New Label()
-        dtpBuilderDate = New DateTimePicker()
-        lblBuilderStatus = New Label()
-        cmbBuilderStatus = New ComboBox()
-        lblBuilderPaidBy = New Label()
-        cmbBuilderPaidBy = New ComboBox()
-        lblBuilderMode = New Label()
-        cmbBuilderMode = New ComboBox()
-        PanelActions = New Panel()
-        btnSave = New Button()
-        PanelHeader.SuspendLayout()
-        PanelSearch.SuspendLayout()
-        CType(dgvCustomerSearch, ComponentModel.ISupportInitialize).BeginInit()
-        pnlInfo.SuspendLayout()
-        tabExpense.SuspendLayout()
-        tabPF.SuspendLayout()
-        tblPF.SuspendLayout()
-        tabRM.SuspendLayout()
-        tblRM.SuspendLayout()
-        tabFiRcuPd.SuspendLayout()
-        tblFiRcuPd.SuspendLayout()
-        tabStaff.SuspendLayout()
-        tblStaff.SuspendLayout()
-        tabBuilder.SuspendLayout()
-        tblBuilder.SuspendLayout()
-        PanelActions.SuspendLayout()
-        SuspendLayout()
-        ' 
-        ' PanelHeader
-        ' 
-        PanelHeader.BackColor = Color.FromArgb(CByte(15), CByte(23), CByte(42))
-        PanelHeader.Controls.Add(lblTitle)
-        PanelHeader.Dock = DockStyle.Top
-        PanelHeader.Location = New Point(0, 0)
-        PanelHeader.Name = "PanelHeader"
-        PanelHeader.Padding = New Padding(20, 0, 20, 0)
-        PanelHeader.Size = New Size(1100, 55)
-        PanelHeader.TabIndex = 0
-        ' 
-        ' lblTitle
-        ' 
-        lblTitle.Dock = DockStyle.Fill
-        lblTitle.Font = New Font("Segoe UI Semibold", 14.0F, FontStyle.Bold)
-        lblTitle.ForeColor = Color.White
-        lblTitle.Location = New Point(20, 0)
-        lblTitle.Name = "lblTitle"
-        lblTitle.Size = New Size(1060, 55)
-        lblTitle.TabIndex = 0
-        lblTitle.Text = "EXPENSE MANAGEMENT"
-        lblTitle.TextAlign = ContentAlignment.MiddleLeft
-        ' 
-        ' PanelSearch
-        ' 
-        PanelSearch.BackColor = Color.White
-        PanelSearch.Controls.Add(txtSearch)
-        PanelSearch.Controls.Add(btnSearch)
-        PanelSearch.Controls.Add(btnNewSearch)
-        PanelSearch.Controls.Add(dgvCustomerSearch)
-        PanelSearch.Dock = DockStyle.Top
-        PanelSearch.Location = New Point(0, 55)
-        PanelSearch.Name = "PanelSearch"
-        PanelSearch.Padding = New Padding(20, 12, 20, 5)
-        PanelSearch.Size = New Size(1100, 200)
-        PanelSearch.TabIndex = 1
-        ' 
-        ' txtSearch
-        ' 
-        txtSearch.BorderStyle = BorderStyle.FixedSingle
-        txtSearch.Font = New Font("Segoe UI", 9.5F)
-        txtSearch.Location = New Point(20, 15)
-        txtSearch.Name = "txtSearch"
-        txtSearch.PlaceholderText = "Search by Customer Name, Mobile No, or Lead ID"
-        txtSearch.Size = New Size(700, 29)
-        txtSearch.TabIndex = 0
-        ' 
-        ' btnSearch
-        ' 
-        btnSearch.BackColor = Color.FromArgb(CByte(37), CByte(99), CByte(235))
-        btnSearch.Cursor = Cursors.Hand
-        btnSearch.FlatAppearance.BorderSize = 0
-        btnSearch.FlatStyle = FlatStyle.Flat
-        btnSearch.Font = New Font("Segoe UI Semibold", 9.5F, FontStyle.Bold)
-        btnSearch.ForeColor = Color.White
-        btnSearch.Location = New Point(730, 13)
-        btnSearch.Name = "btnSearch"
-        btnSearch.Size = New Size(100, 31)
-        btnSearch.TabIndex = 1
-        btnSearch.Text = "🔍 Search"
-        btnSearch.UseVisualStyleBackColor = False
-        ' 
-        ' btnNewSearch
-        ' 
-        btnNewSearch.BackColor = Color.White
-        btnNewSearch.Cursor = Cursors.Hand
-        btnNewSearch.FlatAppearance.BorderColor = Color.FromArgb(CByte(148), CByte(163), CByte(184))
-        btnNewSearch.FlatStyle = FlatStyle.Flat
-        btnNewSearch.Font = New Font("Segoe UI", 9.5F)
-        btnNewSearch.ForeColor = Color.FromArgb(CByte(51), CByte(65), CByte(85))
-        btnNewSearch.Location = New Point(840, 13)
-        btnNewSearch.Name = "btnNewSearch"
-        btnNewSearch.Size = New Size(110, 31)
-        btnNewSearch.TabIndex = 2
-        btnNewSearch.Text = "New Search"
-        btnNewSearch.UseVisualStyleBackColor = False
-        ' 
-        ' dgvCustomerSearch
-        ' 
-        dgvCustomerSearch.AllowUserToAddRows = False
-        dgvCustomerSearch.AllowUserToDeleteRows = False
-        dgvCustomerSearch.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill
-        dgvCustomerSearch.BackgroundColor = Color.White
-        dgvCustomerSearch.ColumnHeadersHeight = 29
-        dgvCustomerSearch.Location = New Point(20, 50)
-        dgvCustomerSearch.MultiSelect = False
-        dgvCustomerSearch.Name = "dgvCustomerSearch"
-        dgvCustomerSearch.ReadOnly = True
-        dgvCustomerSearch.RowHeadersVisible = False
-        dgvCustomerSearch.RowHeadersWidth = 51
-        dgvCustomerSearch.SelectionMode = DataGridViewSelectionMode.FullRowSelect
-        dgvCustomerSearch.Size = New Size(1060, 140)
-        dgvCustomerSearch.TabIndex = 3
-        dgvCustomerSearch.Visible = False
-        ' 
-        ' pnlInfo
-        ' 
-        pnlInfo.BackColor = Color.FromArgb(CByte(219), CByte(234), CByte(254))
-        pnlInfo.Controls.Add(lblInfoName)
-        pnlInfo.Controls.Add(lblInfoMobile)
-        pnlInfo.Controls.Add(lblInfoLoan)
-        pnlInfo.Controls.Add(lblInfoProduct)
-        pnlInfo.Dock = DockStyle.Top
-        pnlInfo.Location = New Point(0, 255)
-        pnlInfo.Name = "pnlInfo"
-        pnlInfo.Padding = New Padding(20, 8, 20, 8)
-        pnlInfo.Size = New Size(1100, 40)
-        pnlInfo.TabIndex = 2
-        ' 
-        ' lblInfoName
-        ' 
-        lblInfoName.AutoSize = True
-        lblInfoName.Font = New Font("Segoe UI Semibold", 9.5F, FontStyle.Bold)
-        lblInfoName.ForeColor = Color.FromArgb(CByte(30), CByte(58), CByte(138))
-        lblInfoName.Location = New Point(20, 10)
-        lblInfoName.Name = "lblInfoName"
-        lblInfoName.Size = New Size(86, 21)
-        lblInfoName.TabIndex = 0
-        lblInfoName.Text = "Customer:"
-        ' 
-        ' lblInfoMobile
-        ' 
-        lblInfoMobile.AutoSize = True
-        lblInfoMobile.Font = New Font("Segoe UI", 9.5F)
-        lblInfoMobile.ForeColor = Color.FromArgb(CByte(30), CByte(58), CByte(138))
-        lblInfoMobile.Location = New Point(280, 10)
-        lblInfoMobile.Name = "lblInfoMobile"
-        lblInfoMobile.Size = New Size(61, 21)
-        lblInfoMobile.TabIndex = 1
-        lblInfoMobile.Text = "Mobile:"
-        ' 
-        ' lblInfoLoan
-        ' 
-        lblInfoLoan.AutoSize = True
-        lblInfoLoan.Font = New Font("Segoe UI", 9.5F)
-        lblInfoLoan.ForeColor = Color.FromArgb(CByte(30), CByte(58), CByte(138))
-        lblInfoLoan.Location = New Point(520, 10)
-        lblInfoLoan.Name = "lblInfoLoan"
-        lblInfoLoan.Size = New Size(107, 21)
-        lblInfoLoan.TabIndex = 2
-        lblInfoLoan.Text = "Loan Amount:"
-        ' 
-        ' lblInfoProduct
-        ' 
-        lblInfoProduct.AutoSize = True
-        lblInfoProduct.Font = New Font("Segoe UI", 9.5F)
-        lblInfoProduct.ForeColor = Color.FromArgb(CByte(30), CByte(58), CByte(138))
-        lblInfoProduct.Location = New Point(780, 10)
-        lblInfoProduct.Name = "lblInfoProduct"
-        lblInfoProduct.Size = New Size(67, 21)
-        lblInfoProduct.TabIndex = 3
-        lblInfoProduct.Text = "Product:"
-        ' 
-        ' tabExpense
-        ' 
-        tabExpense.Controls.Add(tabPF)
-        tabExpense.Controls.Add(tabRM)
-        tabExpense.Controls.Add(tabFiRcuPd)
-        tabExpense.Controls.Add(tabStaff)
-        tabExpense.Controls.Add(tabBuilder)
-        tabExpense.Dock = DockStyle.Fill
-        tabExpense.Font = New Font("Segoe UI", 9.5F)
-        tabExpense.Location = New Point(0, 295)
-        tabExpense.Name = "tabExpense"
-        tabExpense.SelectedIndex = 0
-        tabExpense.Size = New Size(1100, 350)
-        tabExpense.TabIndex = 3
-        ' 
-        ' tabPF
-        ' 
-        tabPF.BackColor = Color.White
-        tabPF.Controls.Add(tblPF)
-        tabPF.Location = New Point(4, 30)
-        tabPF.Name = "tabPF"
-        tabPF.Padding = New Padding(20)
-        tabPF.Size = New Size(1092, 316)
-        tabPF.TabIndex = 0
-        tabPF.Text = "PF / Agreement / Other"
-        ' 
-        ' tblPF
-        ' 
-        tblPF.ColumnCount = 4
-        tblPF.ColumnStyles.Add(New ColumnStyle(SizeType.Percent, 20.0F))
-        tblPF.ColumnStyles.Add(New ColumnStyle(SizeType.Percent, 30.0F))
-        tblPF.ColumnStyles.Add(New ColumnStyle(SizeType.Percent, 20.0F))
-        tblPF.ColumnStyles.Add(New ColumnStyle(SizeType.Percent, 30.0F))
-        tblPF.Controls.Add(lblPFAmount, 0, 0)
-        tblPF.Controls.Add(txtPFAmount, 1, 0)
-        tblPF.Controls.Add(lblPFDate, 2, 0)
-        tblPF.Controls.Add(dtpPFDate, 3, 0)
-        tblPF.Controls.Add(lblPFPaidBy, 0, 1)
-        tblPF.Controls.Add(cmbPFPaidBy, 1, 1)
-        tblPF.Controls.Add(lblPFMode, 2, 1)
-        tblPF.Controls.Add(cmbPFMode, 3, 1)
-        tblPF.Dock = DockStyle.Fill
-        tblPF.Location = New Point(20, 20)
-        tblPF.Name = "tblPF"
-        tblPF.RowCount = 2
-        tblPF.RowStyles.Add(New RowStyle(SizeType.Percent, 50.0F))
-        tblPF.RowStyles.Add(New RowStyle(SizeType.Percent, 50.0F))
-        tblPF.Size = New Size(1052, 276)
-        tblPF.TabIndex = 0
-        ' 
-        ' lblPFAmount
-        ' 
-        lblPFAmount.Location = New Point(3, 0)
-        lblPFAmount.Name = "lblPFAmount"
-        lblPFAmount.Size = New Size(100, 23)
-        lblPFAmount.TabIndex = 0
-        ' 
-        ' txtPFAmount
-        ' 
-        txtPFAmount.Location = New Point(213, 3)
-        txtPFAmount.Name = "txtPFAmount"
-        txtPFAmount.Size = New Size(100, 29)
-        txtPFAmount.TabIndex = 1
-        ' 
-        ' lblPFDate
-        ' 
-        lblPFDate.Location = New Point(528, 0)
-        lblPFDate.Name = "lblPFDate"
-        lblPFDate.Size = New Size(100, 23)
-        lblPFDate.TabIndex = 2
-        ' 
-        ' dtpPFDate
-        ' 
-        dtpPFDate.Location = New Point(738, 3)
-        dtpPFDate.Name = "dtpPFDate"
-        dtpPFDate.Size = New Size(200, 29)
-        dtpPFDate.TabIndex = 3
-        ' 
-        ' lblPFPaidBy
-        ' 
-        lblPFPaidBy.Location = New Point(3, 138)
-        lblPFPaidBy.Name = "lblPFPaidBy"
-        lblPFPaidBy.Size = New Size(100, 23)
-        lblPFPaidBy.TabIndex = 4
-        ' 
-        ' cmbPFPaidBy
-        ' 
-        cmbPFPaidBy.Location = New Point(213, 141)
-        cmbPFPaidBy.Name = "cmbPFPaidBy"
-        cmbPFPaidBy.Size = New Size(121, 29)
-        cmbPFPaidBy.TabIndex = 5
-        ' 
-        ' lblPFMode
-        ' 
-        lblPFMode.Location = New Point(528, 138)
-        lblPFMode.Name = "lblPFMode"
-        lblPFMode.Size = New Size(100, 23)
-        lblPFMode.TabIndex = 6
-        ' 
-        ' cmbPFMode
-        ' 
-        cmbPFMode.Location = New Point(738, 141)
-        cmbPFMode.Name = "cmbPFMode"
-        cmbPFMode.Size = New Size(121, 29)
-        cmbPFMode.TabIndex = 7
-        ' 
-        ' tabRM
-        ' 
-        tabRM.BackColor = Color.White
-        tabRM.Controls.Add(tblRM)
-        tabRM.Location = New Point(4, 30)
-        tabRM.Name = "tabRM"
-        tabRM.Padding = New Padding(20)
-        tabRM.Size = New Size(1092, 216)
-        tabRM.TabIndex = 1
-        tabRM.Text = "RM"
-        ' 
-        ' tblRM
-        ' 
-        tblRM.ColumnCount = 4
-        tblRM.ColumnStyles.Add(New ColumnStyle(SizeType.Percent, 20.0F))
-        tblRM.ColumnStyles.Add(New ColumnStyle(SizeType.Percent, 30.0F))
-        tblRM.ColumnStyles.Add(New ColumnStyle(SizeType.Percent, 20.0F))
-        tblRM.ColumnStyles.Add(New ColumnStyle(SizeType.Percent, 30.0F))
-        tblRM.Controls.Add(lblRMAmount, 0, 0)
-        tblRM.Controls.Add(txtRMAmount, 1, 0)
-        tblRM.Controls.Add(lblRMDate, 2, 0)
-        tblRM.Controls.Add(dtpRMDate, 3, 0)
-        tblRM.Controls.Add(lblRMPaidBy, 0, 1)
-        tblRM.Controls.Add(cmbRMPaidBy, 1, 1)
-        tblRM.Controls.Add(lblRMMode, 2, 1)
-        tblRM.Controls.Add(cmbRMMode, 3, 1)
-        tblRM.Dock = DockStyle.Fill
-        tblRM.Location = New Point(20, 20)
-        tblRM.Name = "tblRM"
-        tblRM.RowCount = 2
-        tblRM.RowStyles.Add(New RowStyle(SizeType.Percent, 50.0F))
-        tblRM.RowStyles.Add(New RowStyle(SizeType.Percent, 50.0F))
-        tblRM.Size = New Size(1052, 176)
-        tblRM.TabIndex = 0
-        ' 
-        ' lblRMAmount
-        ' 
-        lblRMAmount.Location = New Point(3, 0)
-        lblRMAmount.Name = "lblRMAmount"
-        lblRMAmount.Size = New Size(100, 23)
-        lblRMAmount.TabIndex = 0
-        ' 
-        ' txtRMAmount
-        ' 
-        txtRMAmount.Location = New Point(213, 3)
-        txtRMAmount.Name = "txtRMAmount"
-        txtRMAmount.Size = New Size(100, 29)
-        txtRMAmount.TabIndex = 1
-        ' 
-        ' lblRMDate
-        ' 
-        lblRMDate.Location = New Point(528, 0)
-        lblRMDate.Name = "lblRMDate"
-        lblRMDate.Size = New Size(100, 23)
-        lblRMDate.TabIndex = 2
-        ' 
-        ' dtpRMDate
-        ' 
-        dtpRMDate.Location = New Point(738, 3)
-        dtpRMDate.Name = "dtpRMDate"
-        dtpRMDate.Size = New Size(200, 29)
-        dtpRMDate.TabIndex = 3
-        ' 
-        ' lblRMPaidBy
-        ' 
-        lblRMPaidBy.Location = New Point(3, 88)
-        lblRMPaidBy.Name = "lblRMPaidBy"
-        lblRMPaidBy.Size = New Size(100, 23)
-        lblRMPaidBy.TabIndex = 4
-        ' 
-        ' cmbRMPaidBy
-        ' 
-        cmbRMPaidBy.Location = New Point(213, 91)
-        cmbRMPaidBy.Name = "cmbRMPaidBy"
-        cmbRMPaidBy.Size = New Size(121, 29)
-        cmbRMPaidBy.TabIndex = 5
-        ' 
-        ' lblRMMode
-        ' 
-        lblRMMode.Location = New Point(528, 88)
-        lblRMMode.Name = "lblRMMode"
-        lblRMMode.Size = New Size(100, 23)
-        lblRMMode.TabIndex = 6
-        ' 
-        ' cmbRMMode
-        ' 
-        cmbRMMode.Location = New Point(738, 91)
-        cmbRMMode.Name = "cmbRMMode"
-        cmbRMMode.Size = New Size(121, 29)
-        cmbRMMode.TabIndex = 7
-        ' 
-        ' tabFiRcuPd
-        ' 
-        tabFiRcuPd.BackColor = Color.White
-        tabFiRcuPd.Controls.Add(tblFiRcuPd)
-        tabFiRcuPd.Location = New Point(4, 30)
-        tabFiRcuPd.Name = "tabFiRcuPd"
-        tabFiRcuPd.Padding = New Padding(20)
-        tabFiRcuPd.Size = New Size(1092, 216)
-        tabFiRcuPd.TabIndex = 2
-        tabFiRcuPd.Text = "FI / RCU / PD"
-        ' 
-        ' tblFiRcuPd
-        ' 
-        tblFiRcuPd.ColumnCount = 4
-        tblFiRcuPd.ColumnStyles.Add(New ColumnStyle(SizeType.Percent, 20.0F))
-        tblFiRcuPd.ColumnStyles.Add(New ColumnStyle(SizeType.Percent, 30.0F))
-        tblFiRcuPd.ColumnStyles.Add(New ColumnStyle(SizeType.Percent, 20.0F))
-        tblFiRcuPd.ColumnStyles.Add(New ColumnStyle(SizeType.Percent, 30.0F))
-        tblFiRcuPd.Controls.Add(lblFiRcuPdType, 0, 0)
-        tblFiRcuPd.Controls.Add(cmbFiRcuPdType, 1, 0)
-        tblFiRcuPd.Controls.Add(lblFiRcuPdAmount, 2, 0)
-        tblFiRcuPd.Controls.Add(txtFiRcuPdAmount, 3, 0)
-        tblFiRcuPd.Controls.Add(lblFiRcuPdDate, 0, 1)
-        tblFiRcuPd.Controls.Add(dtpFiRcuPdDate, 1, 1)
-        tblFiRcuPd.Controls.Add(lblFiRcuPdPaidBy, 0, 2)
-        tblFiRcuPd.Controls.Add(cmbFiRcuPdPaidBy, 1, 2)
-        tblFiRcuPd.Controls.Add(lblFiRcuPdMode, 2, 2)
-        tblFiRcuPd.Controls.Add(cmbFiRcuPdMode, 3, 2)
-        tblFiRcuPd.Dock = DockStyle.Fill
-        tblFiRcuPd.Location = New Point(20, 20)
-        tblFiRcuPd.Name = "tblFiRcuPd"
-        tblFiRcuPd.RowCount = 3
-        tblFiRcuPd.RowStyles.Add(New RowStyle(SizeType.Percent, 33.33F))
-        tblFiRcuPd.RowStyles.Add(New RowStyle(SizeType.Percent, 33.33F))
-        tblFiRcuPd.RowStyles.Add(New RowStyle(SizeType.Percent, 33.33F))
-        tblFiRcuPd.Size = New Size(1052, 176)
-        tblFiRcuPd.TabIndex = 0
-        ' 
-        ' lblFiRcuPdType
-        ' 
-        lblFiRcuPdType.Location = New Point(3, 0)
-        lblFiRcuPdType.Name = "lblFiRcuPdType"
-        lblFiRcuPdType.Size = New Size(100, 23)
-        lblFiRcuPdType.TabIndex = 0
-        ' 
-        ' cmbFiRcuPdType
-        ' 
-        cmbFiRcuPdType.Location = New Point(213, 3)
-        cmbFiRcuPdType.Name = "cmbFiRcuPdType"
-        cmbFiRcuPdType.Size = New Size(121, 29)
-        cmbFiRcuPdType.TabIndex = 1
-        ' 
-        ' lblFiRcuPdAmount
-        ' 
-        lblFiRcuPdAmount.Location = New Point(528, 0)
-        lblFiRcuPdAmount.Name = "lblFiRcuPdAmount"
-        lblFiRcuPdAmount.Size = New Size(100, 23)
-        lblFiRcuPdAmount.TabIndex = 2
-        ' 
-        ' txtFiRcuPdAmount
-        ' 
-        txtFiRcuPdAmount.Location = New Point(738, 3)
-        txtFiRcuPdAmount.Name = "txtFiRcuPdAmount"
-        txtFiRcuPdAmount.Size = New Size(100, 29)
-        txtFiRcuPdAmount.TabIndex = 3
-        ' 
-        ' lblFiRcuPdDate
-        ' 
-        lblFiRcuPdDate.Location = New Point(3, 58)
-        lblFiRcuPdDate.Name = "lblFiRcuPdDate"
-        lblFiRcuPdDate.Size = New Size(100, 23)
-        lblFiRcuPdDate.TabIndex = 4
-        ' 
-        ' dtpFiRcuPdDate
-        ' 
-        dtpFiRcuPdDate.Location = New Point(213, 61)
-        dtpFiRcuPdDate.Name = "dtpFiRcuPdDate"
-        dtpFiRcuPdDate.Size = New Size(200, 29)
-        dtpFiRcuPdDate.TabIndex = 5
-        ' 
-        ' lblFiRcuPdPaidBy
-        ' 
-        lblFiRcuPdPaidBy.Location = New Point(3, 116)
-        lblFiRcuPdPaidBy.Name = "lblFiRcuPdPaidBy"
-        lblFiRcuPdPaidBy.Size = New Size(100, 23)
-        lblFiRcuPdPaidBy.TabIndex = 6
-        ' 
-        ' cmbFiRcuPdPaidBy
-        ' 
-        cmbFiRcuPdPaidBy.Location = New Point(213, 119)
-        cmbFiRcuPdPaidBy.Name = "cmbFiRcuPdPaidBy"
-        cmbFiRcuPdPaidBy.Size = New Size(121, 29)
-        cmbFiRcuPdPaidBy.TabIndex = 7
-        ' 
-        ' lblFiRcuPdMode
-        ' 
-        lblFiRcuPdMode.Location = New Point(528, 116)
-        lblFiRcuPdMode.Name = "lblFiRcuPdMode"
-        lblFiRcuPdMode.Size = New Size(100, 23)
-        lblFiRcuPdMode.TabIndex = 8
-        ' 
-        ' cmbFiRcuPdMode
-        ' 
-        cmbFiRcuPdMode.Location = New Point(738, 119)
-        cmbFiRcuPdMode.Name = "cmbFiRcuPdMode"
-        cmbFiRcuPdMode.Size = New Size(121, 29)
-        cmbFiRcuPdMode.TabIndex = 9
-        ' 
-        ' tabStaff
-        ' 
-        tabStaff.BackColor = Color.White
-        tabStaff.Controls.Add(tblStaff)
-        tabStaff.Location = New Point(4, 30)
-        tabStaff.Name = "tabStaff"
-        tabStaff.Padding = New Padding(20)
-        tabStaff.Size = New Size(1092, 216)
-        tabStaff.TabIndex = 3
-        tabStaff.Text = "Staff Sharing"
-        ' 
-        ' tblStaff
-        ' 
-        tblStaff.ColumnCount = 4
-        tblStaff.ColumnStyles.Add(New ColumnStyle(SizeType.Percent, 20.0F))
-        tblStaff.ColumnStyles.Add(New ColumnStyle(SizeType.Percent, 30.0F))
-        tblStaff.ColumnStyles.Add(New ColumnStyle(SizeType.Percent, 20.0F))
-        tblStaff.ColumnStyles.Add(New ColumnStyle(SizeType.Percent, 30.0F))
-        tblStaff.Controls.Add(lblStaffAmount, 0, 0)
-        tblStaff.Controls.Add(txtStaffAmount, 1, 0)
-        tblStaff.Controls.Add(lblStaffDate, 2, 0)
-        tblStaff.Controls.Add(dtpStaffDate, 3, 0)
-        tblStaff.Controls.Add(lblStaffStatus, 0, 1)
-        tblStaff.Controls.Add(cmbStaffStatus, 1, 1)
-        tblStaff.Controls.Add(lblStaffPaidBy, 0, 2)
-        tblStaff.Controls.Add(cmbStaffPaidBy, 1, 2)
-        tblStaff.Controls.Add(lblStaffMode, 2, 2)
-        tblStaff.Controls.Add(cmbStaffMode, 3, 2)
-        tblStaff.Dock = DockStyle.Fill
-        tblStaff.Location = New Point(20, 20)
-        tblStaff.Name = "tblStaff"
-        tblStaff.RowCount = 3
-        tblStaff.RowStyles.Add(New RowStyle(SizeType.Percent, 33.33F))
-        tblStaff.RowStyles.Add(New RowStyle(SizeType.Percent, 33.33F))
-        tblStaff.RowStyles.Add(New RowStyle(SizeType.Percent, 33.33F))
-        tblStaff.Size = New Size(1052, 176)
-        tblStaff.TabIndex = 0
-        ' 
-        ' lblStaffAmount
-        ' 
-        lblStaffAmount.Location = New Point(3, 0)
-        lblStaffAmount.Name = "lblStaffAmount"
-        lblStaffAmount.Size = New Size(100, 23)
-        lblStaffAmount.TabIndex = 0
-        ' 
-        ' txtStaffAmount
-        ' 
-        txtStaffAmount.Location = New Point(213, 3)
-        txtStaffAmount.Name = "txtStaffAmount"
-        txtStaffAmount.Size = New Size(100, 29)
-        txtStaffAmount.TabIndex = 1
-        ' 
-        ' lblStaffDate
-        ' 
-        lblStaffDate.Location = New Point(528, 0)
-        lblStaffDate.Name = "lblStaffDate"
-        lblStaffDate.Size = New Size(100, 23)
-        lblStaffDate.TabIndex = 2
-        ' 
-        ' dtpStaffDate
-        ' 
-        dtpStaffDate.Location = New Point(738, 3)
-        dtpStaffDate.Name = "dtpStaffDate"
-        dtpStaffDate.Size = New Size(200, 29)
-        dtpStaffDate.TabIndex = 3
-        ' 
-        ' lblStaffStatus
-        ' 
-        lblStaffStatus.Location = New Point(3, 58)
-        lblStaffStatus.Name = "lblStaffStatus"
-        lblStaffStatus.Size = New Size(100, 23)
-        lblStaffStatus.TabIndex = 4
-        ' 
-        ' cmbStaffStatus
-        ' 
-        cmbStaffStatus.Location = New Point(213, 61)
-        cmbStaffStatus.Name = "cmbStaffStatus"
-        cmbStaffStatus.Size = New Size(121, 29)
-        cmbStaffStatus.TabIndex = 5
-        ' 
-        ' lblStaffPaidBy
-        ' 
-        lblStaffPaidBy.Location = New Point(3, 116)
-        lblStaffPaidBy.Name = "lblStaffPaidBy"
-        lblStaffPaidBy.Size = New Size(100, 23)
-        lblStaffPaidBy.TabIndex = 6
-        ' 
-        ' cmbStaffPaidBy
-        ' 
-        cmbStaffPaidBy.Location = New Point(213, 119)
-        cmbStaffPaidBy.Name = "cmbStaffPaidBy"
-        cmbStaffPaidBy.Size = New Size(121, 29)
-        cmbStaffPaidBy.TabIndex = 7
-        ' 
-        ' lblStaffMode
-        ' 
-        lblStaffMode.Location = New Point(528, 116)
-        lblStaffMode.Name = "lblStaffMode"
-        lblStaffMode.Size = New Size(100, 23)
-        lblStaffMode.TabIndex = 8
-        ' 
-        ' cmbStaffMode
-        ' 
-        cmbStaffMode.Location = New Point(738, 119)
-        cmbStaffMode.Name = "cmbStaffMode"
-        cmbStaffMode.Size = New Size(121, 29)
-        cmbStaffMode.TabIndex = 9
-        ' 
-        ' tabBuilder
-        ' 
-        tabBuilder.BackColor = Color.White
-        tabBuilder.Controls.Add(tblBuilder)
-        tabBuilder.Location = New Point(4, 30)
-        tabBuilder.Name = "tabBuilder"
-        tabBuilder.Padding = New Padding(20)
-        tabBuilder.Size = New Size(1092, 216)
-        tabBuilder.TabIndex = 4
-        tabBuilder.Text = "Builder / IDC Sharing"
-        ' 
-        ' tblBuilder
-        ' 
-        tblBuilder.ColumnCount = 4
-        tblBuilder.ColumnStyles.Add(New ColumnStyle(SizeType.Percent, 20.0F))
-        tblBuilder.ColumnStyles.Add(New ColumnStyle(SizeType.Percent, 30.0F))
-        tblBuilder.ColumnStyles.Add(New ColumnStyle(SizeType.Percent, 20.0F))
-        tblBuilder.ColumnStyles.Add(New ColumnStyle(SizeType.Percent, 30.0F))
-        tblBuilder.Controls.Add(lblBuilderAmount, 0, 0)
-        tblBuilder.Controls.Add(txtBuilderAmount, 1, 0)
-        tblBuilder.Controls.Add(lblBuilderDate, 2, 0)
-        tblBuilder.Controls.Add(dtpBuilderDate, 3, 0)
-        tblBuilder.Controls.Add(lblBuilderStatus, 0, 1)
-        tblBuilder.Controls.Add(cmbBuilderStatus, 1, 1)
-        tblBuilder.Controls.Add(lblBuilderPaidBy, 0, 2)
-        tblBuilder.Controls.Add(cmbBuilderPaidBy, 1, 2)
-        tblBuilder.Controls.Add(lblBuilderMode, 2, 2)
-        tblBuilder.Controls.Add(cmbBuilderMode, 3, 2)
-        tblBuilder.Dock = DockStyle.Fill
-        tblBuilder.Location = New Point(20, 20)
-        tblBuilder.Name = "tblBuilder"
-        tblBuilder.RowCount = 3
-        tblBuilder.RowStyles.Add(New RowStyle(SizeType.Percent, 33.33F))
-        tblBuilder.RowStyles.Add(New RowStyle(SizeType.Percent, 33.33F))
-        tblBuilder.RowStyles.Add(New RowStyle(SizeType.Percent, 33.33F))
-        tblBuilder.Size = New Size(1052, 176)
-        tblBuilder.TabIndex = 0
-        ' 
-        ' lblBuilderAmount
-        ' 
-        lblBuilderAmount.Location = New Point(3, 0)
-        lblBuilderAmount.Name = "lblBuilderAmount"
-        lblBuilderAmount.Size = New Size(100, 23)
-        lblBuilderAmount.TabIndex = 0
-        ' 
-        ' txtBuilderAmount
-        ' 
-        txtBuilderAmount.Location = New Point(213, 3)
-        txtBuilderAmount.Name = "txtBuilderAmount"
-        txtBuilderAmount.Size = New Size(100, 29)
-        txtBuilderAmount.TabIndex = 1
-        ' 
-        ' lblBuilderDate
-        ' 
-        lblBuilderDate.Location = New Point(528, 0)
-        lblBuilderDate.Name = "lblBuilderDate"
-        lblBuilderDate.Size = New Size(100, 23)
-        lblBuilderDate.TabIndex = 2
-        ' 
-        ' dtpBuilderDate
-        ' 
-        dtpBuilderDate.Location = New Point(738, 3)
-        dtpBuilderDate.Name = "dtpBuilderDate"
-        dtpBuilderDate.Size = New Size(200, 29)
-        dtpBuilderDate.TabIndex = 3
-        ' 
-        ' lblBuilderStatus
-        ' 
-        lblBuilderStatus.Location = New Point(3, 58)
-        lblBuilderStatus.Name = "lblBuilderStatus"
-        lblBuilderStatus.Size = New Size(100, 23)
-        lblBuilderStatus.TabIndex = 4
-        ' 
-        ' cmbBuilderStatus
-        ' 
-        cmbBuilderStatus.Location = New Point(213, 61)
-        cmbBuilderStatus.Name = "cmbBuilderStatus"
-        cmbBuilderStatus.Size = New Size(121, 29)
-        cmbBuilderStatus.TabIndex = 5
-        ' 
-        ' lblBuilderPaidBy
-        ' 
-        lblBuilderPaidBy.Location = New Point(3, 116)
-        lblBuilderPaidBy.Name = "lblBuilderPaidBy"
-        lblBuilderPaidBy.Size = New Size(100, 23)
-        lblBuilderPaidBy.TabIndex = 6
-        ' 
-        ' cmbBuilderPaidBy
-        ' 
-        cmbBuilderPaidBy.Location = New Point(213, 119)
-        cmbBuilderPaidBy.Name = "cmbBuilderPaidBy"
-        cmbBuilderPaidBy.Size = New Size(121, 29)
-        cmbBuilderPaidBy.TabIndex = 7
-        ' 
-        ' lblBuilderMode
-        ' 
-        lblBuilderMode.Location = New Point(528, 116)
-        lblBuilderMode.Name = "lblBuilderMode"
-        lblBuilderMode.Size = New Size(100, 23)
-        lblBuilderMode.TabIndex = 8
-        ' 
-        ' cmbBuilderMode
-        ' 
-        cmbBuilderMode.Location = New Point(738, 119)
-        cmbBuilderMode.Name = "cmbBuilderMode"
-        cmbBuilderMode.Size = New Size(121, 29)
-        cmbBuilderMode.TabIndex = 9
-        ' 
-        ' PanelActions
-        ' 
-        PanelActions.BackColor = Color.FromArgb(CByte(241), CByte(245), CByte(249))
-        PanelActions.Controls.Add(btnSave)
-        PanelActions.Dock = DockStyle.Bottom
-        PanelActions.Location = New Point(0, 645)
-        PanelActions.Name = "PanelActions"
-        PanelActions.Padding = New Padding(20, 8, 20, 8)
-        PanelActions.Size = New Size(1100, 55)
-        PanelActions.TabIndex = 4
-        ' 
-        ' btnSave
-        ' 
-        btnSave.BackColor = Color.FromArgb(CByte(22), CByte(163), CByte(74))
-        btnSave.Cursor = Cursors.Hand
-        btnSave.FlatAppearance.BorderSize = 0
-        btnSave.FlatStyle = FlatStyle.Flat
-        btnSave.Font = New Font("Segoe UI Semibold", 10.0F, FontStyle.Bold)
-        btnSave.ForeColor = Color.White
-        btnSave.Location = New Point(20, 8)
-        btnSave.Name = "btnSave"
-        btnSave.Size = New Size(150, 38)
-        btnSave.TabIndex = 0
-        btnSave.Text = "💾 Save Expense"
-        btnSave.UseVisualStyleBackColor = False
-        ' 
-        ' frmExpense
-        ' 
-        AutoScaleDimensions = New SizeF(8.0F, 20.0F)
-        AutoScaleMode = AutoScaleMode.Font
-        BackColor = Color.FromArgb(CByte(241), CByte(245), CByte(249))
-        ClientSize = New Size(1100, 700)
-        Controls.Add(tabExpense)
-        Controls.Add(pnlInfo)
-        Controls.Add(PanelSearch)
-        Controls.Add(PanelHeader)
-        Controls.Add(PanelActions)
-        MinimumSize = New Size(950, 600)
-        Name = "frmExpense"
-        StartPosition = FormStartPosition.CenterScreen
-        Tag = "Expense"
-        Text = "Expense Management"
-        WindowState = FormWindowState.Maximized
-        PanelHeader.ResumeLayout(False)
-        PanelSearch.ResumeLayout(False)
-        PanelSearch.PerformLayout()
-        CType(dgvCustomerSearch, ComponentModel.ISupportInitialize).EndInit()
-        pnlInfo.ResumeLayout(False)
-        pnlInfo.PerformLayout()
-        tabExpense.ResumeLayout(False)
-        tabPF.ResumeLayout(False)
-        tblPF.ResumeLayout(False)
-        tblPF.PerformLayout()
-        tabRM.ResumeLayout(False)
-        tblRM.ResumeLayout(False)
-        tblRM.PerformLayout()
-        tabFiRcuPd.ResumeLayout(False)
-        tblFiRcuPd.ResumeLayout(False)
-        tblFiRcuPd.PerformLayout()
-        tabStaff.ResumeLayout(False)
-        tblStaff.ResumeLayout(False)
-        tblStaff.PerformLayout()
-        tabBuilder.ResumeLayout(False)
-        tblBuilder.ResumeLayout(False)
-        tblBuilder.PerformLayout()
-        PanelActions.ResumeLayout(False)
-        ResumeLayout(False)
+        Me.components = New System.ComponentModel.Container()
 
+        ' Create controls
+        Me.pnlTop = New System.Windows.Forms.Panel()
+        Me.lblTitle = New System.Windows.Forms.Label()
+        Me.lblSubTitle = New System.Windows.Forms.Label()
+        Me.pnlSearch = New System.Windows.Forms.Panel()
+        Me.lblSearch = New System.Windows.Forms.Label()
+        Me.txtSearch = New System.Windows.Forms.TextBox()
+        Me.btnSearch = New System.Windows.Forms.Button()
+        Me.btnNewSearch = New System.Windows.Forms.Button()
+        Me.dgvCustomerSearch = New System.Windows.Forms.DataGridView()
+        Me.grpCustInfo = New System.Windows.Forms.GroupBox()
+        Me.lblInfoName = New System.Windows.Forms.Label()
+        Me.txtInfoName = New System.Windows.Forms.TextBox()
+        Me.lblInfoMobile = New System.Windows.Forms.Label()
+        Me.txtInfoMobile = New System.Windows.Forms.TextBox()
+        Me.lblInfoLoan = New System.Windows.Forms.Label()
+        Me.txtInfoLoan = New System.Windows.Forms.TextBox()
+        Me.lblInfoProduct = New System.Windows.Forms.Label()
+        Me.txtInfoProduct = New System.Windows.Forms.TextBox()
+        Me.lblInfoAppNo = New System.Windows.Forms.Label()
+        Me.txtInfoAppNo = New System.Windows.Forms.TextBox()
+        Me.lblInfoLoanNo = New System.Windows.Forms.Label()
+        Me.txtInfoLoanNo = New System.Windows.Forms.TextBox()
+        Me.tabExpense = New System.Windows.Forms.TabControl()
+        Me.tabPF = New System.Windows.Forms.TabPage()
+        Me.grpPF = New System.Windows.Forms.GroupBox()
+        Me.lblPFAmount = New System.Windows.Forms.Label()
+        Me.txtPFAmount = New System.Windows.Forms.TextBox()
+        Me.lblPFDate = New System.Windows.Forms.Label()
+        Me.dtpPFDate = New System.Windows.Forms.DateTimePicker()
+        Me.lblPFPaidBy = New System.Windows.Forms.Label()
+        Me.cmbPFPaidBy = New System.Windows.Forms.ComboBox()
+        Me.lblPFMode = New System.Windows.Forms.Label()
+        Me.cmbPFMode = New System.Windows.Forms.ComboBox()
+        Me.tabRM = New System.Windows.Forms.TabPage()
+        Me.grpRM = New System.Windows.Forms.GroupBox()
+        Me.lblRMAmount = New System.Windows.Forms.Label()
+        Me.txtRMAmount = New System.Windows.Forms.TextBox()
+        Me.lblRMDate = New System.Windows.Forms.Label()
+        Me.dtpRMDate = New System.Windows.Forms.DateTimePicker()
+        Me.lblRMPaidBy = New System.Windows.Forms.Label()
+        Me.cmbRMPaidBy = New System.Windows.Forms.ComboBox()
+        Me.lblRMMode = New System.Windows.Forms.Label()
+        Me.cmbRMMode = New System.Windows.Forms.ComboBox()
+        Me.tabFiRcuPd = New System.Windows.Forms.TabPage()
+        Me.grpFiRcuPd = New System.Windows.Forms.GroupBox()
+        Me.lblFiRcuPdType = New System.Windows.Forms.Label()
+        Me.cmbFiRcuPdType = New System.Windows.Forms.ComboBox()
+        Me.lblFiRcuPdAmount = New System.Windows.Forms.Label()
+        Me.txtFiRcuPdAmount = New System.Windows.Forms.TextBox()
+        Me.lblFiRcuPdDate = New System.Windows.Forms.Label()
+        Me.dtpFiRcuPdDate = New System.Windows.Forms.DateTimePicker()
+        Me.lblFiRcuPdPaidBy = New System.Windows.Forms.Label()
+        Me.cmbFiRcuPdPaidBy = New System.Windows.Forms.ComboBox()
+        Me.lblFiRcuPdMode = New System.Windows.Forms.Label()
+        Me.cmbFiRcuPdMode = New System.Windows.Forms.ComboBox()
+        Me.tabStaff = New System.Windows.Forms.TabPage()
+        Me.grpStaff = New System.Windows.Forms.GroupBox()
+        Me.lblStaffAmount = New System.Windows.Forms.Label()
+        Me.txtStaffAmount = New System.Windows.Forms.TextBox()
+        Me.lblStaffDate = New System.Windows.Forms.Label()
+        Me.dtpStaffDate = New System.Windows.Forms.DateTimePicker()
+        Me.lblStaffStatus = New System.Windows.Forms.Label()
+        Me.cmbStaffStatus = New System.Windows.Forms.ComboBox()
+        Me.lblStaffPaidBy = New System.Windows.Forms.Label()
+        Me.cmbStaffPaidBy = New System.Windows.Forms.ComboBox()
+        Me.lblStaffMode = New System.Windows.Forms.Label()
+        Me.cmbStaffMode = New System.Windows.Forms.ComboBox()
+        Me.tabBuilder = New System.Windows.Forms.TabPage()
+        Me.grpBuilder = New System.Windows.Forms.GroupBox()
+        Me.lblBuilderAmount = New System.Windows.Forms.Label()
+        Me.txtBuilderAmount = New System.Windows.Forms.TextBox()
+        Me.lblBuilderDate = New System.Windows.Forms.Label()
+        Me.dtpBuilderDate = New System.Windows.Forms.DateTimePicker()
+        Me.lblBuilderStatus = New System.Windows.Forms.Label()
+        Me.cmbBuilderStatus = New System.Windows.Forms.ComboBox()
+        Me.lblBuilderPaidBy = New System.Windows.Forms.Label()
+        Me.cmbBuilderPaidBy = New System.Windows.Forms.ComboBox()
+        Me.lblBuilderMode = New System.Windows.Forms.Label()
+        Me.cmbBuilderMode = New System.Windows.Forms.ComboBox()
+        Me.pnlActions = New System.Windows.Forms.Panel()
+        Me.btnSave = New System.Windows.Forms.Button()
+
+        Me.pnlTop.SuspendLayout()
+        Me.pnlSearch.SuspendLayout()
+        CType(Me.dgvCustomerSearch, System.ComponentModel.ISupportInitialize).BeginInit()
+        Me.grpCustInfo.SuspendLayout()
+        Me.tabExpense.SuspendLayout()
+        Me.tabPF.SuspendLayout()
+        Me.grpPF.SuspendLayout()
+        Me.tabRM.SuspendLayout()
+        Me.grpRM.SuspendLayout()
+        Me.tabFiRcuPd.SuspendLayout()
+        Me.grpFiRcuPd.SuspendLayout()
+        Me.tabStaff.SuspendLayout()
+        Me.grpStaff.SuspendLayout()
+        Me.tabBuilder.SuspendLayout()
+        Me.grpBuilder.SuspendLayout()
+        Me.pnlActions.SuspendLayout()
+        Me.SuspendLayout()
+
+        '========== TOP ==========
+        Me.pnlTop.BackColor = System.Drawing.Color.FromArgb(31, 78, 121)
+        Me.pnlTop.Controls.Add(Me.lblTitle)
+        Me.pnlTop.Controls.Add(Me.lblSubTitle)
+        Me.pnlTop.Dock = System.Windows.Forms.DockStyle.Top
+        Me.pnlTop.Location = New System.Drawing.Point(0, 0)
+        Me.pnlTop.Name = "pnlTop"
+        Me.pnlTop.Size = New System.Drawing.Size(1200, 55)
+
+        Me.lblTitle.AutoSize = True
+        Me.lblTitle.Font = New System.Drawing.Font("Segoe UI", 16.0!, System.Drawing.FontStyle.Bold)
+        Me.lblTitle.ForeColor = System.Drawing.Color.White
+        Me.lblTitle.Location = New System.Drawing.Point(18, 5)
+        Me.lblTitle.Text = "EXPENSE MANAGEMENT"
+
+        Me.lblSubTitle.AutoSize = True
+        Me.lblSubTitle.Font = New System.Drawing.Font("Segoe UI", 9.0!)
+        Me.lblSubTitle.ForeColor = System.Drawing.Color.WhiteSmoke
+        Me.lblSubTitle.Location = New System.Drawing.Point(20, 32)
+        Me.lblSubTitle.Text = "PF / Agreement  |  RM  |  FI-RCU-PD  |  Staff  |  Builder / IDC"
+
+        '========== SEARCH ==========
+        Me.pnlSearch.BackColor = System.Drawing.Color.White
+        Me.pnlSearch.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
+        Me.pnlSearch.Controls.Add(Me.lblSearch)
+        Me.pnlSearch.Controls.Add(Me.txtSearch)
+        Me.pnlSearch.Controls.Add(Me.btnSearch)
+        Me.pnlSearch.Controls.Add(Me.btnNewSearch)
+        Me.pnlSearch.Controls.Add(Me.dgvCustomerSearch)
+        Me.pnlSearch.Dock = System.Windows.Forms.DockStyle.Top
+        Me.pnlSearch.Location = New System.Drawing.Point(0, 55)
+        Me.pnlSearch.Name = "pnlSearch"
+        Me.pnlSearch.Size = New System.Drawing.Size(1200, 50)
+
+        Me.lblSearch.AutoSize = True
+        Me.lblSearch.Font = New System.Drawing.Font("Segoe UI", 9.5!, System.Drawing.FontStyle.Bold)
+        Me.lblSearch.Location = New System.Drawing.Point(12, 14)
+        Me.lblSearch.Text = "Search :"
+
+        Me.txtSearch.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
+        Me.txtSearch.Font = New System.Drawing.Font("Segoe UI", 9.5!)
+        Me.txtSearch.Location = New System.Drawing.Point(80, 11)
+        Me.txtSearch.Size = New System.Drawing.Size(420, 25)
+        Me.txtSearch.PlaceholderText = "Customer Name / Mobile / Lead ID / Login ID / App No / Loan No"
+
+        Me.btnSearch.BackColor = System.Drawing.Color.FromArgb(0, 123, 255)
+        Me.btnSearch.FlatStyle = System.Windows.Forms.FlatStyle.Flat
+        Me.btnSearch.Font = New System.Drawing.Font("Segoe UI", 9.5!, System.Drawing.FontStyle.Bold)
+        Me.btnSearch.ForeColor = System.Drawing.Color.White
+        Me.btnSearch.Location = New System.Drawing.Point(520, 8)
+        Me.btnSearch.Size = New System.Drawing.Size(100, 30)
+        Me.btnSearch.Text = "Search"
+        Me.btnSearch.UseVisualStyleBackColor = False
+
+        Me.btnNewSearch.BackColor = System.Drawing.Color.FromArgb(108, 117, 125)
+        Me.btnNewSearch.FlatStyle = System.Windows.Forms.FlatStyle.Flat
+        Me.btnNewSearch.Font = New System.Drawing.Font("Segoe UI", 9.5!, System.Drawing.FontStyle.Bold)
+        Me.btnNewSearch.ForeColor = System.Drawing.Color.White
+        Me.btnNewSearch.Location = New System.Drawing.Point(630, 8)
+        Me.btnNewSearch.Size = New System.Drawing.Size(110, 30)
+        Me.btnNewSearch.Text = "New Search"
+        Me.btnNewSearch.UseVisualStyleBackColor = False
+
+        Me.dgvCustomerSearch.AllowUserToAddRows = False
+        Me.dgvCustomerSearch.AllowUserToDeleteRows = False
+        Me.dgvCustomerSearch.AllowUserToResizeRows = False
+        Me.dgvCustomerSearch.BackgroundColor = System.Drawing.Color.White
+        Me.dgvCustomerSearch.ColumnHeadersHeight = 30
+        Me.dgvCustomerSearch.EnableHeadersVisualStyles = False
+        Me.dgvCustomerSearch.Location = New System.Drawing.Point(12, 48)
+        Me.dgvCustomerSearch.MultiSelect = False
+        Me.dgvCustomerSearch.Name = "dgvCustomerSearch"
+        Me.dgvCustomerSearch.ReadOnly = True
+        Me.dgvCustomerSearch.RowHeadersVisible = False
+        Me.dgvCustomerSearch.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect
+        Me.dgvCustomerSearch.Size = New System.Drawing.Size(1160, 140)
+        Me.dgvCustomerSearch.Visible = False
+
+        '========== CUSTOMER INFO ==========
+        Me.grpCustInfo.Controls.Add(Me.lblInfoName)
+        Me.grpCustInfo.Controls.Add(Me.txtInfoName)
+        Me.grpCustInfo.Controls.Add(Me.lblInfoMobile)
+        Me.grpCustInfo.Controls.Add(Me.txtInfoMobile)
+        Me.grpCustInfo.Controls.Add(Me.lblInfoLoan)
+        Me.grpCustInfo.Controls.Add(Me.txtInfoLoan)
+        Me.grpCustInfo.Controls.Add(Me.lblInfoProduct)
+        Me.grpCustInfo.Controls.Add(Me.txtInfoProduct)
+        Me.grpCustInfo.Controls.Add(Me.lblInfoAppNo)
+        Me.grpCustInfo.Controls.Add(Me.txtInfoAppNo)
+        Me.grpCustInfo.Controls.Add(Me.lblInfoLoanNo)
+        Me.grpCustInfo.Controls.Add(Me.txtInfoLoanNo)
+        Me.grpCustInfo.Font = New System.Drawing.Font("Segoe UI", 9.5!, System.Drawing.FontStyle.Bold)
+        Me.grpCustInfo.Location = New System.Drawing.Point(12, 115)
+        Me.grpCustInfo.Name = "grpCustInfo"
+        Me.grpCustInfo.Size = New System.Drawing.Size(1160, 90)
+        Me.grpCustInfo.TabStop = False
+        Me.grpCustInfo.Text = "Selected Customer (Login)"
+        Me.grpCustInfo.Visible = False
+
+        Me.lblInfoName.AutoSize = True
+        Me.lblInfoName.Font = New System.Drawing.Font("Segoe UI", 9.0!, System.Drawing.FontStyle.Bold)
+        Me.lblInfoName.Location = New System.Drawing.Point(15, 28)
+        Me.lblInfoName.Text = "Name"
+        Me.txtInfoName.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
+        Me.txtInfoName.Font = New System.Drawing.Font("Segoe UI", 9.5!)
+        Me.txtInfoName.Location = New System.Drawing.Point(70, 25)
+        Me.txtInfoName.ReadOnly = True
+        Me.txtInfoName.Size = New System.Drawing.Size(200, 25)
+
+        Me.lblInfoMobile.AutoSize = True
+        Me.lblInfoMobile.Font = New System.Drawing.Font("Segoe UI", 9.0!, System.Drawing.FontStyle.Bold)
+        Me.lblInfoMobile.Location = New System.Drawing.Point(290, 28)
+        Me.lblInfoMobile.Text = "Mobile"
+        Me.txtInfoMobile.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
+        Me.txtInfoMobile.Font = New System.Drawing.Font("Segoe UI", 9.5!)
+        Me.txtInfoMobile.Location = New System.Drawing.Point(350, 25)
+        Me.txtInfoMobile.ReadOnly = True
+        Me.txtInfoMobile.Size = New System.Drawing.Size(130, 25)
+
+        Me.lblInfoLoan.AutoSize = True
+        Me.lblInfoLoan.Font = New System.Drawing.Font("Segoe UI", 9.0!, System.Drawing.FontStyle.Bold)
+        Me.lblInfoLoan.Location = New System.Drawing.Point(500, 28)
+        Me.lblInfoLoan.Text = "Loan Amt"
+        Me.txtInfoLoan.BackColor = System.Drawing.Color.FromArgb(227, 242, 253)
+        Me.txtInfoLoan.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
+        Me.txtInfoLoan.Font = New System.Drawing.Font("Segoe UI", 9.5!)
+        Me.txtInfoLoan.Location = New System.Drawing.Point(580, 25)
+        Me.txtInfoLoan.ReadOnly = True
+        Me.txtInfoLoan.Size = New System.Drawing.Size(130, 25)
+        Me.txtInfoLoan.TextAlign = System.Windows.Forms.HorizontalAlignment.Right
+
+        Me.lblInfoProduct.AutoSize = True
+        Me.lblInfoProduct.Font = New System.Drawing.Font("Segoe UI", 9.0!, System.Drawing.FontStyle.Bold)
+        Me.lblInfoProduct.Location = New System.Drawing.Point(730, 28)
+        Me.lblInfoProduct.Text = "Product"
+        Me.txtInfoProduct.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
+        Me.txtInfoProduct.Font = New System.Drawing.Font("Segoe UI", 9.5!)
+        Me.txtInfoProduct.Location = New System.Drawing.Point(800, 25)
+        Me.txtInfoProduct.ReadOnly = True
+        Me.txtInfoProduct.Size = New System.Drawing.Size(150, 25)
+
+        Me.lblInfoAppNo.AutoSize = True
+        Me.lblInfoAppNo.Font = New System.Drawing.Font("Segoe UI", 9.0!, System.Drawing.FontStyle.Bold)
+        Me.lblInfoAppNo.Location = New System.Drawing.Point(15, 58)
+        Me.lblInfoAppNo.Text = "App No"
+        Me.txtInfoAppNo.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
+        Me.txtInfoAppNo.Font = New System.Drawing.Font("Segoe UI", 9.5!)
+        Me.txtInfoAppNo.Location = New System.Drawing.Point(70, 55)
+        Me.txtInfoAppNo.ReadOnly = True
+        Me.txtInfoAppNo.Size = New System.Drawing.Size(200, 25)
+
+        Me.lblInfoLoanNo.AutoSize = True
+        Me.lblInfoLoanNo.Font = New System.Drawing.Font("Segoe UI", 9.0!, System.Drawing.FontStyle.Bold)
+        Me.lblInfoLoanNo.Location = New System.Drawing.Point(290, 58)
+        Me.lblInfoLoanNo.Text = "Loan No"
+        Me.txtInfoLoanNo.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
+        Me.txtInfoLoanNo.Font = New System.Drawing.Font("Segoe UI", 9.5!)
+        Me.txtInfoLoanNo.Location = New System.Drawing.Point(350, 55)
+        Me.txtInfoLoanNo.ReadOnly = True
+        Me.txtInfoLoanNo.Size = New System.Drawing.Size(130, 25)
+
+        '========== TABS ==========
+        Me.tabExpense.Controls.Add(Me.tabPF)
+        Me.tabExpense.Controls.Add(Me.tabRM)
+        Me.tabExpense.Controls.Add(Me.tabFiRcuPd)
+        Me.tabExpense.Controls.Add(Me.tabStaff)
+        Me.tabExpense.Controls.Add(Me.tabBuilder)
+        Me.tabExpense.Font = New System.Drawing.Font("Segoe UI", 10.0!, System.Drawing.FontStyle.Bold)
+        Me.tabExpense.ItemSize = New System.Drawing.Size(160, 30)
+        Me.tabExpense.Location = New System.Drawing.Point(12, 215)
+        Me.tabExpense.Name = "tabExpense"
+        Me.tabExpense.SelectedIndex = 0
+        Me.tabExpense.Size = New System.Drawing.Size(1160, 280)
+        Me.tabExpense.SizeMode = System.Windows.Forms.TabSizeMode.Fixed
+        Me.tabExpense.Enabled = False
+
+        '----- PF TAB -----
+        Me.tabPF.Controls.Add(Me.grpPF)
+        Me.tabPF.Location = New System.Drawing.Point(4, 34)
+        Me.tabPF.Name = "tabPF"
+        Me.tabPF.Padding = New System.Windows.Forms.Padding(10)
+        Me.tabPF.Size = New System.Drawing.Size(1152, 242)
+        Me.tabPF.Text = "  PF / Agreement / Other  "
+        Me.tabPF.UseVisualStyleBackColor = True
+
+        Me.grpPF.Controls.Add(Me.lblPFAmount)
+        Me.grpPF.Controls.Add(Me.txtPFAmount)
+        Me.grpPF.Controls.Add(Me.lblPFDate)
+        Me.grpPF.Controls.Add(Me.dtpPFDate)
+        Me.grpPF.Controls.Add(Me.lblPFPaidBy)
+        Me.grpPF.Controls.Add(Me.cmbPFPaidBy)
+        Me.grpPF.Controls.Add(Me.lblPFMode)
+        Me.grpPF.Controls.Add(Me.cmbPFMode)
+        Me.grpPF.Font = New System.Drawing.Font("Segoe UI", 9.5!, System.Drawing.FontStyle.Bold)
+        Me.grpPF.Location = New System.Drawing.Point(15, 15)
+        Me.grpPF.Name = "grpPF"
+        Me.grpPF.Size = New System.Drawing.Size(1110, 200)
+        Me.grpPF.TabStop = False
+        Me.grpPF.Text = "PF / Agreement / Other Details"
+
+        Me.lblPFAmount.AutoSize = True
+        Me.lblPFAmount.Font = New System.Drawing.Font("Segoe UI", 9.0!, System.Drawing.FontStyle.Bold)
+        Me.lblPFAmount.Location = New System.Drawing.Point(30, 45)
+        Me.lblPFAmount.Text = "Amount"
+        Me.txtPFAmount.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
+        Me.txtPFAmount.Font = New System.Drawing.Font("Segoe UI", 9.5!)
+        Me.txtPFAmount.Location = New System.Drawing.Point(120, 42)
+        Me.txtPFAmount.Size = New System.Drawing.Size(180, 25)
+        Me.txtPFAmount.TextAlign = System.Windows.Forms.HorizontalAlignment.Right
+
+        Me.lblPFDate.AutoSize = True
+        Me.lblPFDate.Font = New System.Drawing.Font("Segoe UI", 9.0!, System.Drawing.FontStyle.Bold)
+        Me.lblPFDate.Location = New System.Drawing.Point(350, 45)
+        Me.lblPFDate.Text = "Date"
+        Me.dtpPFDate.Font = New System.Drawing.Font("Segoe UI", 9.5!)
+        Me.dtpPFDate.Format = System.Windows.Forms.DateTimePickerFormat.Short
+        Me.dtpPFDate.Location = New System.Drawing.Point(420, 42)
+        Me.dtpPFDate.Size = New System.Drawing.Size(160, 25)
+
+        Me.lblPFPaidBy.AutoSize = True
+        Me.lblPFPaidBy.Font = New System.Drawing.Font("Segoe UI", 9.0!, System.Drawing.FontStyle.Bold)
+        Me.lblPFPaidBy.Location = New System.Drawing.Point(30, 100)
+        Me.lblPFPaidBy.Text = "Paid By"
+        Me.cmbPFPaidBy.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList
+        Me.cmbPFPaidBy.Font = New System.Drawing.Font("Segoe UI", 9.5!)
+        Me.cmbPFPaidBy.Location = New System.Drawing.Point(120, 97)
+        Me.cmbPFPaidBy.Size = New System.Drawing.Size(180, 25)
+
+        Me.lblPFMode.AutoSize = True
+        Me.lblPFMode.Font = New System.Drawing.Font("Segoe UI", 9.0!, System.Drawing.FontStyle.Bold)
+        Me.lblPFMode.Location = New System.Drawing.Point(350, 100)
+        Me.lblPFMode.Text = "Mode"
+        Me.cmbPFMode.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList
+        Me.cmbPFMode.Font = New System.Drawing.Font("Segoe UI", 9.5!)
+        Me.cmbPFMode.Location = New System.Drawing.Point(420, 97)
+        Me.cmbPFMode.Size = New System.Drawing.Size(160, 25)
+
+        '----- RM TAB -----
+        Me.tabRM.Controls.Add(Me.grpRM)
+        Me.tabRM.Location = New System.Drawing.Point(4, 34)
+        Me.tabRM.Name = "tabRM"
+        Me.tabRM.Padding = New System.Windows.Forms.Padding(10)
+        Me.tabRM.Size = New System.Drawing.Size(1152, 242)
+        Me.tabRM.Text = "  RM  "
+        Me.tabRM.UseVisualStyleBackColor = True
+
+        Me.grpRM.Controls.Add(Me.lblRMAmount)
+        Me.grpRM.Controls.Add(Me.txtRMAmount)
+        Me.grpRM.Controls.Add(Me.lblRMDate)
+        Me.grpRM.Controls.Add(Me.dtpRMDate)
+        Me.grpRM.Controls.Add(Me.lblRMPaidBy)
+        Me.grpRM.Controls.Add(Me.cmbRMPaidBy)
+        Me.grpRM.Controls.Add(Me.lblRMMode)
+        Me.grpRM.Controls.Add(Me.cmbRMMode)
+        Me.grpRM.Font = New System.Drawing.Font("Segoe UI", 9.5!, System.Drawing.FontStyle.Bold)
+        Me.grpRM.Location = New System.Drawing.Point(15, 15)
+        Me.grpRM.Name = "grpRM"
+        Me.grpRM.Size = New System.Drawing.Size(1110, 200)
+        Me.grpRM.TabStop = False
+        Me.grpRM.Text = "RM Details"
+
+        Me.lblRMAmount.AutoSize = True
+        Me.lblRMAmount.Font = New System.Drawing.Font("Segoe UI", 9.0!, System.Drawing.FontStyle.Bold)
+        Me.lblRMAmount.Location = New System.Drawing.Point(30, 45)
+        Me.lblRMAmount.Text = "Amount"
+        Me.txtRMAmount.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
+        Me.txtRMAmount.Font = New System.Drawing.Font("Segoe UI", 9.5!)
+        Me.txtRMAmount.Location = New System.Drawing.Point(120, 42)
+        Me.txtRMAmount.Size = New System.Drawing.Size(180, 25)
+        Me.txtRMAmount.TextAlign = System.Windows.Forms.HorizontalAlignment.Right
+
+        Me.lblRMDate.AutoSize = True
+        Me.lblRMDate.Font = New System.Drawing.Font("Segoe UI", 9.0!, System.Drawing.FontStyle.Bold)
+        Me.lblRMDate.Location = New System.Drawing.Point(350, 45)
+        Me.lblRMDate.Text = "Date"
+        Me.dtpRMDate.Font = New System.Drawing.Font("Segoe UI", 9.5!)
+        Me.dtpRMDate.Format = System.Windows.Forms.DateTimePickerFormat.Short
+        Me.dtpRMDate.Location = New System.Drawing.Point(420, 42)
+        Me.dtpRMDate.Size = New System.Drawing.Size(160, 25)
+
+        Me.lblRMPaidBy.AutoSize = True
+        Me.lblRMPaidBy.Font = New System.Drawing.Font("Segoe UI", 9.0!, System.Drawing.FontStyle.Bold)
+        Me.lblRMPaidBy.Location = New System.Drawing.Point(30, 100)
+        Me.lblRMPaidBy.Text = "Paid By"
+        Me.cmbRMPaidBy.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList
+        Me.cmbRMPaidBy.Font = New System.Drawing.Font("Segoe UI", 9.5!)
+        Me.cmbRMPaidBy.Location = New System.Drawing.Point(120, 97)
+        Me.cmbRMPaidBy.Size = New System.Drawing.Size(180, 25)
+
+        Me.lblRMMode.AutoSize = True
+        Me.lblRMMode.Font = New System.Drawing.Font("Segoe UI", 9.0!, System.Drawing.FontStyle.Bold)
+        Me.lblRMMode.Location = New System.Drawing.Point(350, 100)
+        Me.lblRMMode.Text = "Mode"
+        Me.cmbRMMode.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList
+        Me.cmbRMMode.Font = New System.Drawing.Font("Segoe UI", 9.5!)
+        Me.cmbRMMode.Location = New System.Drawing.Point(420, 97)
+        Me.cmbRMMode.Size = New System.Drawing.Size(160, 25)
+
+        '----- FI / RCU / PD TAB -----
+        Me.tabFiRcuPd.Controls.Add(Me.grpFiRcuPd)
+        Me.tabFiRcuPd.Location = New System.Drawing.Point(4, 34)
+        Me.tabFiRcuPd.Name = "tabFiRcuPd"
+        Me.tabFiRcuPd.Padding = New System.Windows.Forms.Padding(10)
+        Me.tabFiRcuPd.Size = New System.Drawing.Size(1152, 242)
+        Me.tabFiRcuPd.Text = "  FI / RCU / PD  "
+        Me.tabFiRcuPd.UseVisualStyleBackColor = True
+
+        Me.grpFiRcuPd.Controls.Add(Me.lblFiRcuPdType)
+        Me.grpFiRcuPd.Controls.Add(Me.cmbFiRcuPdType)
+        Me.grpFiRcuPd.Controls.Add(Me.lblFiRcuPdAmount)
+        Me.grpFiRcuPd.Controls.Add(Me.txtFiRcuPdAmount)
+        Me.grpFiRcuPd.Controls.Add(Me.lblFiRcuPdDate)
+        Me.grpFiRcuPd.Controls.Add(Me.dtpFiRcuPdDate)
+        Me.grpFiRcuPd.Controls.Add(Me.lblFiRcuPdPaidBy)
+        Me.grpFiRcuPd.Controls.Add(Me.cmbFiRcuPdPaidBy)
+        Me.grpFiRcuPd.Controls.Add(Me.lblFiRcuPdMode)
+        Me.grpFiRcuPd.Controls.Add(Me.cmbFiRcuPdMode)
+        Me.grpFiRcuPd.Font = New System.Drawing.Font("Segoe UI", 9.5!, System.Drawing.FontStyle.Bold)
+        Me.grpFiRcuPd.Location = New System.Drawing.Point(15, 15)
+        Me.grpFiRcuPd.Name = "grpFiRcuPd"
+        Me.grpFiRcuPd.Size = New System.Drawing.Size(1110, 200)
+        Me.grpFiRcuPd.TabStop = False
+        Me.grpFiRcuPd.Text = "FI / RCU / PD Details"
+
+        Me.lblFiRcuPdType.AutoSize = True
+        Me.lblFiRcuPdType.Font = New System.Drawing.Font("Segoe UI", 9.0!, System.Drawing.FontStyle.Bold)
+        Me.lblFiRcuPdType.Location = New System.Drawing.Point(30, 40)
+        Me.lblFiRcuPdType.Text = "Type"
+        Me.cmbFiRcuPdType.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList
+        Me.cmbFiRcuPdType.Font = New System.Drawing.Font("Segoe UI", 9.5!)
+        Me.cmbFiRcuPdType.Location = New System.Drawing.Point(120, 37)
+        Me.cmbFiRcuPdType.Size = New System.Drawing.Size(180, 25)
+
+        Me.lblFiRcuPdAmount.AutoSize = True
+        Me.lblFiRcuPdAmount.Font = New System.Drawing.Font("Segoe UI", 9.0!, System.Drawing.FontStyle.Bold)
+        Me.lblFiRcuPdAmount.Location = New System.Drawing.Point(350, 40)
+        Me.lblFiRcuPdAmount.Text = "Amount"
+        Me.txtFiRcuPdAmount.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
+        Me.txtFiRcuPdAmount.Font = New System.Drawing.Font("Segoe UI", 9.5!)
+        Me.txtFiRcuPdAmount.Location = New System.Drawing.Point(430, 37)
+        Me.txtFiRcuPdAmount.Size = New System.Drawing.Size(160, 25)
+        Me.txtFiRcuPdAmount.TextAlign = System.Windows.Forms.HorizontalAlignment.Right
+
+        Me.lblFiRcuPdDate.AutoSize = True
+        Me.lblFiRcuPdDate.Font = New System.Drawing.Font("Segoe UI", 9.0!, System.Drawing.FontStyle.Bold)
+        Me.lblFiRcuPdDate.Location = New System.Drawing.Point(630, 40)
+        Me.lblFiRcuPdDate.Text = "Date"
+        Me.dtpFiRcuPdDate.Font = New System.Drawing.Font("Segoe UI", 9.5!)
+        Me.dtpFiRcuPdDate.Format = System.Windows.Forms.DateTimePickerFormat.Short
+        Me.dtpFiRcuPdDate.Location = New System.Drawing.Point(690, 37)
+        Me.dtpFiRcuPdDate.Size = New System.Drawing.Size(160, 25)
+
+        Me.lblFiRcuPdPaidBy.AutoSize = True
+        Me.lblFiRcuPdPaidBy.Font = New System.Drawing.Font("Segoe UI", 9.0!, System.Drawing.FontStyle.Bold)
+        Me.lblFiRcuPdPaidBy.Location = New System.Drawing.Point(30, 95)
+        Me.lblFiRcuPdPaidBy.Text = "Paid By"
+        Me.cmbFiRcuPdPaidBy.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList
+        Me.cmbFiRcuPdPaidBy.Font = New System.Drawing.Font("Segoe UI", 9.5!)
+        Me.cmbFiRcuPdPaidBy.Location = New System.Drawing.Point(120, 92)
+        Me.cmbFiRcuPdPaidBy.Size = New System.Drawing.Size(180, 25)
+
+        Me.lblFiRcuPdMode.AutoSize = True
+        Me.lblFiRcuPdMode.Font = New System.Drawing.Font("Segoe UI", 9.0!, System.Drawing.FontStyle.Bold)
+        Me.lblFiRcuPdMode.Location = New System.Drawing.Point(350, 95)
+        Me.lblFiRcuPdMode.Text = "Mode"
+        Me.cmbFiRcuPdMode.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList
+        Me.cmbFiRcuPdMode.Font = New System.Drawing.Font("Segoe UI", 9.5!)
+        Me.cmbFiRcuPdMode.Location = New System.Drawing.Point(430, 92)
+        Me.cmbFiRcuPdMode.Size = New System.Drawing.Size(160, 25)
+
+        '----- STAFF TAB -----
+        Me.tabStaff.Controls.Add(Me.grpStaff)
+        Me.tabStaff.Location = New System.Drawing.Point(4, 34)
+        Me.tabStaff.Name = "tabStaff"
+        Me.tabStaff.Padding = New System.Windows.Forms.Padding(10)
+        Me.tabStaff.Size = New System.Drawing.Size(1152, 242)
+        Me.tabStaff.Text = "  Staff Sharing  "
+        Me.tabStaff.UseVisualStyleBackColor = True
+
+        Me.grpStaff.Controls.Add(Me.lblStaffAmount)
+        Me.grpStaff.Controls.Add(Me.txtStaffAmount)
+        Me.grpStaff.Controls.Add(Me.lblStaffDate)
+        Me.grpStaff.Controls.Add(Me.dtpStaffDate)
+        Me.grpStaff.Controls.Add(Me.lblStaffStatus)
+        Me.grpStaff.Controls.Add(Me.cmbStaffStatus)
+        Me.grpStaff.Controls.Add(Me.lblStaffPaidBy)
+        Me.grpStaff.Controls.Add(Me.cmbStaffPaidBy)
+        Me.grpStaff.Controls.Add(Me.lblStaffMode)
+        Me.grpStaff.Controls.Add(Me.cmbStaffMode)
+        Me.grpStaff.Font = New System.Drawing.Font("Segoe UI", 9.5!, System.Drawing.FontStyle.Bold)
+        Me.grpStaff.Location = New System.Drawing.Point(15, 15)
+        Me.grpStaff.Name = "grpStaff"
+        Me.grpStaff.Size = New System.Drawing.Size(1110, 200)
+        Me.grpStaff.TabStop = False
+        Me.grpStaff.Text = "Staff Sharing Details"
+
+        Me.lblStaffAmount.AutoSize = True
+        Me.lblStaffAmount.Font = New System.Drawing.Font("Segoe UI", 9.0!, System.Drawing.FontStyle.Bold)
+        Me.lblStaffAmount.Location = New System.Drawing.Point(30, 40)
+        Me.lblStaffAmount.Text = "Amount"
+        Me.txtStaffAmount.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
+        Me.txtStaffAmount.Font = New System.Drawing.Font("Segoe UI", 9.5!)
+        Me.txtStaffAmount.Location = New System.Drawing.Point(120, 37)
+        Me.txtStaffAmount.Size = New System.Drawing.Size(180, 25)
+        Me.txtStaffAmount.TextAlign = System.Windows.Forms.HorizontalAlignment.Right
+
+        Me.lblStaffDate.AutoSize = True
+        Me.lblStaffDate.Font = New System.Drawing.Font("Segoe UI", 9.0!, System.Drawing.FontStyle.Bold)
+        Me.lblStaffDate.Location = New System.Drawing.Point(350, 40)
+        Me.lblStaffDate.Text = "Date"
+        Me.dtpStaffDate.Font = New System.Drawing.Font("Segoe UI", 9.5!)
+        Me.dtpStaffDate.Format = System.Windows.Forms.DateTimePickerFormat.Short
+        Me.dtpStaffDate.Location = New System.Drawing.Point(420, 37)
+        Me.dtpStaffDate.Size = New System.Drawing.Size(160, 25)
+
+        Me.lblStaffStatus.AutoSize = True
+        Me.lblStaffStatus.Font = New System.Drawing.Font("Segoe UI", 9.0!, System.Drawing.FontStyle.Bold)
+        Me.lblStaffStatus.Location = New System.Drawing.Point(630, 40)
+        Me.lblStaffStatus.Text = "Status"
+        Me.cmbStaffStatus.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList
+        Me.cmbStaffStatus.Font = New System.Drawing.Font("Segoe UI", 9.5!)
+        Me.cmbStaffStatus.Location = New System.Drawing.Point(700, 37)
+        Me.cmbStaffStatus.Size = New System.Drawing.Size(150, 25)
+
+        Me.lblStaffPaidBy.AutoSize = True
+        Me.lblStaffPaidBy.Font = New System.Drawing.Font("Segoe UI", 9.0!, System.Drawing.FontStyle.Bold)
+        Me.lblStaffPaidBy.Location = New System.Drawing.Point(30, 95)
+        Me.lblStaffPaidBy.Text = "Paid By"
+        Me.cmbStaffPaidBy.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList
+        Me.cmbStaffPaidBy.Font = New System.Drawing.Font("Segoe UI", 9.5!)
+        Me.cmbStaffPaidBy.Location = New System.Drawing.Point(120, 92)
+        Me.cmbStaffPaidBy.Size = New System.Drawing.Size(180, 25)
+
+        Me.lblStaffMode.AutoSize = True
+        Me.lblStaffMode.Font = New System.Drawing.Font("Segoe UI", 9.0!, System.Drawing.FontStyle.Bold)
+        Me.lblStaffMode.Location = New System.Drawing.Point(350, 95)
+        Me.lblStaffMode.Text = "Mode"
+        Me.cmbStaffMode.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList
+        Me.cmbStaffMode.Font = New System.Drawing.Font("Segoe UI", 9.5!)
+        Me.cmbStaffMode.Location = New System.Drawing.Point(420, 92)
+        Me.cmbStaffMode.Size = New System.Drawing.Size(160, 25)
+
+        '----- BUILDER TAB -----
+        Me.tabBuilder.Controls.Add(Me.grpBuilder)
+        Me.tabBuilder.Location = New System.Drawing.Point(4, 34)
+        Me.tabBuilder.Name = "tabBuilder"
+        Me.tabBuilder.Padding = New System.Windows.Forms.Padding(10)
+        Me.tabBuilder.Size = New System.Drawing.Size(1152, 242)
+        Me.tabBuilder.Text = "  Builder / IDC Sharing  "
+        Me.tabBuilder.UseVisualStyleBackColor = True
+
+        Me.grpBuilder.Controls.Add(Me.lblBuilderAmount)
+        Me.grpBuilder.Controls.Add(Me.txtBuilderAmount)
+        Me.grpBuilder.Controls.Add(Me.lblBuilderDate)
+        Me.grpBuilder.Controls.Add(Me.dtpBuilderDate)
+        Me.grpBuilder.Controls.Add(Me.lblBuilderStatus)
+        Me.grpBuilder.Controls.Add(Me.cmbBuilderStatus)
+        Me.grpBuilder.Controls.Add(Me.lblBuilderPaidBy)
+        Me.grpBuilder.Controls.Add(Me.cmbBuilderPaidBy)
+        Me.grpBuilder.Controls.Add(Me.lblBuilderMode)
+        Me.grpBuilder.Controls.Add(Me.cmbBuilderMode)
+        Me.grpBuilder.Font = New System.Drawing.Font("Segoe UI", 9.5!, System.Drawing.FontStyle.Bold)
+        Me.grpBuilder.Location = New System.Drawing.Point(15, 15)
+        Me.grpBuilder.Name = "grpBuilder"
+        Me.grpBuilder.Size = New System.Drawing.Size(1110, 200)
+        Me.grpBuilder.TabStop = False
+        Me.grpBuilder.Text = "Builder / IDC Sharing Details"
+
+        Me.lblBuilderAmount.AutoSize = True
+        Me.lblBuilderAmount.Font = New System.Drawing.Font("Segoe UI", 9.0!, System.Drawing.FontStyle.Bold)
+        Me.lblBuilderAmount.Location = New System.Drawing.Point(30, 40)
+        Me.lblBuilderAmount.Text = "Amount"
+        Me.txtBuilderAmount.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
+        Me.txtBuilderAmount.Font = New System.Drawing.Font("Segoe UI", 9.5!)
+        Me.txtBuilderAmount.Location = New System.Drawing.Point(120, 37)
+        Me.txtBuilderAmount.Size = New System.Drawing.Size(180, 25)
+        Me.txtBuilderAmount.TextAlign = System.Windows.Forms.HorizontalAlignment.Right
+
+        Me.lblBuilderDate.AutoSize = True
+        Me.lblBuilderDate.Font = New System.Drawing.Font("Segoe UI", 9.0!, System.Drawing.FontStyle.Bold)
+        Me.lblBuilderDate.Location = New System.Drawing.Point(350, 40)
+        Me.lblBuilderDate.Text = "Date"
+        Me.dtpBuilderDate.Font = New System.Drawing.Font("Segoe UI", 9.5!)
+        Me.dtpBuilderDate.Format = System.Windows.Forms.DateTimePickerFormat.Short
+        Me.dtpBuilderDate.Location = New System.Drawing.Point(420, 37)
+        Me.dtpBuilderDate.Size = New System.Drawing.Size(160, 25)
+
+        Me.lblBuilderStatus.AutoSize = True
+        Me.lblBuilderStatus.Font = New System.Drawing.Font("Segoe UI", 9.0!, System.Drawing.FontStyle.Bold)
+        Me.lblBuilderStatus.Location = New System.Drawing.Point(630, 40)
+        Me.lblBuilderStatus.Text = "Status"
+        Me.cmbBuilderStatus.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList
+        Me.cmbBuilderStatus.Font = New System.Drawing.Font("Segoe UI", 9.5!)
+        Me.cmbBuilderStatus.Location = New System.Drawing.Point(700, 37)
+        Me.cmbBuilderStatus.Size = New System.Drawing.Size(150, 25)
+
+        Me.lblBuilderPaidBy.AutoSize = True
+        Me.lblBuilderPaidBy.Font = New System.Drawing.Font("Segoe UI", 9.0!, System.Drawing.FontStyle.Bold)
+        Me.lblBuilderPaidBy.Location = New System.Drawing.Point(30, 95)
+        Me.lblBuilderPaidBy.Text = "Paid By"
+        Me.cmbBuilderPaidBy.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList
+        Me.cmbBuilderPaidBy.Font = New System.Drawing.Font("Segoe UI", 9.5!)
+        Me.cmbBuilderPaidBy.Location = New System.Drawing.Point(120, 92)
+        Me.cmbBuilderPaidBy.Size = New System.Drawing.Size(180, 25)
+
+        Me.lblBuilderMode.AutoSize = True
+        Me.lblBuilderMode.Font = New System.Drawing.Font("Segoe UI", 9.0!, System.Drawing.FontStyle.Bold)
+        Me.lblBuilderMode.Location = New System.Drawing.Point(350, 95)
+        Me.lblBuilderMode.Text = "Mode"
+        Me.cmbBuilderMode.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList
+        Me.cmbBuilderMode.Font = New System.Drawing.Font("Segoe UI", 9.5!)
+        Me.cmbBuilderMode.Location = New System.Drawing.Point(420, 92)
+        Me.cmbBuilderMode.Size = New System.Drawing.Size(160, 25)
+
+        '========== ACTIONS ==========
+        Me.pnlActions.BackColor = System.Drawing.Color.FromArgb(245, 247, 250)
+        Me.pnlActions.Controls.Add(Me.btnSave)
+        Me.pnlActions.Dock = System.Windows.Forms.DockStyle.Bottom
+        Me.pnlActions.Location = New System.Drawing.Point(0, 545)
+        Me.pnlActions.Name = "pnlActions"
+        Me.pnlActions.Size = New System.Drawing.Size(1200, 55)
+
+        Me.btnSave.BackColor = System.Drawing.Color.FromArgb(40, 167, 69)
+        Me.btnSave.FlatStyle = System.Windows.Forms.FlatStyle.Flat
+        Me.btnSave.Font = New System.Drawing.Font("Segoe UI", 10.0!, System.Drawing.FontStyle.Bold)
+        Me.btnSave.ForeColor = System.Drawing.Color.White
+        Me.btnSave.Location = New System.Drawing.Point(20, 10)
+        Me.btnSave.Size = New System.Drawing.Size(160, 36)
+        Me.btnSave.Text = "SAVE EXPENSE"
+        Me.btnSave.Enabled = False
+        Me.btnSave.UseVisualStyleBackColor = False
+
+        '========== FORM ==========
+        Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None
+        Me.BackColor = System.Drawing.Color.FromArgb(245, 247, 250)
+        Me.ClientSize = New System.Drawing.Size(1200, 600)
+        Me.Controls.Add(Me.tabExpense)
+        Me.Controls.Add(Me.grpCustInfo)
+        Me.Controls.Add(Me.pnlSearch)
+        Me.Controls.Add(Me.pnlTop)
+        Me.Controls.Add(Me.pnlActions)
+        Me.MinimumSize = New System.Drawing.Size(1100, 550)
+        Me.Name = "frmExpense"
+        Me.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen
+        Me.Text = "Expense Management"
+        Me.Tag = "Expense"
+        Me.WindowState = System.Windows.Forms.FormWindowState.Maximized
+
+        Me.pnlTop.ResumeLayout(False)
+        Me.pnlTop.PerformLayout()
+        Me.pnlSearch.ResumeLayout(False)
+        Me.pnlSearch.PerformLayout()
+        CType(Me.dgvCustomerSearch, System.ComponentModel.ISupportInitialize).EndInit()
+        Me.grpCustInfo.ResumeLayout(False)
+        Me.grpCustInfo.PerformLayout()
+        Me.tabExpense.ResumeLayout(False)
+        Me.tabPF.ResumeLayout(False)
+        Me.grpPF.ResumeLayout(False)
+        Me.grpPF.PerformLayout()
+        Me.tabRM.ResumeLayout(False)
+        Me.grpRM.ResumeLayout(False)
+        Me.grpRM.PerformLayout()
+        Me.tabFiRcuPd.ResumeLayout(False)
+        Me.grpFiRcuPd.ResumeLayout(False)
+        Me.grpFiRcuPd.PerformLayout()
+        Me.tabStaff.ResumeLayout(False)
+        Me.grpStaff.ResumeLayout(False)
+        Me.grpStaff.PerformLayout()
+        Me.tabBuilder.ResumeLayout(False)
+        Me.grpBuilder.ResumeLayout(False)
+        Me.grpBuilder.PerformLayout()
+        Me.pnlActions.ResumeLayout(False)
+        Me.ResumeLayout(False)
     End Sub
 
-    '================================================
-    ' SHARED FIELD SETUP HELPERS
-    '================================================
-    Private Sub SetupLabel(lbl As Label, caption As String)
-        lbl.Text = caption
-        lbl.Dock = DockStyle.Fill
-        lbl.Font = New Font("Segoe UI", 9.5F)
-        lbl.ForeColor = Color.FromArgb(51, 65, 85)
-        lbl.Margin = New Padding(3, 10, 8, 0)
-        lbl.TextAlign = ContentAlignment.MiddleLeft
-    End Sub
-
-    Private Sub SetupTextBox(txt As TextBox)
-        txt.Dock = DockStyle.Fill
-        txt.BorderStyle = BorderStyle.FixedSingle
-        txt.Font = New Font("Segoe UI", 9.5F)
-        txt.Margin = New Padding(3, 6, 15, 6)
-    End Sub
-
-    Private Sub SetupDTP(dtp As DateTimePicker)
-        dtp.Dock = DockStyle.Fill
-        dtp.Font = New Font("Segoe UI", 9.5F)
-        dtp.Format = DateTimePickerFormat.Short
-        dtp.Margin = New Padding(3, 6, 15, 6)
-    End Sub
-
-    Private Sub SetupCombo(cbo As ComboBox, valueMember As String)
-        cbo.Dock = DockStyle.Fill
-        cbo.DropDownStyle = ComboBoxStyle.DropDownList
-        cbo.Font = New Font("Segoe UI", 9.5F)
-        cbo.ValueMember = valueMember
-        cbo.Margin = New Padding(3, 6, 15, 6)
-    End Sub
-
-    Private Sub SetupComboPlain(cbo As ComboBox)
-        cbo.Dock = DockStyle.Fill
-        cbo.DropDownStyle = ComboBoxStyle.DropDownList
-        cbo.Font = New Font("Segoe UI", 9.5F)
-        cbo.Margin = New Padding(3, 6, 15, 6)
-    End Sub
-
-    '================================================
-    ' CONTROLS
-    '================================================
-    Friend WithEvents PanelHeader As Panel
+    '==================== CONTROLS ====================
+    Friend WithEvents pnlTop As Panel
     Friend WithEvents lblTitle As Label
-
-    Friend WithEvents PanelSearch As Panel
+    Friend WithEvents lblSubTitle As Label
+    Friend WithEvents pnlSearch As Panel
+    Friend WithEvents lblSearch As Label
     Friend WithEvents txtSearch As TextBox
     Friend WithEvents btnSearch As Button
     Friend WithEvents btnNewSearch As Button
     Friend WithEvents dgvCustomerSearch As DataGridView
-
-    Friend WithEvents pnlInfo As Panel
+    Friend WithEvents grpCustInfo As GroupBox
     Friend WithEvents lblInfoName As Label
+    Friend WithEvents txtInfoName As TextBox
     Friend WithEvents lblInfoMobile As Label
+    Friend WithEvents txtInfoMobile As TextBox
     Friend WithEvents lblInfoLoan As Label
+    Friend WithEvents txtInfoLoan As TextBox
     Friend WithEvents lblInfoProduct As Label
-
+    Friend WithEvents txtInfoProduct As TextBox
+    Friend WithEvents lblInfoAppNo As Label
+    Friend WithEvents txtInfoAppNo As TextBox
+    Friend WithEvents lblInfoLoanNo As Label
+    Friend WithEvents txtInfoLoanNo As TextBox
     Friend WithEvents tabExpense As TabControl
-
     Friend WithEvents tabPF As TabPage
-    Friend WithEvents tblPF As TableLayoutPanel
+    Friend WithEvents grpPF As GroupBox
     Friend WithEvents lblPFAmount As Label
     Friend WithEvents txtPFAmount As TextBox
     Friend WithEvents lblPFDate As Label
@@ -921,9 +729,8 @@ Partial Class frmExpense
     Friend WithEvents cmbPFPaidBy As ComboBox
     Friend WithEvents lblPFMode As Label
     Friend WithEvents cmbPFMode As ComboBox
-
     Friend WithEvents tabRM As TabPage
-    Friend WithEvents tblRM As TableLayoutPanel
+    Friend WithEvents grpRM As GroupBox
     Friend WithEvents lblRMAmount As Label
     Friend WithEvents txtRMAmount As TextBox
     Friend WithEvents lblRMDate As Label
@@ -932,9 +739,8 @@ Partial Class frmExpense
     Friend WithEvents cmbRMPaidBy As ComboBox
     Friend WithEvents lblRMMode As Label
     Friend WithEvents cmbRMMode As ComboBox
-
     Friend WithEvents tabFiRcuPd As TabPage
-    Friend WithEvents tblFiRcuPd As TableLayoutPanel
+    Friend WithEvents grpFiRcuPd As GroupBox
     Friend WithEvents lblFiRcuPdType As Label
     Friend WithEvents cmbFiRcuPdType As ComboBox
     Friend WithEvents lblFiRcuPdAmount As Label
@@ -945,9 +751,8 @@ Partial Class frmExpense
     Friend WithEvents cmbFiRcuPdPaidBy As ComboBox
     Friend WithEvents lblFiRcuPdMode As Label
     Friend WithEvents cmbFiRcuPdMode As ComboBox
-
     Friend WithEvents tabStaff As TabPage
-    Friend WithEvents tblStaff As TableLayoutPanel
+    Friend WithEvents grpStaff As GroupBox
     Friend WithEvents lblStaffAmount As Label
     Friend WithEvents txtStaffAmount As TextBox
     Friend WithEvents lblStaffDate As Label
@@ -958,9 +763,8 @@ Partial Class frmExpense
     Friend WithEvents cmbStaffPaidBy As ComboBox
     Friend WithEvents lblStaffMode As Label
     Friend WithEvents cmbStaffMode As ComboBox
-
     Friend WithEvents tabBuilder As TabPage
-    Friend WithEvents tblBuilder As TableLayoutPanel
+    Friend WithEvents grpBuilder As GroupBox
     Friend WithEvents lblBuilderAmount As Label
     Friend WithEvents txtBuilderAmount As TextBox
     Friend WithEvents lblBuilderDate As Label
@@ -971,8 +775,7 @@ Partial Class frmExpense
     Friend WithEvents cmbBuilderPaidBy As ComboBox
     Friend WithEvents lblBuilderMode As Label
     Friend WithEvents cmbBuilderMode As ComboBox
-
-    Friend WithEvents PanelActions As Panel
+    Friend WithEvents pnlActions As Panel
     Friend WithEvents btnSave As Button
 
 End Class

@@ -39,9 +39,10 @@ Partial Class Form1
         MastersToolStripMenuItem = New ToolStripMenuItem()
         REPORTSToolStripMenuItem = New ToolStripMenuItem()
         LeadToolStripMenuItem = New ToolStripMenuItem()
+        LoginToolStripMenuItem = New ToolStripMenuItem()
         StatusStrip1 = New StatusStrip()
         lblUserInfo = New ToolStripStatusLabel()
-        LoginToolStripMenuItem = New ToolStripMenuItem()
+        OfficeExpenceToolStripMenuItem = New ToolStripMenuItem()
         MenuStrip2.SuspendLayout()
         StatusStrip1.SuspendLayout()
         SuspendLayout()
@@ -88,7 +89,7 @@ Partial Class Form1
         ' 
         ' EXPENSEMISToolStripMenuItem
         ' 
-        EXPENSEMISToolStripMenuItem.DropDownItems.AddRange(New ToolStripItem() {IncomeToolStripMenuItem, ExpenceToolStripMenuItem})
+        EXPENSEMISToolStripMenuItem.DropDownItems.AddRange(New ToolStripItem() {IncomeToolStripMenuItem, ExpenceToolStripMenuItem, OfficeExpenceToolStripMenuItem})
         EXPENSEMISToolStripMenuItem.Font = New Font("Segoe UI", 10F)
         EXPENSEMISToolStripMenuItem.ForeColor = Color.FromArgb(CByte(15), CByte(23), CByte(42))
         EXPENSEMISToolStripMenuItem.Name = "EXPENSEMISToolStripMenuItem"
@@ -148,8 +149,14 @@ Partial Class Form1
         ' LeadToolStripMenuItem
         ' 
         LeadToolStripMenuItem.Name = "LeadToolStripMenuItem"
-        LeadToolStripMenuItem.Size = New Size(224, 28)
+        LeadToolStripMenuItem.Size = New Size(136, 28)
         LeadToolStripMenuItem.Text = "Lead"
+        ' 
+        ' LoginToolStripMenuItem
+        ' 
+        LoginToolStripMenuItem.Name = "LoginToolStripMenuItem"
+        LoginToolStripMenuItem.Size = New Size(136, 28)
+        LoginToolStripMenuItem.Text = "Login"
         ' 
         ' StatusStrip1
         ' 
@@ -173,11 +180,11 @@ Partial Class Form1
         lblUserInfo.Text = "  User"
         lblUserInfo.TextAlign = ContentAlignment.MiddleLeft
         ' 
-        ' LoginToolStripMenuItem
+        ' OfficeExpenceToolStripMenuItem
         ' 
-        LoginToolStripMenuItem.Name = "LoginToolStripMenuItem"
-        LoginToolStripMenuItem.Size = New Size(224, 28)
-        LoginToolStripMenuItem.Text = "Login"
+        OfficeExpenceToolStripMenuItem.Name = "OfficeExpenceToolStripMenuItem"
+        OfficeExpenceToolStripMenuItem.Size = New Size(224, 28)
+        OfficeExpenceToolStripMenuItem.Text = "Office Expence"
         ' 
         ' Form1
         ' 
@@ -223,4 +230,5 @@ Partial Class Form1
     Friend WithEvents ExpenceToolStripMenuItem As ToolStripMenuItem
     Friend WithEvents LeadToolStripMenuItem As ToolStripMenuItem
     Friend WithEvents LoginToolStripMenuItem As ToolStripMenuItem
+    Friend WithEvents OfficeExpenceToolStripMenuItem As ToolStripMenuItem
 End Class

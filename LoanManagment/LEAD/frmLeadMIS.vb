@@ -1,1002 +1,444 @@
 ﻿Public Class frmLeadMIS
 
+    Private selectedLeadMisID As Integer = 0
 
     Private Sub frmLeadMIS_Load(sender As Object, e As EventArgs) Handles MyBase.Load
-
         Try
             dtpLeadDate.Value = DateTime.Today
 
-            ssql = "SELECT DiscLoginStage " &
-         "FROM DiscLoginStageMst " &
-         "WHERE IsActive='Y' " &
-         "ORDER BY DiscLoginStage"
-
-            FillCombo(CmbDiscLogin, GetData(ssql), "DiscLoginStage")
-
-            ssql = "SELECT StageType " &
-         "FROM StageMst " &
-         "WHERE IsActive='Y' " &
-         "ORDER BY StageType"
-
+            ' Stage Type
+            ssql = "SELECT StageType FROM StageMst WHERE IsActive='Y' ORDER BY StageType"
             FillCombo(txtStage, GetData(ssql), "StageType")
 
-            ssql = "SELECT ProductType " &
-         "FROM ProductMst " &
-         "WHERE IsActive='Y' " &
-         "ORDER BY ProductType"
-
+            ' Product
+            ssql = "SELECT ProductType FROM ProductMst WHERE IsActive='Y' ORDER BY ProductType"
             FillCombo(CboProduct, GetData(ssql), "ProductType")
 
-            ssql = "SELECT ProductSubType " &
-         "FROM ProductSubMst " &
-         "WHERE IsActive='Y' " &
-         "ORDER BY ProductSubType"
-
+            ' Sub Product
+            ssql = "SELECT ProductSubType FROM ProductSubMst WHERE IsActive='Y' ORDER BY ProductSubType"
             FillCombo(CboSubProduct, GetData(ssql), "ProductSubType")
 
-            ssql = "SELECT CPAName " &
-         "FROM CPAMst " &
-         "WHERE IsActive='Y' " &
-         "ORDER BY CPAName"
-
+            ' CPA
+            ssql = "SELECT CPAName FROM CPAMst WHERE IsActive='Y' ORDER BY CPAName"
             FillCombo(CboCPA, GetData(ssql), "CPAName")
 
-            ssql = "SELECT ProfileType " &
-         "FROM ProfileMst " &
-         "WHERE IsActive='Y' " &
-         "ORDER BY ProfileType"
-
+            ' Profile
+            ssql = "SELECT ProfileType FROM ProfileMst WHERE IsActive='Y' ORDER BY ProfileType"
             FillCombo(txtProfile, GetData(ssql), "ProfileType")
 
-            ssql = "SELECT BankName " &
-         "FROM BankMst " &
-         "WHERE IsActive='Y' " &
-         "ORDER BY BankName"
-
+            ' Bank
+            ssql = "SELECT BankName FROM BankMst WHERE IsActive='Y' ORDER BY BankName"
             FillCombo(txtBank, GetData(ssql), "BankName")
 
-            ssql = "SELECT PropertyAddress " &
-         "FROM PropertyAddressMst " &
-         "WHERE IsActive='Y' " &
-         "ORDER BY PropertyAddress"
-
+            ' Property Address
+            ssql = "SELECT PropertyAddress FROM PropertyAddressMst WHERE IsActive='Y' ORDER BY PropertyAddress"
             FillCombo(txtPropertyAdd, GetData(ssql), "PropertyAddress")
 
-            ssql = "SELECT CodeName " &
-         "FROM CodeMst " &
-         "WHERE IsActive='Y' " &
-         "ORDER BY CodeName"
-
+            ' Code
+            ssql = "SELECT CodeName FROM CodeMst WHERE IsActive='Y' ORDER BY CodeName"
             FillCombo(CboCode, GetData(ssql), "CodeName")
 
-
-            '---------------------------------------------------
-            ' LEAD STAGE MASTER
-            '---------------------------------------------------
-            ssql = "SELECT LeadStage " &
-         "FROM LeadStageMst " &
-         "WHERE IsActive='Y' " &
-         "ORDER BY LeadStage"
-
+            ' LEAD STAGE (used as Discuss Stage)
+            ssql = "SELECT LeadStage FROM LeadStageMst WHERE IsActive='Y' ORDER BY LeadStage"
             FillCombo(CboLeadStage, GetData(ssql), "LeadStage")
-
-
-            '---------------------------------------------------
-            ' DEFAULT DISC LOGIN STAGE
-            '---------------------------------------------------
-            If CmbDiscLogin.Items.Count > 0 Then
-                CmbDiscLogin.SelectedIndex = 0
+            If CboLeadStage.Items.Count > 0 Then
+                CboLeadStage.SelectedIndex = 0
             End If
-
 
             LoadLeadMISGrid()
-
         Catch ex As Exception
-
-            MessageBox.Show(
-              "Form Load Error:" & Environment.NewLine & ex.Message,
-              "Error",
-              MessageBoxButtons.OK,
-              MessageBoxIcon.Error
-            )
-
+            MessageBox.Show("Form Load Error:" & Environment.NewLine & ex.Message,
+                            "Error", MessageBoxButtons.OK, MessageBoxIcon.Error)
         End Try
-
     End Sub
 
-
-    '===========================================================
-    ' SAVE
-    '===========================================================
-    Private Sub btnSave_Click(sender As Object, e As EventArgs) Handles btnSave.Click
-
+    Private Sub btnSave_Click(sender As Object, e As EventArgs) Handles btnSave.Click
         Try
+            If Not Required() Then Return
 
-            '---------------------------------------------------
-            ' VALIDATION
-            '---------------------------------------------------
-            If Not Required() Then
-                Return
-            End If
-
-
-            '---------------------------------------------------
-            ' CHECK DUPLICATE MOBILE NUMBER
-            '---------------------------------------------------
-            ssql = "SELECT LeadMisID " &
-         "FROM LeadMIS " &
-         "WHERE MobileNo='" & SqlText(txtMobileNo.Text.Trim()) & "' " &
-         "AND ISNULL(IsDelete,'N')='N'"
-
+            ' Duplicate Mobile check
+            ssql = "SELECT LeadMisID FROM LeadMIS " &
+                   "WHERE MobileNo='" & SqlText(txtMobileNo.Text.Trim()) & "' " &
+                   "AND ISNULL(IsDelete,'N')='N'"
             dt = GetData(ssql)
-
-
             If dt.Rows.Count > 0 Then
-
-                MessageBox.Show(
-                  "Record Already Exist with this Mobile No",
-                  "Duplicate Record",
-                  MessageBoxButtons.OK,
-                  MessageBoxIcon.Warning
-                )
-
+                MessageBox.Show("Record Already Exist with this Mobile No",
+                                "Duplicate Record", MessageBoxButtons.OK, MessageBoxIcon.Warning)
                 txtMobileNo.Focus()
-
                 Return
-
             End If
 
-
-            '---------------------------------------------------
-            ' INSERT LEAD MIS
-            '---------------------------------------------------
-            ssql = "INSERT INTO LeadMIS " &
-         "(LeadDate,DiscLogin,CustName,MobileNo,LoanAmount," &
-         "ExpOfferToCm,Stage,Product,SubProduct,CPA,PROFILE,BANK," &
-         "SdVALUE,SIZE,PropertyNo,PropertyAddress,OtherPropertyAddress," &
-         "REFERENCE,LeadStage,REMARKS,EntBy,EntDt,IsDelete) " &
-         "VALUES (" &
-         "'" & Format(dtpLeadDate.Value, "yyyy-MM-dd") & "'," &
-         "'" & SqlText(CmbDiscLogin.Text) & "'," &
-         "'" & SqlText(txtCustName.Text) & "'," &
-         "'" & SqlText(txtMobileNo.Text) & "'," &
-         "'" & SqlText(txtLoanAmnt.Text) & "'," &
-         "'" & SqlText(txtExpOfr.Text) & "'," &
-         "'" & SqlText(txtStage.Text) & "'," &
-         "'" & SqlText(CboProduct.Text) & "'," &
-         "'" & SqlText(CboSubProduct.Text) & "'," &
-         "'" & SqlText(CboCPA.Text) & "'," &
-         "'" & SqlText(txtProfile.Text) & "'," &
-         "'" & SqlText(txtBank.Text) & "'," &
-         "'" & SqlText(txtSdValue.Text) & "'," &
-         "'" & SqlText(txtSize.Text) & "'," &
-         "'" & SqlText(txtPropertyNo.Text) & "'," &
-         "'" & SqlText(txtPropertyAdd.Text) & "'," &
-         "'" & SqlText(txtOthrPropertyAdd.Text) & "'," &
-         "'" & SqlText(txtRef.Text) & "'," &
-         "'" & SqlText(CboLeadStage.Text) & "'," &
-         "'" & SqlText(txtRemarks.Text) & "'," &
-         "'" & SqlText(SessionEmpId) & "'," &
-         "GETDATE()," &
-         "'N')"
+            ' INSERT
+            ssql = "INSERT INTO LeadMIS " &
+                   "(LeadDate,CustName,MobileNo,LoanAmount," &
+                   "ExpOfferToCm,Stage,Product,SubProduct,CPA,PROFILE,BANK," &
+                   "SdVALUE,SIZE,PropertyNo,PropertyAddress,OtherPropertyAddress," &
+                   "REFERENCE,LeadStage,REMARKS,EntBy,EntDt,IsDelete) " &
+                   "VALUES (" &
+                   "'" & Format(dtpLeadDate.Value, "yyyy-MM-dd") & "'," &
+                   "'" & SqlText(txtCustName.Text) & "'," &
+                   "'" & SqlText(txtMobileNo.Text) & "'," &
+                   "'" & SqlText(txtLoanAmnt.Text) & "'," &
+                   "'" & SqlText(txtExpOfr.Text) & "'," &
+                   "'" & SqlText(txtStage.Text) & "'," &
+                   "'" & SqlText(CboProduct.Text) & "'," &
+                   "'" & SqlText(CboSubProduct.Text) & "'," &
+                   "'" & SqlText(CboCPA.Text) & "'," &
+                   "'" & SqlText(txtProfile.Text) & "'," &
+                   "'" & SqlText(txtBank.Text) & "'," &
+                   "'" & SqlText(txtSdValue.Text) & "'," &
+                   "'" & SqlText(txtSize.Text) & "'," &
+                   "'" & SqlText(txtPropertyNo.Text) & "'," &
+                   "'" & SqlText(txtPropertyAdd.Text) & "'," &
+                   "'" & SqlText(txtOthrPropertyAdd.Text) & "'," &
+                   "'" & SqlText(txtRef.Text) & "'," &
+                   "'" & SqlText(CboLeadStage.Text) & "'," &
+                   "'" & SqlText(txtRemarks.Text) & "'," &
+                   "'" & SqlText(SessionEmpId) & "'," &
+                   "GETDATE()," &
+                   "'N')"
 
             ExecuteQuery(ssql)
-
-
-            MessageBox.Show(
-              "Record Saved Successfully",
-              "Save",
-              MessageBoxButtons.OK,
-              MessageBoxIcon.Information
-            )
-
+            MessageBox.Show("Record Saved Successfully", "Save",
+                            MessageBoxButtons.OK, MessageBoxIcon.Information)
             ClearForm()
             LoadLeadMISGrid()
-
         Catch ex As Exception
-
-            MessageBox.Show(
-              "Save Error:" & Environment.NewLine & ex.Message,
-              "Error",
-              MessageBoxButtons.OK,
-              MessageBoxIcon.Error
-            )
-
+            MessageBox.Show("Save Error:" & Environment.NewLine & ex.Message,
+                            "Error", MessageBoxButtons.OK, MessageBoxIcon.Error)
         End Try
-
     End Sub
+
     Private Sub btnRefresh_Click(sender As Object, e As EventArgs) Handles btnRefresh.Click
-
         Try
-
+            ClearForm()
             LoadLeadMISGrid()
-
         Catch ex As Exception
-
-            MessageBox.Show(
-              "Refresh Error:" & Environment.NewLine & ex.Message,
-              "Error",
-              MessageBoxButtons.OK,
-              MessageBoxIcon.Error
-            )
-
+            MessageBox.Show("Refresh Error:" & Environment.NewLine & ex.Message,
+                            "Error", MessageBoxButtons.OK, MessageBoxIcon.Error)
         End Try
-
     End Sub
 
     Private Sub LoadLeadMISGrid()
-
         Try
-
             dgv.SuspendLayout()
-
             dgv.DataSource = Nothing
-
-            If dgv.Columns.Contains("SelectRow") Then
-                dgv.Columns.Remove("SelectRow")
-            End If
-
-            If dgv.Columns.Contains("DiscussStage") Then
-                dgv.Columns.Remove("DiscussStage")
-            End If
+            dgv.Columns.Clear()
 
             ssql = "SELECT " &
-               "LeadMisID, " &
-               "LeadDate, " &
-               "DiscLogin AS DiscussStage, " &
-               "CustName, " &
-               "MobileNo, " &
-               "LoanAmount, " &
-               "ExpOfferToCm, " &
-               "Stage, " &
-               "Product, " &
-               "SubProduct, " &
-               "CPA, " &
-               "PROFILE, " &
-               "BANK, " &
-               "SdVALUE, " &
-               "SIZE, " &
-               "PropertyNo, " &
-               "PropertyAddress, " &
-               "OtherPropertyAddress, " &
-               "REFERENCE, " &
-               "LeadStage, " &
-               "REMARKS, " &
-               "EntBy, " &
-               "EntDt, " &
-               "ModBy, " &
-               "ModDt " &
-               "FROM LeadMIS WITH (NOLOCK) " &
-               "WHERE ISNULL(IsDelete,'N')='N' " &
-               "AND ISNULL(DiscLogin,'') <> 'LOGIN' " &
-               "ORDER BY LeadMisID DESC"
-
+                   "LeadMisID, " &
+                   "LeadDate, " &
+                   "LeadStage AS DiscussStage, " &
+                   "CustName, " &
+                   "MobileNo, " &
+                   "LoanAmount, " &
+                   "ExpOfferToCm, " &
+                   "Stage, " &
+                   "Product, " &
+                   "SubProduct, " &
+                   "CPA, " &
+                   "PROFILE, " &
+                   "BANK, " &
+                   "SdVALUE, " &
+                   "SIZE, " &
+                   "PropertyNo, " &
+                   "PropertyAddress, " &
+                   "OtherPropertyAddress, " &
+                   "REFERENCE, " &
+                   "REMARKS, " &
+                   "EntBy, " &
+                   "EntDt, " &
+                   "ModBy, " &
+                   "ModDt " &
+                   "FROM LeadMIS WITH (NOLOCK) " &
+                   "WHERE ISNULL(IsDelete,'N')='N' " &
+                   "AND ISNULL(LeadStage,'') <> 'LOGIN' " &
+                   "ORDER BY LeadMisID DESC"
 
             Dim dtLead As DataTable = GetData(ssql)
-
             dgv.DataSource = dtLead
 
+            ' Select CheckBox column for Bulk Delete
             Dim chk As New DataGridViewCheckBoxColumn()
-
             chk.Name = "SelectRow"
             chk.HeaderText = "Select"
             chk.Width = 55
             chk.ReadOnly = False
-
             dgv.Columns.Insert(0, chk)
 
-            If dgv.Columns.Contains("DiscussStage") Then
-
-                Dim colIndex As Integer =
-                dgv.Columns("DiscussStage").Index
-
-                dgv.Columns.Remove("DiscussStage")
-
-
-                Dim cboDiscussStage As New DataGridViewComboBoxColumn()
-
-                cboDiscussStage.Name = "DiscussStage"
-                cboDiscussStage.HeaderText = "Discuss Stage"
-                cboDiscussStage.DataPropertyName = "DiscussStage"
-
-                cboDiscussStage.FlatStyle = FlatStyle.Flat
-
-                cboDiscussStage.DisplayStyle =
-                DataGridViewComboBoxDisplayStyle.DropDownButton
-
-
-                ssql = "SELECT LeadStage " &
-                         "FROM LeadStageMst " &
-                         "WHERE IsActive='Y' " &
-                         "ORDER BY LeadStage"
-
-
-                Dim dtDiscLogin As DataTable =
-                GetData(ssql)
-
-
-                For Each dr As DataRow In dtDiscLogin.Rows
-
-                    If Not IsDBNull(dr("LeadStage")) Then
-
-                        cboDiscussStage.Items.Add(
-                        dr("LeadStage").ToString()
-                    )
-
-                    End If
-
-                Next
-
-
-                dgv.Columns.Insert(
-                colIndex,
-                cboDiscussStage
-            )
-
-            End If
-
-            If dgv.Columns.Contains("LeadStage") Then
-
-                dgv.Columns("LeadStage").HeaderText = "Lead Stage"
-
-                dgv.Columns("LeadStage").ReadOnly = True
-
-            End If
-
+            ' Make all data columns read-only
             For Each col As DataGridViewColumn In dgv.Columns
-
                 If col.Name = "SelectRow" Then
-
                     col.ReadOnly = False
-
                 Else
-
                     col.ReadOnly = True
-
                 End If
-
             Next
-            If dgv.Columns.Contains("LeadMisID") Then
-                dgv.Columns("LeadMisID").Visible = False
-            End If
+
+            If dgv.Columns.Contains("LeadMisID") Then dgv.Columns("LeadMisID").Visible = False
+            If dgv.Columns.Contains("DiscussStage") Then dgv.Columns("DiscussStage").HeaderText = "Discuss Stage"
 
             dgv.AllowUserToAddRows = False
             dgv.AllowUserToDeleteRows = False
             dgv.AllowUserToResizeRows = False
-
-            dgv.SelectionMode =
-            DataGridViewSelectionMode.FullRowSelect
-
-            dgv.MultiSelect = True
-
-            dgv.EditMode =
-            DataGridViewEditMode.EditOnEnter
-
-            If dgv.Columns.Contains("SelectRow") Then
-                dgv.Columns("SelectRow").Width = 55
-            End If
-
-            If dgv.Columns.Contains("LeadStage") Then
-                dgv.Columns("LeadStage").Width = 120
-            End If
-
-            If dgv.Columns.Contains("DiscussStage") Then
-                dgv.Columns("DiscussStage").Width = 120
-            End If
-
-
-            'Customer Name width
-            If dgv.Columns.Contains("CustName") Then
-                dgv.Columns("CustName").Width = 180
-            End If
-
-
-            'Property Address width
-            If dgv.Columns.Contains("PropertyAddress") Then
-                dgv.Columns("PropertyAddress").Width = 180
-            End If
-
-
-            'Remarks width
-            If dgv.Columns.Contains("REMARKS") Then
-                dgv.Columns("REMARKS").Width = 200
-            End If
-
-
-            '=========================================================
-            ' ROW HEIGHT
-            '=========================================================
+            dgv.SelectionMode = DataGridViewSelectionMode.FullRowSelect
+            dgv.MultiSelect = False
+            dgv.ReadOnly = False
             dgv.RowTemplate.Height = 30
-
-
-            dgv.AutoSizeColumnsMode =
-            DataGridViewAutoSizeColumnsMode.DisplayedCells
-
+            dgv.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.DisplayedCells
 
             dgv.ResumeLayout()
-
         Catch ex As Exception
-
             dgv.ResumeLayout()
-
-            Throw New Exception(
-            "Unable to load Lead MIS grid." &
-            Environment.NewLine &
-            ex.Message
-        )
-
+            Throw New Exception("Unable to load Lead MIS grid." & Environment.NewLine & ex.Message)
         End Try
     End Sub
 
-
-    '===========================================================
-    ' DELETE
-    '===========================================================
-    Private Sub btnDelete_Click(sender As Object, e As EventArgs) Handles btnDelete.Click
-
+    Private Sub dgv_CellClick(sender As Object, e As DataGridViewCellEventArgs) Handles dgv.CellClick
         Try
+            If e.RowIndex < 0 Then Exit Sub
 
-            Dim selectedCount As Integer = 0
-
-            For Each row As DataGridViewRow In dgv.Rows
-
-                If row.IsNewRow Then
-                    Continue For
-                End If
-
-
-                If IsRowChecked(row) Then
-
-                    selectedCount += 1
-
-                End If
-
-            Next
-
-
-            If selectedCount = 0 Then
-
-                MessageBox.Show(
-                  "Please select at least one record.",
-                  "Delete",
-                  MessageBoxButtons.OK,
-                  MessageBoxIcon.Warning
-                )
-
-                Return
-
+            ' If user clicks the checkbox column, let them toggle selection without repopulating form
+            If dgv.Columns.Contains("SelectRow") AndAlso e.ColumnIndex = dgv.Columns("SelectRow").Index Then
+                Exit Sub
             End If
 
-            Dim result As DialogResult =
-        MessageBox.Show(
-          "Are you sure you want to delete " &
-          selectedCount.ToString() &
-          " selected record(s)?",
-          "Confirm Delete",
-          MessageBoxButtons.YesNo,
-          MessageBoxIcon.Question
-        )
+            Dim row As DataGridViewRow = dgv.Rows(e.RowIndex)
+            If row.IsNewRow Then Exit Sub
 
+            selectedLeadMisID = Convert.ToInt32(GetCellValue(row, "LeadMisID"))
 
-            If result <> DialogResult.Yes Then
-                Return
+            ' Fill form inputs
+            Dim dVal As Object = row.Cells("LeadDate").Value
+            If dVal IsNot Nothing AndAlso Not IsDBNull(dVal) AndAlso IsDate(dVal) Then
+                dtpLeadDate.Value = Convert.ToDateTime(dVal)
             End If
 
-            For Each row As DataGridViewRow In dgv.Rows
+            txtCustName.Text = GetCellValue(row, "CustName")
+            txtMobileNo.Text = GetCellValue(row, "MobileNo")
+            txtLoanAmnt.Text = GetCellValue(row, "LoanAmount")
+            txtExpOfr.Text = GetCellValue(row, "ExpOfferToCm")
+            txtSdValue.Text = GetCellValue(row, "SdVALUE")
+            txtSize.Text = GetCellValue(row, "SIZE")
+            txtPropertyNo.Text = GetCellValue(row, "PropertyNo")
+            txtOthrPropertyAdd.Text = GetCellValue(row, "OtherPropertyAddress")
+            txtRef.Text = GetCellValue(row, "REFERENCE")
+            txtRemarks.Text = GetCellValue(row, "REMARKS")
 
-                If row.IsNewRow Then
-                    Continue For
-                End If
-
-
-                If IsRowChecked(row) Then
-
-                    Dim leadID As Integer =
-                      Convert.ToInt32(
-                        GetCellValue(row, "LeadMisID")
-                      )
-
-
-                    ssql =
-                      "UPDATE LeadMIS SET " &
-                      "IsDelete='Y', " &
-                      "ModBy='" & SqlText(SessionEmpId) & "', " &
-                      "ModDt=GETDATE() " &
-                      "WHERE LeadMisID=" & leadID
-
-
-                    ExecuteQuery(ssql)
-
-                End If
-
-            Next
-
-
-            MessageBox.Show(
-              "Record(s) Deleted Successfully",
-              "Delete",
-              MessageBoxButtons.OK,
-              MessageBoxIcon.Information
-            )
-
-
-            '---------------------------------------------------
-            ' REFRESH
-            '---------------------------------------------------
-            LoadLeadMISGrid()
-
+            SetComboValue(CboLeadStage, GetCellValue(row, "DiscussStage"))
+            SetComboValue(CboProduct, GetCellValue(row, "Product"))
+            SetComboValue(CboSubProduct, GetCellValue(row, "SubProduct"))
+            SetComboValue(CboCPA, GetCellValue(row, "CPA"))
+            SetComboValue(txtProfile, GetCellValue(row, "PROFILE"))
+            SetComboValue(txtBank, GetCellValue(row, "BANK"))
+            SetComboValue(txtPropertyAdd, GetCellValue(row, "PropertyAddress"))
+            SetComboValue(txtStage, GetCellValue(row, "Stage"))
 
         Catch ex As Exception
-
-            MessageBox.Show(
-              "Delete Error:" & Environment.NewLine &
-              ex.Message,
-              "Error",
-              MessageBoxButtons.OK,
-              MessageBoxIcon.Error
-            )
-
+            MessageBox.Show("Error loading record into form:" & Environment.NewLine & ex.Message,
+                            "Error", MessageBoxButtons.OK, MessageBoxIcon.Error)
         End Try
-
     End Sub
 
     Private Sub btnUpdate_Click(sender As Object, e As EventArgs) Handles btnUpdate.Click
-
         Try
-
-            Dim selectedCount As Integer = 0
-
-            For Each row As DataGridViewRow In dgv.Rows
-
-                If row.IsNewRow Then
-                    Continue For
-                End If
-
-
-                If IsRowChecked(row) Then
-
-                    selectedCount += 1
-
-                End If
-
-            Next
-
-            If selectedCount = 0 Then
-
-                MessageBox.Show(
-                  "Please select at least one record to update.",
-                  "Update",
-                  MessageBoxButtons.OK,
-                  MessageBoxIcon.Warning
-                )
-
+            If selectedLeadMisID <= 0 Then
+                MessageBox.Show("Please select a record from the grid to update.", "Update",
+                                MessageBoxButtons.OK, MessageBoxIcon.Warning)
                 Return
-
             End If
 
-            For Each row As DataGridViewRow In dgv.Rows
+            If Not Required() Then Return
 
-                If row.IsNewRow Then
-                    Continue For
-                End If
+            Dim leadDateStr As String = Format(dtpLeadDate.Value, "yyyy-MM-dd")
+            Dim discussStage As String = CboLeadStage.Text.Trim()
 
+            ssql = "UPDATE LeadMIS SET " &
+                   "LeadDate='" & SqlText(leadDateStr) & "'," &
+                   "CustName='" & SqlText(txtCustName.Text) & "'," &
+                   "MobileNo='" & SqlText(txtMobileNo.Text) & "'," &
+                   "LoanAmount='" & SqlText(txtLoanAmnt.Text) & "'," &
+                   "ExpOfferToCm='" & SqlText(txtExpOfr.Text) & "'," &
+                   "Stage='" & SqlText(txtStage.Text) & "'," &
+                   "Product='" & SqlText(CboProduct.Text) & "'," &
+                   "SubProduct='" & SqlText(CboSubProduct.Text) & "'," &
+                   "CPA='" & SqlText(CboCPA.Text) & "'," &
+                   "PROFILE='" & SqlText(txtProfile.Text) & "'," &
+                   "BANK='" & SqlText(txtBank.Text) & "'," &
+                   "SdVALUE='" & SqlText(txtSdValue.Text) & "'," &
+                   "SIZE='" & SqlText(txtSize.Text) & "'," &
+                   "PropertyNo='" & SqlText(txtPropertyNo.Text) & "'," &
+                   "PropertyAddress='" & SqlText(txtPropertyAdd.Text) & "'," &
+                   "OtherPropertyAddress='" & SqlText(txtOthrPropertyAdd.Text) & "'," &
+                   "REFERENCE='" & SqlText(txtRef.Text) & "'," &
+                   "LeadStage='" & SqlText(discussStage) & "'," &
+                   "REMARKS='" & SqlText(txtRemarks.Text) & "'," &
+                   "ModBy='" & SqlText(SessionEmpId) & "'," &
+                   "ModDt=GETDATE() " &
+                   "WHERE LeadMisID=" & selectedLeadMisID
 
-                If Not IsRowChecked(row) Then
-                    Continue For
-                End If
+            ExecuteQuery(ssql)
 
-
-                Dim leadID As Integer =
-                  Convert.ToInt32(
-                    GetCellValue(row, "LeadMisID")
-                  )
-
-
-                '------------------------------------------------
-                ' GET VALUES
-                '------------------------------------------------
-                Dim leadDate As String =
-          GetCellValue(row, "LeadDate")
-
-                Dim discussStage As String =
-                  GetCellValue(row, "DiscussStage")
-
-                Dim custName As String =
-                  GetCellValue(row, "CustName")
-
-                Dim mobileNo As String =
-                  GetCellValue(row, "MobileNo")
-
-                Dim loanAmount As String =
-                  GetCellValue(row, "LoanAmount")
-
-                Dim expOffer As String =
-                  GetCellValue(row, "ExpOfferToCm")
-
-                Dim stage As String =
-                  GetCellValue(row, "Stage")
-
-                Dim product As String =
-                  GetCellValue(row, "Product")
-
-                Dim subProduct As String =
-                  GetCellValue(row, "SubProduct")
-
-                Dim cpa As String =
-                  GetCellValue(row, "CPA")
-
-                Dim profile As String =
-                  GetCellValue(row, "PROFILE")
-
-                Dim bank As String =
-                  GetCellValue(row, "BANK")
-
-                Dim sdValue As String =
-                  GetCellValue(row, "SdVALUE")
-
-                Dim sizeValue As String =
-                  GetCellValue(row, "SIZE")
-
-                Dim propertyNo As String =
-                  GetCellValue(row, "PropertyNo")
-
-                Dim propertyAddress As String =
-                  GetCellValue(row, "PropertyAddress")
-
-                Dim otherPropertyAddress As String =
-                  GetCellValue(row, "OtherPropertyAddress")
-
-                Dim reference As String =
-                  GetCellValue(row, "REFERENCE")
-
-                Dim leadStage As String =
-                  GetCellValue(row, "LeadStage")
-
-                Dim remarks As String =
-                  GetCellValue(row, "REMARKS")
-
-
-                '------------------------------------------------
-                ' UPDATE LEAD MIS
-                '------------------------------------------------
-                ssql =
-          "UPDATE LeadMIS SET " &
-          "LeadDate='" & SqlText(leadDate) & "'," &
-          "DiscLogin='" & SqlText(discussStage) & "'," &
-          "CustName='" & SqlText(custName) & "'," &
-          "MobileNo='" & SqlText(mobileNo) & "'," &
-          "LoanAmount='" & SqlText(loanAmount) & "'," &
-          "ExpOfferToCm='" & SqlText(expOffer) & "'," &
-          "Stage='" & SqlText(stage) & "'," &
-          "Product='" & SqlText(product) & "'," &
-          "SubProduct='" & SqlText(subProduct) & "'," &
-          "CPA='" & SqlText(cpa) & "'," &
-          "PROFILE='" & SqlText(profile) & "'," &
-          "BANK='" & SqlText(bank) & "'," &
-          "SdVALUE='" & SqlText(sdValue) & "'," &
-          "SIZE='" & SqlText(sizeValue) & "'," &
-          "PropertyNo='" & SqlText(propertyNo) & "'," &
-          "PropertyAddress='" & SqlText(propertyAddress) & "'," &
-          "OtherPropertyAddress='" & SqlText(otherPropertyAddress) & "'," &
-          "REFERENCE='" & SqlText(reference) & "'," &
-          "LeadStage='" & SqlText(leadStage) & "'," &
-          "REMARKS='" & SqlText(remarks) & "'," &
-          "ModBy='" & SqlText(SessionEmpId) & "'," &
-          "ModDt=GETDATE() " &
-          "WHERE LeadMisID=" & leadID
-
-
+            ' Special logic based on Discuss Stage
+            If discussStage.ToUpper() = "LOGIN" Then
+                ssql = "IF NOT EXISTS (SELECT 1 FROM LoginMIS WHERE LeadID=" & selectedLeadMisID & ") " &
+                       "BEGIN INSERT INTO LoginMIS (LeadID) VALUES (" & selectedLeadMisID & ") END"
                 ExecuteQuery(ssql)
 
-                If discussStage.Trim().ToUpper() = "LOGIN" Then
+                ssql = "IF NOT EXISTS (SELECT 1 FROM ExpenseIncome WHERE LeadID=" & selectedLeadMisID & ") " &
+                       "BEGIN " &
+                       "INSERT INTO ExpenseIncome (LeadID, LoginMisID, EntBy, EntDt, IsDelete) " &
+                       "SELECT " & selectedLeadMisID & ", LoginMisID, '" & SessionEmpId & "', GETDATE(), 'N' " &
+                       "FROM LoginMIS WHERE LeadID=" & selectedLeadMisID & " " &
+                       "END"
+                ExecuteQuery(ssql)
+            End If
 
-                    ssql = "IF NOT EXISTS (SELECT 1 FROM LoginMIS WHERE LeadID=" & leadID & ") " &
-                             "BEGIN INSERT INTO LoginMIS (LeadID) VALUES (" & leadID & ") END"
-                    ExecuteQuery(ssql)
+            If discussStage.ToUpper() = "CANCEL" Then
+                ssql = "UPDATE LeadMIS SET IsDelete='Y' WHERE LeadMisID=" & selectedLeadMisID
+                ExecuteQuery(ssql)
+            End If
 
-                    ssql = "IF NOT EXISTS (SELECT 1 FROM ExpenseIncome WHERE LeadID=" & leadID & " ) " &
-                               "BEGIN " &
-                               "INSERT INTO ExpenseIncome (LeadID, LoginMisID, EntBy, EntDt, IsDelete) " &
-                               "SELECT " & leadID & ", LoginMisID,'" & SessionEmpId & "', GETDATE(), 'N' " &
-                               "FROM LoginMIS WHERE LeadID=" & leadID & " " &
-                               "END"
-                    ExecuteQuery(ssql)
-
-                End If
-
-                If discussStage.Trim().ToUpper() = "CANCEL" Then
-
-                    ssql = "Update Leadmis set IsDelete='Y' where LeadMisID=" & leadID & ""
-                    ExecuteQuery(ssql)
-
-                End If
-
-            Next
-
-
-            MessageBox.Show(
-              selectedCount.ToString() &
-              " record(s) updated successfully.",
-              "Update",
-              MessageBoxButtons.OK,
-              MessageBoxIcon.Information
-            )
-
-
-            '---------------------------------------------------
-            ' REFRESH GRID
-            '---------------------------------------------------
-            LoadLeadMISGrid()
-
-
+            MessageBox.Show("Record updated successfully.", "Update",
+                            MessageBoxButtons.OK, MessageBoxIcon.Information)
+            ClearForm()
+            LoadLeadMISGrid()
         Catch ex As Exception
-
-            MessageBox.Show(
-              "Update Error:" & Environment.NewLine &
-              ex.Message,
-              "Error",
-              MessageBoxButtons.OK,
-              MessageBoxIcon.Error
-            )
-
+            MessageBox.Show("Update Error:" & Environment.NewLine & ex.Message,
+                            "Error", MessageBoxButtons.OK, MessageBoxIcon.Error)
         End Try
-
     End Sub
 
-
-    '===========================================================
-    ' CHECKBOX VALUE CHANGED
-    '===========================================================
-    Private Sub dgv_CellValueChanged(
-    sender As Object,
-    e As DataGridViewCellEventArgs
-  ) Handles dgv.CellValueChanged
-
+    Private Sub btnDelete_Click(sender As Object, e As EventArgs) Handles btnDelete.Click
         Try
-
-            If e.RowIndex < 0 Then
-                Exit Sub
-            End If
-
-
-            If Not dgv.Columns.Contains("SelectRow") Then
-                Exit Sub
-            End If
-
-
-            If e.ColumnIndex < 0 Then
-                Exit Sub
-            End If
-
-
-            If dgv.Columns(e.ColumnIndex).Name <> "SelectRow" Then
-                Exit Sub
-            End If
-
-
-            Dim row As DataGridViewRow =
-              dgv.Rows(e.RowIndex)
-
-
-            Dim isChecked As Boolean = False
-
-
-            If row.Cells("SelectRow").Value IsNot Nothing AndAlso
-             Not IsDBNull(row.Cells("SelectRow").Value) Then
-
-                isChecked =
-                  Convert.ToBoolean(
-                    row.Cells("SelectRow").Value
-                  )
-
-            End If
-
-
-            '---------------------------------------------------
-            ' SELECTED = EDITABLE
-            ' UNSELECTED = READONLY
-            '---------------------------------------------------
-            For Each col As DataGridViewColumn In dgv.Columns
-
-                If col.Name = "SelectRow" Then
-
-                    col.ReadOnly = False
-
-                ElseIf col.Name = "LeadMisID" Then
-
-                    col.ReadOnly = True
-
-                Else
-
-                    row.Cells(col.Index).ReadOnly =
-                      Not isChecked
-
-                End If
-
+            Dim selectedCount As Integer = 0
+            For Each row As DataGridViewRow In dgv.Rows
+                If row.IsNewRow Then Continue For
+                If IsRowChecked(row) Then selectedCount += 1
             Next
 
-
-        Catch ex As Exception
-
-            MessageBox.Show(
-              "Selection Error:" & Environment.NewLine &
-              ex.Message,
-              "Error",
-              MessageBoxButtons.OK,
-              MessageBoxIcon.Error
-            )
-
-        End Try
-
-    End Sub
-
-
-    '===========================================================
-    ' CHECKBOX COMMIT
-    '===========================================================
-    Private Sub dgv_CurrentCellDirtyStateChanged(
-    sender As Object,
-    e As EventArgs
-  ) Handles dgv.CurrentCellDirtyStateChanged
-
-        Try
-
-            If dgv.IsCurrentCellDirty Then
-
-                If TypeOf dgv.CurrentCell Is DataGridViewCheckBoxCell Then
-
-                    dgv.CommitEdit(
-                      DataGridViewDataErrorContexts.Commit
-                    )
-
+            If selectedCount = 0 AndAlso selectedLeadMisID > 0 Then
+                ' If no checkbox is ticked but a record is selected in form
+                Dim res As DialogResult = MessageBox.Show("Are you sure you want to delete the currently selected record?",
+                                                          "Confirm Delete", MessageBoxButtons.YesNo, MessageBoxIcon.Question)
+                If res = DialogResult.Yes Then
+                    ssql = "UPDATE LeadMIS SET IsDelete='Y', " &
+                           "ModBy='" & SqlText(SessionEmpId) & "', ModDt=GETDATE() " &
+                           "WHERE LeadMisID=" & selectedLeadMisID
+                    ExecuteQuery(ssql)
+                    MessageBox.Show("Record Deleted Successfully", "Delete", MessageBoxButtons.OK, MessageBoxIcon.Information)
+                    ClearForm()
+                    LoadLeadMISGrid()
                 End If
-
+                Return
             End If
 
+            If selectedCount = 0 Then
+                MessageBox.Show("Please select at least one record to delete.", "Delete",
+                                MessageBoxButtons.OK, MessageBoxIcon.Warning)
+                Return
+            End If
+
+            Dim result As DialogResult = MessageBox.Show(
+                "Are you sure you want to delete " & selectedCount.ToString() & " selected record(s)?",
+                "Confirm Delete", MessageBoxButtons.YesNo, MessageBoxIcon.Question)
+            If result <> DialogResult.Yes Then Return
+
+            For Each row As DataGridViewRow In dgv.Rows
+                If row.IsNewRow Then Continue For
+                If IsRowChecked(row) Then
+                    Dim leadID As Integer = Convert.ToInt32(GetCellValue(row, "LeadMisID"))
+                    ssql = "UPDATE LeadMIS SET IsDelete='Y', " &
+                           "ModBy='" & SqlText(SessionEmpId) & "', ModDt=GETDATE() " &
+                           "WHERE LeadMisID=" & leadID
+                    ExecuteQuery(ssql)
+                End If
+            Next
+
+            MessageBox.Show("Record(s) Deleted Successfully", "Delete",
+                            MessageBoxButtons.OK, MessageBoxIcon.Information)
+            ClearForm()
+            LoadLeadMISGrid()
         Catch ex As Exception
-
+            MessageBox.Show("Delete Error:" & Environment.NewLine & ex.Message,
+                            "Error", MessageBoxButtons.OK, MessageBoxIcon.Error)
         End Try
-
+    End Sub
+    Private Sub dgv_CurrentCellDirtyStateChanged(sender As Object, e As EventArgs) Handles dgv.CurrentCellDirtyStateChanged
+        Try
+            If dgv.IsCurrentCellDirty AndAlso TypeOf dgv.CurrentCell Is DataGridViewCheckBoxCell Then
+                dgv.CommitEdit(DataGridViewDataErrorContexts.Commit)
+            End If
+        Catch
+        End Try
     End Sub
 
     Private Function Required() As Boolean
-
         If Not RequiredField(dtpLeadDate, "Lead Date") Then Return False
         If Not RequiredField(txtCustName, "Customer Name") Then Return False
-
-        '---------------------------------------------------
-        ' Mobile No Validation (Compulsory + Exactly 10 digits)
-        '---------------------------------------------------
         If String.IsNullOrWhiteSpace(txtMobileNo.Text) Then
             MessageBox.Show("Please enter Mobile No.", "Required", MessageBoxButtons.OK, MessageBoxIcon.Warning)
             txtMobileNo.Focus()
             Return False
         End If
-
         Dim mobile As String = txtMobileNo.Text.Trim()
-
-        If mobile.Length <> 10 Then
-            MessageBox.Show("Mobile No must be exactly 10 digits.", "Invalid Mobile No", MessageBoxButtons.OK, MessageBoxIcon.Warning)
+        If mobile.Length <> 10 OrElse Not IsNumeric(mobile) Then
+            MessageBox.Show("Mobile No must be exactly 10 digits.", "Invalid Mobile No",
+                            MessageBoxButtons.OK, MessageBoxIcon.Warning)
             txtMobileNo.Focus()
             Return False
         End If
-
-        If Not IsNumeric(mobile) Then
-            MessageBox.Show("Mobile No must contain only numbers.", "Invalid Mobile No", MessageBoxButtons.OK, MessageBoxIcon.Warning)
-            txtMobileNo.Focus()
-            Return False
-        End If
-
         If Not RequiredField(txtLoanAmnt, "Loan Amount") Then Return False
         If Not RequiredField(CboProduct, "Product") Then Return False
         If Not RequiredField(CboSubProduct, "Sub Product") Then Return False
         If Not RequiredField(txtPropertyNo, "Property No") Then Return False
         If Not RequiredField(txtPropertyAdd, "Property Address") Then Return False
         If Not RequiredField(txtRef, "Reference") Then Return False
-
+        If Not RequiredField(CboLeadStage, "Lead Stage") Then Return False
         Return True
-
-    End Function
-    Private Function GetCellValue(
-    row As DataGridViewRow,
-    columnName As String
-  ) As String
-
-        Try
-
-            If Not dgv.Columns.Contains(columnName) Then
-                Return ""
-            End If
-
-
-            Dim value As Object =
-              row.Cells(columnName).Value
-
-
-            If value Is Nothing OrElse IsDBNull(value) Then
-                Return ""
-            End If
-
-
-            Return value.ToString().Trim()
-
-
-        Catch ex As Exception
-
-            Return ""
-
-        End Try
-
     End Function
 
-
-    '===========================================================
-    ' CHECK WHETHER ROW IS SELECTED
-    '===========================================================
-    Private Function IsRowChecked(
-    row As DataGridViewRow
-  ) As Boolean
-
-        Try
-
-            If row Is Nothing Then
-                Return False
-            End If
-
-
-            If row.IsNewRow Then
-                Return False
-            End If
-
-
-            If Not dgv.Columns.Contains("SelectRow") Then
-                Return False
-            End If
-
-
-            Dim value As Object =
-              row.Cells("SelectRow").Value
-
-
-            If value Is Nothing OrElse IsDBNull(value) Then
-                Return False
-            End If
-
-
-            Return Convert.ToBoolean(value)
-
-
-        Catch ex As Exception
-
-            Return False
-
-        End Try
-
-    End Function
-
-
-    '===========================================================
-    ' SQL TEXT ESCAPE
-    '===========================================================
-    Private Function SqlText(value As String) As String
-
-        If value Is Nothing Then
-            Return ""
+    Private Sub SetComboValue(cbo As ComboBox, value As String)
+        If cbo Is Nothing Then Exit Sub
+        Dim idx As Integer = cbo.FindStringExact(value)
+        If idx >= 0 Then
+            cbo.SelectedIndex = idx
+        Else
+            cbo.Text = value
         End If
+    End Sub
 
-
-        Return value.Replace("'", "''")
-
+    Private Function GetCellValue(row As DataGridViewRow, columnName As String) As String
+        Try
+            If Not dgv.Columns.Contains(columnName) Then Return ""
+            Dim value As Object = row.Cells(columnName).Value
+            If value Is Nothing OrElse IsDBNull(value) Then Return ""
+            Return value.ToString().Trim()
+        Catch
+            Return ""
+        End Try
     End Function
 
-
-    '===========================================================
-    ' CLEAR FORM
-    '===========================================================
-    Private Sub ClearForm()
-
+    Private Function IsRowChecked(row As DataGridViewRow) As Boolean
         Try
+            If row Is Nothing OrElse row.IsNewRow Then Return False
+            If Not dgv.Columns.Contains("SelectRow") Then Return False
+            Dim value As Object = row.Cells("SelectRow").Value
+            If value Is Nothing OrElse IsDBNull(value) Then Return False
+            Return Convert.ToBoolean(value)
+        Catch
+            Return False
+        End Try
+    End Function
 
+    Private Function SqlText(value As String) As String
+        If value Is Nothing Then Return ""
+        Return value.Replace("'", "''")
+    End Function
+
+    Private Sub ClearForm()
+        Try
+            selectedLeadMisID = 0
             txtCustName.Clear()
             txtMobileNo.Clear()
             txtLoanAmnt.Clear()
@@ -1007,15 +449,6 @@
             txtOthrPropertyAdd.Clear()
             txtRef.Clear()
             txtRemarks.Clear()
-
-
-            If CmbDiscLogin.Items.Count > 0 Then
-                CmbDiscLogin.SelectedIndex = 0
-            Else
-                CmbDiscLogin.SelectedIndex = -1
-            End If
-
-
             CboProduct.SelectedIndex = -1
             CboSubProduct.SelectedIndex = -1
             CboCPA.SelectedIndex = -1
@@ -1023,27 +456,17 @@
             txtBank.SelectedIndex = -1
             txtPropertyAdd.SelectedIndex = -1
             CboCode.SelectedIndex = -1
-            CboLeadStage.SelectedIndex = -1
             txtStage.SelectedIndex = -1
-
-
-            dtpLeadDate.Value = DateTime.Now
-
-
+            If CboLeadStage.Items.Count > 0 Then
+                CboLeadStage.SelectedIndex = 0
+            Else
+                CboLeadStage.SelectedIndex = -1
+            End If
+            dtpLeadDate.Value = DateTime.Today
             txtCustName.Focus()
-
         Catch ex As Exception
-
-            MessageBox.Show(
-                "Clear Form Error:" & Environment.NewLine &
-                ex.Message,
-                "Error",
-                MessageBoxButtons.OK,
-                MessageBoxIcon.Error
-            )
-
+            MessageBox.Show("Clear Form Error:" & Environment.NewLine & ex.Message,
+                            "Error", MessageBoxButtons.OK, MessageBoxIcon.Error)
         End Try
-
     End Sub
-
 End Class

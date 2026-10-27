@@ -300,9 +300,6 @@ Partial Class frmLeadMIS
         txtRemarks.Size = New Size(400, 30)
         txtRemarks.TabIndex = 17
 
-        '----------------------------------------------------------
-        ' HIDDEN / LEGACY CONTROLS
-        '----------------------------------------------------------
         txtStage.Visible = False
         txtStage.TabStop = False
         txtStage.Name = "txtStage"

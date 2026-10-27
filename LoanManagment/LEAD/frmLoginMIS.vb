@@ -9,6 +9,23 @@
         dtpHODate.Value = DateTime.Today
         dtpLeadDate.Value = DateTime.Today
 
+        ' ========== ALL FIELDS EDITABLE ==========
+        txtCustName.ReadOnly = False
+        txtMobileNo.ReadOnly = False
+        txtLoanAmnt.ReadOnly = False
+        txtExpOfferToCm.ReadOnly = False
+        txtPropertyNo.ReadOnly = False
+        txtPropertyAdd.ReadOnly = False
+        txtOtherPropAdd.ReadOnly = False
+
+        txtCustName.BackColor = Color.White
+        txtMobileNo.BackColor = Color.White
+        txtLoanAmnt.BackColor = Color.White
+        txtExpOfferToCm.BackColor = Color.White
+        txtPropertyNo.BackColor = Color.White
+        txtPropertyAdd.BackColor = Color.White
+        txtOtherPropAdd.BackColor = Color.White
+
         ssql = "SELECT StageType FROM StageMst WHERE IsActive='Y'"
         FillCombo(txtStage, GetData(ssql), "StageType")
 
@@ -25,9 +42,6 @@
         FillCombo(CboCPA, GetData(ssql), "CPAName")
     End Sub
 
-    '==============================================================
-    ' SEARCH / REFRESH
-    '==============================================================
     Private Sub btnRefresh_Click(sender As Object, e As EventArgs) Handles btnRefresh.Click
         Try
             selectedLoginMisID = 0
@@ -39,23 +53,33 @@
             Dim mobileNo As String = txtSearchMobile.Text.Trim().Replace("'", "''")
 
             ssql = "SELECT lgn.LoginMisID, lgn.LoginDate, lgn.ApplicationNo, lgn.LoanNo, " &
-                   "ld.CustName, ld.MobileNo, ld.Stage, ld.BANK, lgn.LLPSNo, " &
+                   "ISNULL(lgn.CustName, ld.CustName) AS CustName, " &
+                   "ISNULL(lgn.MobileNo, ld.MobileNo) AS MobileNo, " &
+                   "lgn.Stage, ISNULL(lgn.BANK, ld.BANK) AS BANK, lgn.LLPSNo, " &
                    "lgn.BranchSoleID, lgn.Code, lgn.DastavageDate, lgn.RMDate, lgn.HODate, " &
-                   "ld.LoanAmount AS OriginalLoanAmount, " &
+                   "ISNULL(lgn.OriginalLoanAmount, ld.LoanAmount) AS OriginalLoanAmount, " &
                    "lgn.LoanAmount AS ApprovedAmount, " &
-                   "ld.CPA, ld.PropertyNo, ld.PropertyAddress, ld.OtherPropertyAddress, ld.ExpOfferToCm, " &
+                   "ISNULL(lgn.CPA, ld.CPA) AS CPA, " &
+                   "ISNULL(lgn.PropertyNo, ld.PropertyNo) AS PropertyNo, " &
+                   "ISNULL(lgn.PropertyAddress, ld.PropertyAddress) AS PropertyAddress, " &
+                   "ISNULL(lgn.OtherPropertyAddress, ld.OtherPropertyAddress) AS OtherPropertyAddress, " &
+                   "ISNULL(lgn.ExpOffer, ld.ExpOfferToCm) AS ExpOfferToCm, " &
                    "ld.LeadMisID, " &
                    "ISNULL((SELECT SUM(CAST(ExpOfrValue AS DECIMAL(18,2))) " &
                    "        FROM ExpOfferTypeValue WITH (NOLOCK) " &
                    "        WHERE ExpOfrLeadID = ld.LeadMisID), 0) AS GrossTotal " &
                    "FROM LeadMIS ld WITH (NOLOCK) " &
-                   "LEFT JOIN LoginMIS lgn WITH (NOLOCK) ON ld.LeadMisID = lgn.LeadID " &
+                   "LEFT JOIN LoginMIS lgn WITH (NOLOCK) ON ld.LeadMisID = lgn.LeadID AND lgn.IsActive = 'Y' " &
                    "WHERE 1=1"
 
-            If custName <> "" Then ssql &= " AND ld.CustName LIKE '%" & custName & "%'"
-            If mobileNo <> "" Then ssql &= " AND ld.MobileNo LIKE '%" & mobileNo & "%'"
+            If custName <> "" Then
+                ssql &= " AND (ld.CustName LIKE '%" & custName & "%' OR lgn.CustName LIKE '%" & custName & "%')"
+            End If
+            If mobileNo <> "" Then
+                ssql &= " AND (ld.MobileNo LIKE '%" & mobileNo & "%' OR lgn.MobileNo LIKE '%" & mobileNo & "%')"
+            End If
 
-            ssql &= " ORDER BY lgn.LoginDate DESC"
+            ssql &= " ORDER BY lgn.LoginDate DESC, ld.LeadMisID DESC"
 
             dt = GetData(ssql)
             dgv.DataSource = dt
@@ -74,9 +98,6 @@
         btnRefresh.PerformClick()
     End Sub
 
-    '==============================================================
-    ' GRID CLICK - LOAD DATA
-    '==============================================================
     Private Sub dgv_CellClick(sender As Object, e As DataGridViewCellEventArgs) Handles dgv.CellClick
         If e.RowIndex < 0 Then Return
 
@@ -95,7 +116,6 @@
                 selectedLeadMisID = 0
             End If
 
-            ' Login Date
             If row.Cells("LoginDate").Value IsNot Nothing AndAlso IsDate(row.Cells("LoginDate").Value) Then
                 dtpLeadDate.Value = Convert.ToDateTime(row.Cells("LoginDate").Value)
             Else
@@ -118,15 +138,9 @@
             txtExpOfferToCm.Text = GetCellValue(row, "ExpOfferToCm")
             txtGrossTotal.Text = GetCellValue(row, "GrossTotal")
 
-            ' ===== Loan Amount (Original - ReadOnly) =====
             txtLoanAmnt.Text = GetCellValue(row, "OriginalLoanAmount")
-            txtLoanAmnt.ReadOnly = True
-            txtLoanAmnt.BackColor = Color.FromArgb(240, 240, 240)
-
-            ' ===== Approved Amount (Editable) =====
             txtApprovedAmount.Text = GetCellValue(row, "ApprovedAmount")
 
-            ' Optional Dates + Checkboxes
             If row.Cells("DastavageDate").Value IsNot Nothing AndAlso IsDate(row.Cells("DastavageDate").Value) Then
                 dtpDasatavgeDate.Value = Convert.ToDateTime(row.Cells("DastavageDate").Value)
                 chkDastavage.Checked = True
@@ -159,9 +173,6 @@
         End Try
     End Sub
 
-    '==============================================================
-    ' LOAD EXPENSES
-    '==============================================================
     Private Sub LoadExpenses(leadId As Integer)
         Try
             If leadId = 0 Then
@@ -185,9 +196,6 @@
         End Try
     End Sub
 
-    '==============================================================
-    ' SHOW TOTAL APPROVED (HO-PART)
-    '==============================================================
     Private Sub ShowTotalApproved(leadId As Integer)
         Try
             If leadId = 0 Then
@@ -212,9 +220,6 @@
         End Try
     End Sub
 
-    '==============================================================
-    ' OPTIONAL DATE HELPER
-    '==============================================================
     Private Function GetOptionalDateSql(chk As CheckBox, dtp As DateTimePicker) As String
         If chk.Checked Then
             Return "'" & Format(dtp.Value, "yyyy-MM-dd") & "'"
@@ -230,7 +235,6 @@
         Try
             If Not Required() Then Return
 
-            ' Find Lead if not selected
             If selectedLeadMisID = 0 Then
                 ssql = "SELECT LeadMisID FROM LeadMIS " &
                        "WHERE CustName='" & txtCustName.Text.Trim().Replace("'", "''") & "' " &
@@ -247,7 +251,6 @@
 
             Dim isHOPart As Boolean = (txtStage.Text.Trim().ToUpper() = "HO-PART")
 
-            ' Block duplicate only when NOT HO-PART
             If Not isHOPart Then
                 ssql = "SELECT LoginMisID FROM LoginMIS WHERE LeadID=" & selectedLeadMisID
                 dt = GetData(ssql)
@@ -259,8 +262,11 @@
                 End If
             End If
 
-            ssql = "INSERT INTO LoginMIS (LeadID, LoginDate, ApplicationNo, LoanNo, CustName, MobileNo, Stage, BANK, " &
-                   "LLPSNo, LoanAmount, CPA, BranchSoleID, Code, DastavageDate, RMDate, HODate, EntBy, EntDt) VALUES (" &
+            ssql = "INSERT INTO LoginMIS (" &
+                   "LeadID, LoginDate, ApplicationNo, LoanNo, CustName, MobileNo, Stage, BANK, " &
+                   "LLPSNo, OriginalLoanAmount, LoanAmount, ExpOffer, CPA, BranchSoleID, Code, " &
+                   "PropertyNo, PropertyAddress, OtherPropertyAddress, " &
+                   "DastavageDate, RMDate, HODate, EntBy, EntDt) VALUES (" &
                    selectedLeadMisID & "," &
                    "'" & Format(dtpLeadDate.Value, "yyyy-MM-dd") & "'," &
                    "'" & txtAppNo.Text.Trim().Replace("'", "''") & "'," &
@@ -270,10 +276,15 @@
                    "'" & txtStage.Text.Trim().Replace("'", "''") & "'," &
                    "'" & txtBank.Text.Trim().Replace("'", "''") & "'," &
                    "'" & txtLLPs.Text.Trim().Replace("'", "''") & "'," &
+                   "'" & txtLoanAmnt.Text.Trim().Replace("'", "''") & "'," &
                    "'" & txtApprovedAmount.Text.Trim().Replace("'", "''") & "'," &
+                   "'" & txtExpOfferToCm.Text.Trim().Replace("'", "''") & "'," &
                    "'" & CboCPA.Text.Trim().Replace("'", "''") & "'," &
                    "'" & txtBranchSole.Text.Trim().Replace("'", "''") & "'," &
                    "'" & CboCode.Text.Trim().Replace("'", "''") & "'," &
+                   "'" & txtPropertyNo.Text.Trim().Replace("'", "''") & "'," &
+                   "'" & txtPropertyAdd.Text.Trim().Replace("'", "''") & "'," &
+                   "'" & txtOtherPropAdd.Text.Trim().Replace("'", "''") & "'," &
                    GetOptionalDateSql(chkDastavage, dtpDasatavgeDate) & "," &
                    GetOptionalDateSql(chkRMDate, dtpRMDate) & "," &
                    GetOptionalDateSql(chkHODate, dtpHODate) & "," &
@@ -290,6 +301,7 @@
             End If
 
             btnRefresh.PerformClick()
+
         Catch ex As Exception
             MessageBox.Show(ex.Message)
         End Try
@@ -304,7 +316,6 @@
                 MessageBox.Show("Please select a record from the grid first.", "Update", MessageBoxButtons.OK, MessageBoxIcon.Warning)
                 Return
             End If
-
             If Not Required() Then Return
 
             ssql = "UPDATE LoginMIS SET " &
@@ -316,10 +327,15 @@
                    "Stage='" & txtStage.Text.Trim().Replace("'", "''") & "'," &
                    "BANK='" & txtBank.Text.Trim().Replace("'", "''") & "'," &
                    "LLPSNo='" & txtLLPs.Text.Trim().Replace("'", "''") & "'," &
+                   "OriginalLoanAmount='" & txtLoanAmnt.Text.Trim().Replace("'", "''") & "'," &
                    "LoanAmount='" & txtApprovedAmount.Text.Trim().Replace("'", "''") & "'," &
+                   "ExpOffer='" & txtExpOfferToCm.Text.Trim().Replace("'", "''") & "'," &
                    "CPA='" & CboCPA.Text.Trim().Replace("'", "''") & "'," &
                    "BranchSoleID='" & txtBranchSole.Text.Trim().Replace("'", "''") & "'," &
                    "Code='" & CboCode.Text.Trim().Replace("'", "''") & "'," &
+                   "PropertyNo='" & txtPropertyNo.Text.Trim().Replace("'", "''") & "'," &
+                   "PropertyAddress='" & txtPropertyAdd.Text.Trim().Replace("'", "''") & "'," &
+                   "OtherPropertyAddress='" & txtOtherPropAdd.Text.Trim().Replace("'", "''") & "'," &
                    "DastavageDate=" & GetOptionalDateSql(chkDastavage, dtpDasatavgeDate) & "," &
                    "RMDate=" & GetOptionalDateSql(chkRMDate, dtpRMDate) & "," &
                    "HODate=" & GetOptionalDateSql(chkHODate, dtpHODate) & "," &
@@ -327,16 +343,15 @@
                    "WHERE LoginMisID=" & selectedLoginMisID
 
             ExecuteQuery(ssql)
+
             MessageBox.Show("Record updated successfully.", "Update", MessageBoxButtons.OK, MessageBoxIcon.Information)
             btnRefresh.PerformClick()
+
         Catch ex As Exception
             MessageBox.Show(ex.Message)
         End Try
     End Sub
 
-    '==============================================================
-    ' DELETE
-    '==============================================================
     Private Sub btnDelete_Click(sender As Object, e As EventArgs) Handles btnDelete.Click
         Try
             If selectedLoginMisID = 0 Then
@@ -344,10 +359,13 @@
                 Return
             End If
 
-            If MessageBox.Show("Are you sure you want to delete this record?", "Confirm",
-                               MessageBoxButtons.YesNo, MessageBoxIcon.Question) = DialogResult.No Then Return
+            If MessageBox.Show("Are you sure you want to delete this record?", "Confirm Delete",
+                           MessageBoxButtons.YesNo, MessageBoxIcon.Question) = DialogResult.No Then Return
 
-            ssql = "DELETE FROM LoginMIS WHERE LoginMisID=" & selectedLoginMisID
+            ' Soft Delete
+            ssql = "UPDATE LoginMIS SET IsActive = 'N', ModBy = '" & SessionEmpId & "', ModDt = GETDATE() " &
+               "WHERE LoginMisID = " & selectedLoginMisID
+
             ExecuteQuery(ssql)
 
             MessageBox.Show("Record deleted successfully.", "Delete", MessageBoxButtons.OK, MessageBoxIcon.Information)
@@ -358,14 +376,12 @@
             txtTotalApproved.Text = "0.00"
             dgvExpense.DataSource = Nothing
             btnRefresh.PerformClick()
+
         Catch ex As Exception
             MessageBox.Show(ex.Message)
         End Try
     End Sub
 
-    '==============================================================
-    ' ADD EXPENSE
-    '==============================================================
     Private Sub btnExpOfr_Click(sender As Object, e As EventArgs) Handles btnExpOfr.Click
         Try
             If selectedLeadMisID = 0 Then
@@ -395,22 +411,20 @@
                    "'" & SessionEmpId & "', GETDATE())"
 
             ExecuteQuery(ssql)
+
             MessageBox.Show("Expense added successfully.", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information)
 
-            ' Clear ONLY Expense Type + Value
             txtExpOfr.SelectedIndex = -1
             txtExpOfrValue.Clear()
 
             btnRefresh.PerformClick()
             LoadExpenses(selectedLeadMisID)
+
         Catch ex As Exception
             MessageBox.Show(ex.Message)
         End Try
     End Sub
 
-    '==============================================================
-    ' BANK CHANGE
-    '==============================================================
     Private Sub txtBank_SelectedIndexChanged(sender As Object, e As EventArgs) Handles txtBank.SelectedIndexChanged
         Dim isBOB As Boolean = (txtBank.Text.Trim().ToUpper() = "BOB")
         txtLLPs.Visible = isBOB
@@ -419,9 +433,6 @@
         lblBranchSole.Visible = isBOB
     End Sub
 
-    '==============================================================
-    ' STAGE CHANGE - Auto fill Approved Amount
-    '==============================================================
     Private Sub txtStage_SelectedIndexChanged(sender As Object, e As EventArgs) Handles txtStage.SelectedIndexChanged
         If txtStage.Text.Trim().ToUpper() = "HO-PART" Then
             txtApprovedAmount.BackColor = Color.LightYellow
@@ -436,9 +447,6 @@
         End If
     End Sub
 
-    '==============================================================
-    ' CLEAR
-    '==============================================================
     Private Sub btnClear_Click(sender As Object, e As EventArgs) Handles btnClear.Click
         selectedLoginMisID = 0
         selectedLeadMisID = 0
@@ -477,9 +485,6 @@
         dgvExpense.DataSource = Nothing
     End Sub
 
-    '==============================================================
-    ' VALIDATION
-    '==============================================================
     Private Function Required() As Boolean
         If Not RequiredField(dtpLeadDate, "Login Date") Then Return False
         If Not RequiredField(txtCustName, "Customer Name") Then Return False
@@ -497,7 +502,6 @@
             If Not RequiredField(txtBranchSole, "Branch Sole") Then Return False
         End If
 
-        ' Extra validation for HO-PART
         If txtStage.Text.Trim().ToUpper() = "HO-PART" Then
             Dim approved As Decimal
             If Not Decimal.TryParse(txtApprovedAmount.Text.Trim(), approved) OrElse approved <= 0 Then
